@@ -1,0 +1,43 @@
+/* Week view (todo-views.md §3). Square, like everything but the ring. */
+
+.wk-bar { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 2px; margin: 8px 0 4px; }
+.wk-col {
+  appearance: none; border: 0; background: none; cursor: pointer; padding: 4px 0 3px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0;
+  border-bottom: 2px solid transparent; border-radius: var(--b2c-radius-sm, 2px);
+  color: var(--b2c-w-text, #2d3b45);
+}
+.wk-col:hover { background: var(--b2c-w-hover, rgba(45,59,69,.06)); }
+.wk-col.today { background: var(--b2c-w-surface, #f5f5f5); border-bottom-color: var(--b2c-w-text, #2d3b45); }
+.wk-col .wd { font-size: 11px; font-weight: 700; letter-spacing: .02em; }
+.wk-col .dn { font-size: 12px; min-height: 16px; }
+.wk-col.late .wd { color: var(--b2c-w-text, #2d3b45); } /* tonal (rice.md): danger only on due text */
+.sqs { display: flex; flex-direction: column-reverse; align-items: center; justify-content: flex-start; gap: 2px; height: 48px; }
+.sq {
+  width: 9px; height: 9px; flex: none; border: 1.5px solid var(--b2c-w-border, #c7cdd1); background: transparent;
+  transition: background var(--b2c-dur-slow, 280ms) var(--b2c-ease-out, ease);
+}
+/* Tonal squares (rice.md): done = text, open = border. The course isn't the subject here. */
+.sq.on { background: var(--b2c-w-text, #2d3b45); border-color: var(--b2c-w-text, #2d3b45); }
+.sq-more { font-size: 10px; color: var(--b2c-w-text-secondary, #6b7780); }
+.cnt { font-size: 11px; color: var(--b2c-w-text-secondary, #6b7780); font-variant-numeric: tabular-nums; min-height: 14px; }
+
+.wk-sum { margin: 4px 0 2px; font-size: 13px; color: var(--b2c-w-text-secondary, #6b7780); }
+.wk-sum b { color: var(--b2c-w-text, #2d3b45); }
+.wk-sum .od { color: var(--b2c-w-text, #2d3b45); font-weight: var(--b2c-weight-bold, 600); }
+
+.wk-day .gl { display: flex; justify-content: space-between; gap: 8px; outline-offset: 2px; }
+.wk-day .gl-n { text-transform: none; letter-spacing: 0; font-weight: var(--b2c-weight-regular, 400); }
+.wk-day.today .gl { color: var(--b2c-w-text, #2d3b45); }
+.wk-day.none { display: none; }
+
+/* Wide strip: 8 real columns (Overdue, then Mon–Sun); the mini bar goes. */
+@container todo (min-width: 560px) {
+  .wk-bar { display: none; }
+  .wk-days { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; align-items: start; }
+  .wk-day.none { display: block; }
+  .wk-day.today { background: var(--b2c-w-surface, #f5f5f5); }
+  .wk-day .gl { flex-direction: column; gap: 0; margin-top: 4px; }
+  /* Columns are narrow: the row's colour marker names the course. */
+  .wk-day .chip.course, .wk-day .sep { display: none; }
+}

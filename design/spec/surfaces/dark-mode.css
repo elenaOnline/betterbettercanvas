@@ -1,0 +1,284 @@
+/* SUPERSEDED by palette.css (2026-10-20). Kept until the build stops aliasing it; do not edit. */
+/* b²c dark mode, layers (a) brand-variable remap and (d) hand rules.
+   Spec: dark-mode.md. Layer (b), the generated literal overrides, and layer (c),
+   InstUI, are built by Dev from the literal map in dark-mode.md §6.
+   Every rule is gated by html[data-b2c-dark="on"]. Role values come from
+   tokens.css (--b2c-dm-*) and boot.js's mirror. */
+
+/* ── First paint + derived colours (computed on <html> from Canvas's ORIGINAL
+      brand variables; the remap happens on body to avoid a cycle) ── */
+html[data-b2c-dark="on"] {
+  color-scheme: dark;
+  background: var(--b2c-dm-bg);
+  --b2c-dm-hover: color-mix(in oklch, var(--b2c-dm-link) 10%, var(--b2c-dm-surface));
+  --b2c-dm-selected: color-mix(in oklch, var(--b2c-dm-link) 18%, var(--b2c-dm-surface));
+  --b2c-dm-success-tint: color-mix(in oklch, var(--b2c-dm-success) 16%, var(--b2c-dm-surface));
+  --b2c-dm-danger-tint: color-mix(in oklch, var(--b2c-dm-danger) 16%, var(--b2c-dm-surface));
+  --b2c-dm-warning-tint: color-mix(in oklch, var(--b2c-dm-warning) 16%, var(--b2c-dm-surface));
+  --b2c-dm-info-tint: color-mix(in oklch, var(--b2c-dm-link) 16%, var(--b2c-dm-surface));
+  --b2c-dm-highlight: color-mix(in oklch, #ffd54f 28%, var(--b2c-dm-surface));
+  --b2c-dm-nav-active: color-mix(in oklch, #ffffff 14%, var(--b2c-dm-nav));
+}
+
+/* ── (a) Brand variables, remapped on body ── */
+html[data-b2c-dark="on"] body {
+  --ic-brand-font-color-dark: var(--b2c-dm-text);
+  --ic-brand-font-color-dark-lightened-15: var(--b2c-dm-text-secondary);
+  --ic-brand-font-color-dark-lightened-28: var(--b2c-dm-text-secondary);
+  --ic-link-color: var(--b2c-dm-link);
+  --ic-link-color-darkened-10: var(--b2c-dm-link);
+  --ic-link-color-lightened-10: var(--b2c-dm-link);
+  --ic-brand-primary: var(--b2c-dm-accent);
+  --ic-brand-primary-darkened-5: var(--b2c-dm-accent);
+  --ic-brand-primary-darkened-10: var(--b2c-dm-accent);
+  --ic-brand-primary-darkened-15: var(--b2c-dm-accent);
+  --ic-brand-primary-lightened-5: var(--b2c-dm-accent);
+  --ic-brand-primary-lightened-10: var(--b2c-dm-accent);
+  --ic-brand-primary-lightened-15: var(--b2c-dm-accent);
+  --ic-brand-button--primary-bgd: var(--b2c-dm-accent);
+  --ic-brand-button--primary-bgd-darkened-5: var(--b2c-dm-accent);
+  --ic-brand-button--primary-bgd-darkened-15: var(--b2c-dm-accent);
+  --ic-brand-button--primary-text: #ffffff;
+  --ic-brand-button--secondary-bgd: var(--b2c-dm-surface-raised);
+  --ic-brand-button--secondary-bgd-darkened-5: var(--b2c-dm-surface-raised);
+  --ic-brand-button--secondary-bgd-darkened-15: var(--b2c-dm-surface-raised);
+  --ic-brand-button--secondary-text: var(--b2c-dm-text);
+  --ic-brand-global-nav-bgd: var(--b2c-dm-nav);
+  --ic-brand-global-nav-logo-bgd: var(--b2c-dm-nav);
+  --ic-brand-global-nav-ic-icon-svg-fill: var(--b2c-dm-nav-text);
+  --ic-brand-global-nav-ic-icon-svg-fill--active: var(--b2c-dm-nav-text);
+  --ic-brand-global-nav-menu-item__text-color: var(--b2c-dm-nav-text);
+  --ic-brand-global-nav-menu-item__text-color--active: var(--b2c-dm-nav-text);
+  --ic-brand-global-nav-avatar-border: var(--b2c-dm-nav-text);
+
+  background: var(--b2c-dm-bg);
+  color: var(--b2c-dm-text);
+}
+/* "Theme colour" nav instead of the school's. */
+html[data-b2c-dark="on"][data-b2c-dark-nav="theme"] {
+  --b2c-dm-nav: var(--b2c-dm-surface);
+}
+
+/* ── (d) Hand rules ── */
+
+/* Page shells */
+html[data-b2c-dark="on"] #application,
+html[data-b2c-dark="on"] #wrapper,
+html[data-b2c-dark="on"] #main,
+html[data-b2c-dark="on"] #not_right_side,
+html[data-b2c-dark="on"] #content-wrapper,
+html[data-b2c-dark="on"] #content,
+html[data-b2c-dark="on"] #right-side-wrapper,
+html[data-b2c-dark="on"] #left-side,
+html[data-b2c-dark="on"] .ic-app-nav-toggle-and-crumbs {
+  background-color: var(--b2c-dm-bg);
+}
+
+/* Global nav: active item pill */
+html[data-b2c-dark="on"] .ic-app-header__menu-list-item--active .ic-app-header__menu-list-link,
+html[data-b2c-dark="on"] .ic-app-header__menu-list-item--active .ic-app-header__menu-list-link:hover {
+  background-color: var(--b2c-dm-nav-active);
+}
+html[data-b2c-dark="on"] .ic-app-header__menu-list-item--active .ic-icon-svg {
+  fill: var(--b2c-dm-nav-text);
+}
+html[data-b2c-dark="on"] .ic-app-header__menu-list-item--active .menu-item__text {
+  color: var(--b2c-dm-nav-text);
+}
+
+/* Breadcrumbs */
+html[data-b2c-dark="on"] #breadcrumbs li a,
+html[data-b2c-dark="on"] #breadcrumbs li:last-of-type a {
+  color: var(--b2c-dm-text-secondary);
+}
+html[data-b2c-dark="on"] #breadcrumbs li:last-of-type a { color: var(--b2c-dm-text); }
+html[data-b2c-dark="on"] #breadcrumbs li:not(.home) + li::before { filter: invert(1) opacity(.6); }
+
+/* Course nav */
+html[data-b2c-dark="on"] #section-tabs .section a { color: var(--b2c-dm-text-secondary); }
+html[data-b2c-dark="on"] #section-tabs .section a:hover { color: var(--b2c-dm-text); background: var(--b2c-dm-hover); }
+html[data-b2c-dark="on"] #section-tabs .section a.active {
+  color: var(--b2c-dm-text);
+  border-left-color: var(--b2c-dm-link);
+}
+
+/* Elevation: things that sit on `surface` */
+html[data-b2c-dark="on"] .ic-DashboardCard,
+html[data-b2c-dark="on"] .ic-DashboardCard__header_content,
+html[data-b2c-dark="on"] .ig-header,
+html[data-b2c-dark="on"] .ig-row,
+html[data-b2c-dark="on"] .ToDoSidebarItem,
+html[data-b2c-dark="on"] .ui-dialog,
+html[data-b2c-dark="on"] .ui-widget-content,
+html[data-b2c-dark="on"] #grades_summary tr.student_assignment,
+html[data-b2c-dark="on"] .ic-item-row {
+  background-color: var(--b2c-dm-surface);
+  border-color: var(--b2c-dm-border);
+}
+html[data-b2c-dark="on"] .ic-DashboardCard {
+  box-shadow: 0 0 0 1px var(--b2c-dm-border);
+}
+html[data-b2c-dark="on"] .ic-DashboardCard:hover {
+  box-shadow: 0 0 0 1px var(--b2c-dm-border), 0 4px 16px rgba(0, 0, 0, .45);
+}
+html[data-b2c-dark="on"] #grades_summary tr.student_assignment:nth-child(even) {
+  background-color: color-mix(in oklch, var(--b2c-dm-surface-raised) 50%, var(--b2c-dm-surface));
+}
+
+/* Card skeletons (Canvas's first render) pulse dark-on-dark */
+html[data-b2c-dark="on"] .ic-DashboardCard__placeholder-svg rect,
+html[data-b2c-dark="on"] .ic-DashboardCard__placeholder-svg path {
+  fill: var(--b2c-dm-surface-raised);
+}
+html[data-b2c-dark="on"] .ic-DashboardCard__placeholder-svg {
+  background: var(--b2c-dm-surface);
+}
+
+/* Card text under the hero: title in the course colour, lifted for dark.
+   Canvas sets the title colour inline from the course colour. Lifting it needs
+   the course colour as a variable; Dev's card code sets --b2c-course on each
+   card, and this rule falls back to `text` without it. */
+html[data-b2c-dark="on"] .ic-DashboardCard__header-title,
+html[data-b2c-dark="on"] .ic-DashboardCard__header-title span {
+  color: oklch(from var(--b2c-course, var(--b2c-dm-text)) max(l, 0.72) c h) !important;
+}
+html[data-b2c-dark="on"] .ic-DashboardCard__header-subtitle,
+html[data-b2c-dark="on"] .ic-DashboardCard__header-term {
+  color: var(--b2c-dm-text-secondary);
+}
+html[data-b2c-dark="on"] .ic-DashboardCard__action { color: var(--b2c-dm-text-secondary); }
+html[data-b2c-dark="on"] .ic-DashboardCard__action:hover { color: var(--b2c-dm-text); }
+
+/* Canvas embosses some text with a light text-shadow; on dark it blurs */
+html[data-b2c-dark="on"] body,
+html[data-b2c-dark="on"] body * {
+  text-shadow: none !important;
+}
+
+/* School logo in the dashboard sidebar: logos are drawn for white pages;
+   show it as a light monochrome mark (the nav logo is already white-on-brand) */
+html[data-b2c-dark="on"] .ic-sidebar-logo img,
+html[data-b2c-dark="on"] .ic-sidebar-logo__image {
+  filter: brightness(0) invert(0.88);
+}
+
+/* Right sidebar */
+html[data-b2c-dark="on"] #right-side h2,
+html[data-b2c-dark="on"] #right-side .h2 {
+  color: var(--b2c-dm-text);
+  border-bottom-color: var(--b2c-dm-border);
+}
+
+/* Menus, popovers, tooltips: surface-raised */
+html[data-b2c-dark="on"] .ui-menu,
+html[data-b2c-dark="on"] .al-options,
+html[data-b2c-dark="on"] .ui-tooltip,
+html[data-b2c-dark="on"] .popover {
+  background-color: var(--b2c-dm-surface-raised);
+  color: var(--b2c-dm-text);
+  border-color: var(--b2c-dm-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+}
+
+/* Forms: inputs are sunken (bg) with a border */
+html[data-b2c-dark="on"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+html[data-b2c-dark="on"] select,
+html[data-b2c-dark="on"] textarea {
+  background-color: var(--b2c-dm-bg);
+  color: var(--b2c-dm-text);
+  border-color: var(--b2c-dm-border);
+}
+html[data-b2c-dark="on"] ::placeholder { color: var(--b2c-dm-text-tertiary); }
+
+/* Focus: brand primary is invisible on dark for the pilot school (dark green); use link */
+html[data-b2c-dark="on"] :focus-visible {
+  outline: 2px solid var(--b2c-dm-link);
+  outline-offset: 2px;
+}
+html[data-b2c-dark="on"] ::selection {
+  background: color-mix(in oklch, var(--b2c-dm-link) 35%, var(--b2c-dm-bg));
+  color: var(--b2c-dm-text);
+}
+
+/* ── User content (teacher-authored HTML) ── */
+html[data-b2c-dark="on"] .user_content,
+html[data-b2c-dark="on"] .show-content {
+  color: var(--b2c-dm-text);
+}
+/* Authored near-black text becomes `text` */
+html[data-b2c-dark="on"] .user_content [style*="color: rgb(0, 0, 0)"],
+html[data-b2c-dark="on"] .user_content [style*="color: #000"],
+html[data-b2c-dark="on"] .user_content [style*="color:#000"],
+html[data-b2c-dark="on"] .user_content [style*="color: rgb(51, 51, 51)"],
+html[data-b2c-dark="on"] .user_content [style*="color: #333"],
+html[data-b2c-dark="on"] .user_content [style*="color: #2d3b45"],
+html[data-b2c-dark="on"] .user_content [style*="color: rgb(45, 59, 69)"],
+html[data-b2c-dark="on"] .user_content [style*="color: #273540"],
+html[data-b2c-dark="on"] .user_content [style*="color: rgb(39, 53, 64)"] {
+  color: var(--b2c-dm-text) !important;
+}
+/* Authored backgrounds keep their colour; text on them goes dark so the
+   pair stays readable (they were authored on white Canvas). */
+html[data-b2c-dark="on"] .user_content [style*="background"],
+html[data-b2c-dark="on"] .user_content [bgcolor] {
+  color: #1b2330;
+}
+html[data-b2c-dark="on"] .user_content [style*="background"] a,
+html[data-b2c-dark="on"] .user_content [bgcolor] a {
+  color: #005f85;
+}
+/* Tables */
+html[data-b2c-dark="on"] .user_content table,
+html[data-b2c-dark="on"] .user_content td,
+html[data-b2c-dark="on"] .user_content th {
+  border-color: var(--b2c-dm-border);
+}
+html[data-b2c-dark="on"] .user_content th:not([style*="background"]):not([bgcolor]) {
+  background-color: var(--b2c-dm-surface-raised);
+}
+
+/* ── Images ── */
+/* Line art on transparent backgrounds stays visible; invisible on photos */
+html[data-b2c-dark="on"] .user_content img:not(.equation_image) {
+  background-color: #ffffff;
+  border-radius: var(--b2c-radius-sm);
+}
+/* Math: black glyphs on transparent → text-coloured glyphs */
+html[data-b2c-dark="on"] img.equation_image {
+  filter: invert(1) hue-rotate(180deg) brightness(0.93);
+  background: transparent;
+}
+/* Optional dimming */
+html[data-b2c-dark="on"][data-b2c-dark-dim-images] img:not(.equation_image),
+html[data-b2c-dark="on"][data-b2c-dark-dim-images] video {
+  filter: brightness(.85);
+  transition: filter var(--b2c-dur-fast) var(--b2c-ease-out);
+}
+html[data-b2c-dark="on"][data-b2c-dark-dim-images] img:not(.equation_image):hover,
+html[data-b2c-dark="on"][data-b2c-dark-dim-images] video:hover {
+  filter: none;
+}
+
+/* ── Iframes we can't style (canvadocs, YouTube, LTI): a quiet frame ── */
+html[data-b2c-dark="on"] iframe {
+  border-color: var(--b2c-dm-border);
+}
+
+/* ── High Contrast user flag: promote secondary text, underline links ── */
+html[data-b2c-dark="on"]:has(link[href*="high_contrast"]) body {
+  --b2c-dm-text-secondary: var(--b2c-dm-text);
+  --b2c-dm-text-tertiary: var(--b2c-dm-text);
+}
+html[data-b2c-dark="on"]:has(link[href*="high_contrast"]) a { text-decoration: underline; }
+
+/* ── Theme switch: no transitions for one frame ── */
+html[data-b2c-dark="on"][data-b2c-switching] *,
+html[data-b2c-switching] * {
+  transition: none !important;
+}
+
+/* ── Print stays light ── */
+@media print {
+  html[data-b2c-dark="on"],
+  html[data-b2c-dark="on"] body { background: #fff; color: #000; color-scheme: light; }
+}

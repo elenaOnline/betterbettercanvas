@@ -1,0 +1,11 @@
+/* shape: Canvas-level corner and border (design/spec/rice.md).
+   corners.gen.css (generated from Canvas's CSS) maps every radius to
+   var(--b2c-corner) under html[data-b2c-shape]; this file adds the hand
+   rules. (Density lives in type/style.css.) */
+
+/* ── Borders: 0 hides Canvas's hairlines on cards, rows and tables; 2 doubles them ── */
+html[data-b2c-border] :is(.ic-DashboardCard, .ig-header, .ig-row, .ic-Table td, .ic-Table th, .ic-item-row,
+  .ToDoSidebarItem, #grades_summary td, #grades_summary th, input:not([type="checkbox"], [type="radio"]), select, textarea) {
+  border-width: var(--b2c-border) !important;
+}
+html[data-b2c-border="0"] .ic-DashboardCard { box-shadow: none !important; }

@@ -1,0 +1,27 @@
+/* card-grades: the chip sits on the hero, absolutely positioned, so it never
+   takes or moves space. "Only on hover" is pre-paint via the mirror attribute. */
+html[data-b2c-card-grades] .ic-DashboardCard__header {
+  position: relative;
+}
+html[data-b2c-card-grades] .ic-DashboardCard__header > b2c-card-grade {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+}
+html[data-b2c-card-grades-hover] .ic-DashboardCard b2c-card-grade,
+html[data-b2c-card-grades-hover] [data-testid=draggable-card] b2c-card-grade {
+  opacity: 0;
+  transition: opacity var(--b2c-dur-fast, 120ms) var(--b2c-ease-out, ease);
+}
+html[data-b2c-card-grades-hover] .ic-DashboardCard:hover b2c-card-grade,
+html[data-b2c-card-grades-hover] .ic-DashboardCard:focus-within b2c-card-grade,
+html[data-b2c-card-grades-hover] [data-testid=draggable-card]:hover b2c-card-grade,
+html[data-b2c-card-grades-hover] [data-testid=draggable-card]:focus-within b2c-card-grade {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-b2c-card-grades-hover] .ic-DashboardCard b2c-card-grade {
+    transition: none;
+  }
+}

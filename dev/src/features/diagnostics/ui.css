@@ -1,0 +1,10 @@
+/* Options only; include in the settings UI stylesheet. */
+#diagnostics { margin-block: var(--b2c-space-6, 24px); color: var(--b2c-ui-text, inherit); overflow-wrap: anywhere; }
+#diagnostics p { line-height: var(--b2c-leading, 1.4); }
+#diagnostics button { margin: var(--b2c-space-1, 4px); min-height: var(--b2c-control-h, 28px); }
+#diagnostics label { display: block; margin-top: var(--b2c-space-3, 12px); }
+#diagnostics input, #diagnostics select, #diagnostics textarea { box-sizing: border-box; max-width: 100%; font: inherit; }
+#diagnostics textarea { display: block; width: 100%; font-family: var(--b2c-font-mono, monospace); }
+#diagnostics [role="status"] { min-height: 1.4em; }
+#diagnostics :focus-visible { outline: var(--b2c-focus-ring-w, 2px) solid var(--b2c-ui-accent, #2b4c7e); outline-offset: 2px; }
+#diagnostics .diagnostics-log { height: 12rem; overflow: auto; border-block: 1px solid var(--b2c-ui-separator, #8884); }

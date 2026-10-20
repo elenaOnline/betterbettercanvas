@@ -1,0 +1,11 @@
+/* Options only; include in the settings UI stylesheet. */
+#backup { margin-block: var(--b2c-space-6, 24px); color: var(--b2c-ui-text, inherit); overflow-wrap: anywhere; }
+#backup p { line-height: var(--b2c-leading, 1.4); }
+#backup button { margin: var(--b2c-space-1, 4px); min-height: var(--b2c-control-h, 28px); }
+#backup label { display: block; margin-top: var(--b2c-space-3, 12px); }
+#backup input, #backup select, #backup textarea { box-sizing: border-box; max-width: 100%; font: inherit; }
+#backup textarea { display: block; width: 100%; font-family: var(--b2c-font-mono, monospace); }
+#backup [role="status"] { min-height: 1.4em; }
+#backup :focus-visible { outline: var(--b2c-focus-ring-w, 2px) solid var(--b2c-ui-accent, #2b4c7e); outline-offset: 2px; }
+#backup .undo-unavailable { visibility: hidden; }
+#backup [aria-label="Import preview"] { max-height: 24rem; overflow: auto; }

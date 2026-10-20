@@ -1,0 +1,9 @@
+/* Standard = Canvas exactly: b²c applies nothing (parity audit #4). Only Wide
+   and Full widen the page, and keep prose at a readable 80ch measure. */
+html[data-b2c-full-width="wide"] .ic-Layout-wrapper,
+html[data-b2c-full-width="full"] .ic-Layout-wrapper { max-width: var(--b2c-page-max, 1366px) !important; }
+html[data-b2c-full-width="wide"] .user_content,
+html[data-b2c-full-width="full"] .user_content { max-width: 80ch; }
+/* Prose remains bounded; intrinsic tables and images can overflow that measure. */
+html[data-b2c-full-width="wide"] .user_content :is(table, img),
+html[data-b2c-full-width="full"] .user_content :is(table, img) { max-width: var(--b2c-page-max, none); }

@@ -1,0 +1,24 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Sepia",
+  "author": "b²c",
+  "palette": {
+    "light": {
+      "bg": "#f3ead6",
+      "surface": "#faf4e6",
+      "surfaceRaised": "#eee3ca",
+      "border": "#d3c29e",
+      "text": "#352a1d",
+      "textSecondary": "#57483a",
+      "textTertiary": "#62533f",
+      "link": "school",
+      "accent": "school",
+      "nav": "school",
+      "navText": "#ffffff",
+      "success": "#1e7a3c",
+      "warning": "#9a5208",
+      "danger": "#b8232a"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+/* By course (todo-views.md §4). Square cells. */
+
+.cv-sum { margin: 8px 0 2px; font-size: 13px; color: var(--b2c-w-text-secondary, #6b7780); }
+.cv-sum b { color: var(--b2c-w-text, #2d3b45); }
+.cv-block { margin-top: 10px; }
+.cv-h { display: flex; align-items: baseline; gap: 6px; margin: 0 0 4px; font-size: 13px; font-weight: var(--b2c-weight-regular, 400); min-width: 0; }
+.cv-h .sw { flex: none; width: 10px; height: 10px; background: var(--c); align-self: center; }
+.cv-h .code { flex: none; font-weight: var(--b2c-weight-bold, 600); }
+.cv-h .name { flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--b2c-w-text-secondary, #6b7780); font-size: 12px; }
+.cv-h .cv-n { flex: none; font-size: 12px; color: var(--b2c-w-text-secondary, #6b7780); font-variant-numeric: tabular-nums; }
+.cv-h .od { color: var(--b2c-w-text, #2d3b45); font-weight: var(--b2c-weight-bold, 600); } /* tonal; danger is on the due text */
+.cells { display: flex; gap: 2px; margin-bottom: 2px; }
+.cell {
+  flex: 1 1 0; height: 6px; background: var(--b2c-w-border, #c7cdd1); /* open: tonal; filled: the course */
+  transition: background var(--b2c-dur-slow, 280ms) var(--b2c-ease-out, ease);
+}
+.cell.on { background: var(--c); }
+/* The block names the course: rows inside drop their 2 px marker (one channel per item). */
+.cv-block .marker { display: none; }
+/* Nothing in range: one line. */
+.empty-course { margin-top: 6px; }
+.empty-course .cv-h { margin: 0; }
+
+/* Wide strip: courses side by side. */
+@container todo (min-width: 560px) {
+  .cv-blocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 4px 16px; align-items: start; }
+}

@@ -1,0 +1,29 @@
+# Features that ship to the owner's install (release/b2c). One id per line.
+# The Dev lead adds an id once its lane's work is reviewed and green.
+palette
+shape
+card-overlay
+condensed-cards
+custom-css
+type
+full-width
+gradient-cards
+hide-logo
+hide-recent-feedback
+tab-icons
+sites
+settings-storage
+diagnostics
+first-run
+gpa-calculator
+grade-goals
+card-assignments
+card-grades
+card-colors
+card-customization
+dashboard-notes
+grade-impact
+better-todo
+themes
+global-search
+pins

@@ -1,0 +1,41 @@
+{
+  "color": "blue",
+  "score": 4340,
+  "title": "Ocean by Grant",
+  "exports": {
+    "disable_color_overlay": false,
+    "gradient_cards": true,
+    "dark_mode": true,
+    "dark_preset": {
+      "background-0": "#212838",
+      "background-1": "#1a2026",
+      "background-2": "#212930",
+      "borders": "#2e3943",
+      "sidebar": "#1a2026",
+      "text-0": "#f5f5f5",
+      "text-1": "#e2e2e2",
+      "text-2": "#ababab",
+      "links": "#56Caf0",
+      "sidebar-text": "#f5f5f5"
+    },
+    "custom_cards": [
+      "https://gifdb.com/images/high/shark-school-swarming-ocean-8zqd4b90h7j8r8is.gif",
+      "https://media1.giphy.com/media/Y4K9JjSigTV1FkgiNE/200w.webp?cid=ecf05e47qvqduufaxfzre6akpzg4ikbdx9f8f779krrkb89n&ep=v1_gifs_search&rid=200w.webp&ct=g",
+      "https://media4.giphy.com/media/htdnXEhlPDVDZI3CMu/200w.webp?cid=ecf05e47qvqduufaxfzre6akpzg4ikbdx9f8f779krrkb89n&ep=v1_gifs_search&rid=200w.webp&ct=g",
+      "https://i.gifer.com/6jDi.gif",
+      "https://i.redd.it/2p9in2g3va2b1.gif"
+    ],
+    "card_colors": [
+      "#32f6cc",
+      "#31eece",
+      "#30e7cf",
+      "#2fdfd1",
+      "#2ed8d2"
+    ],
+    "custom_font": {
+      "link": "Comfortaa:wght@400;700",
+      "family": "'Comfortaa'"
+    }
+  },
+  "preview": "https://media4.giphy.com/media/htdnXEhlPDVDZI3CMu/200w.webp?cid=ecf05e47qvqduufaxfzre6akpzg4ikbdx9f8f779krrkb89n&ep=v1_gifs_search&rid=200w.webp&ct=g"
+}

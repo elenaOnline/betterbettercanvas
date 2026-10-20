@@ -1,0 +1,39 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Solarized Dark",
+  "author": "b²c",
+  "source": "https://ethanschoonover.com/solarized/",
+  "palette": {
+    "dark": {
+      "bg": "#002b36",
+      "surface": "#073642",
+      "surfaceRaised": "#1f4751",
+      "border": "#586e75",
+      "text": "#eee8d5",
+      "textSecondary": "#b8c7c7",
+      "textTertiary": "#a0b1b3",
+      "link": "#70ceff",
+      "accent": "#6a6fc2",
+      "nav": "#002b36",
+      "navText": "#eee8d5",
+      "success": "#859900",
+      "warning": "#b58900",
+      "danger": "#dc322f"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#dc322f",
+        "#cb4b16",
+        "#b58900",
+        "#859900",
+        "#2aa198",
+        "#268bd2",
+        "#6c71c4",
+        "#d33682"
+      ]
+    }
+  }
+}

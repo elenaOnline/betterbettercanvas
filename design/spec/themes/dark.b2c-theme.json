@@ -1,0 +1,25 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Dark",
+  "author": "b²c",
+  "source": "design/spec/palettes.json (v1 dark-mode preset)",
+  "palette": {
+    "dark": {
+      "bg": "#18212d",
+      "surface": "#212b37",
+      "surfaceRaised": "#2b3541",
+      "border": "#444e5b",
+      "text": "#e8edf4",
+      "textSecondary": "#bec3c9",
+      "textTertiary": "#a2a7ac",
+      "link": "school",
+      "accent": "school",
+      "nav": "school",
+      "navText": "#ffffff",
+      "success": "#6fcf97",
+      "warning": "#ffb37a",
+      "danger": "#ff8a80"
+    }
+  }
+}

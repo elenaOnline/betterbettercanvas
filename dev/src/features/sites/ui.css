@@ -1,0 +1,9 @@
+/* Options only; include in the settings UI stylesheet. */
+#sites { margin-block: var(--b2c-space-6, 24px); color: var(--b2c-ui-text, inherit); overflow-wrap: anywhere; }
+#sites p { line-height: var(--b2c-leading, 1.4); }
+#sites button { margin: var(--b2c-space-1, 4px); min-height: var(--b2c-control-h, 28px); }
+#sites label { display: block; margin-top: var(--b2c-space-3, 12px); }
+#sites input, #sites select, #sites textarea { box-sizing: border-box; max-width: 100%; font: inherit; }
+#sites textarea { display: block; width: 100%; font-family: var(--b2c-font-mono, monospace); }
+#sites [role="status"] { min-height: 1.4em; }
+#sites :focus-visible { outline: var(--b2c-focus-ring-w, 2px) solid var(--b2c-ui-accent, #2b4c7e); outline-offset: 2px; }

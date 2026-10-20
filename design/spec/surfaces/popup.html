@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>b²c popup</title>
+<link rel="stylesheet" href="../tokens.css">
+<!--
+  b²c popup prototype. Design, 2026-10-19. Spec: ../settings.md "Popup".
+  Ports to Preact + signals. Components: Row, Switch, Segmented, StyleChip
+  (a RadioGroup of chips), TimeRange. State is one flat object keyed like
+  dev/schema.json; keys marked (placeholder) are not in the schema yet.
+
+  Prototype URL params, for review only:
+    ?tab=other     active tab is not Canvas (hides "Show original")
+    ?custom=1      she has edited colours (shows the Custom chip)
+-->
+<style>
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    width: var(--b2c-popup-w);
+    background: var(--b2c-ui-panel);
+    color: var(--b2c-ui-text);
+    font: var(--b2c-weight-regular) var(--b2c-text-md)/var(--b2c-leading) var(--b2c-font-ui);
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    cursor: default;
+  }
+  button, input { font: inherit; color: inherit; }
+  :focus { outline: none; }
+  :focus-visible {
+    outline: var(--b2c-focus-ring-w) solid var(--b2c-ui-focus);
+    outline-offset: 2px;
+  }
+
+  /* ── Header ── */
+  .hd {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 40px; padding: 0 var(--b2c-space-4);
+    border-bottom: 1px solid var(--b2c-ui-separator);
+  }
+  .brand { font-weight: var(--b2c-weight-bold); letter-spacing: -0.01em; }
+  .host { font-size: var(--b2c-text-sm); color: var(--b2c-ui-text-secondary); }
+
+  /* ── Groups ── */
+  .group { padding: var(--b2c-space-3) 0; }
+  .group + .group { border-top: 1px solid var(--b2c-ui-separator); }
+  #features { padding: var(--b2c-space-1) 0; }
+  .pad { padding: 0 var(--b2c-space-4); }
+  .label { display: block; font-weight: var(--b2c-weight-medium); margin-bottom: var(--b2c-space-2); }
+  .stack > * + * { margin-top: var(--b2c-space-2); }
+
+  /* ── Segmented (radiogroup) ── */
+  .seg {
+    display: flex; gap: var(--b2c-space-0-5);
+    height: var(--b2c-control-h); padding: var(--b2c-space-0-5);
+    background: var(--b2c-ui-control); border-radius: var(--b2c-radius-md);
+  }
+  .seg [role="radio"] {
+    flex: 1 1 auto; min-width: 0; padding: 0 var(--b2c-space-2);
+    border: 0; border-radius: var(--b2c-radius-sm); background: transparent;
+    font-size: var(--b2c-text-md); white-space: nowrap;
+    transition: background-color var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .seg [role="radio"]:hover:not([aria-checked="true"]) { background: color-mix(in srgb, var(--b2c-ui-text) 6%, transparent); }
+  .seg [role="radio"][aria-checked="true"] {
+    background: var(--b2c-ui-control-thumb); box-shadow: var(--b2c-ui-shadow);
+    font-weight: var(--b2c-weight-medium);
+  }
+  .seg [role="radio"]:focus-visible { outline-offset: 0; }
+
+  /* ── Schedule (From / To) ── */
+  .sched { display: flex; align-items: center; gap: var(--b2c-space-2); }
+  .sched[hidden] { display: none; }
+  .sched label { color: var(--b2c-ui-text-secondary); }
+  .sched label + input { margin-right: var(--b2c-space-2); }
+  input[type="time"] {
+    height: var(--b2c-control-h); padding: 0 var(--b2c-space-2);
+    border: 0; border-radius: var(--b2c-radius-md);
+    background: var(--b2c-ui-control); font-variant-numeric: tabular-nums;
+  }
+  input[type="time"]::-webkit-calendar-picker-indicator { display: none; }
+
+  /* ── Style chips (radiogroup). Each is a 64×40 Canvas page in its preset:
+        bg, school nav strip, a surface card with a text line and a link line. ── */
+  .chips { display: flex; justify-content: space-between; gap: var(--b2c-space-2); padding-top: var(--b2c-space-1); }
+  .chip {
+    flex: 0 1 64px; min-width: 0; padding: 0; border: 0; background: none;
+    display: flex; flex-direction: column; align-items: center; gap: var(--b2c-space-1);
+    font-size: var(--b2c-text-sm); color: var(--b2c-ui-text-secondary); cursor: default;
+  }
+  .chip[hidden] { display: none; }
+  .mini {
+    position: relative; width: 100%; height: 40px; overflow: hidden;
+    border-radius: var(--b2c-radius-md); background: var(--c-bg);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b2c-ui-text) 14%, transparent);
+    transition: box-shadow var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .mini::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: var(--c-nav); }
+  .mini .card { position: absolute; left: 16px; right: 8px; top: 8px; bottom: 8px; border-radius: var(--b2c-radius-sm); background: var(--c-surface); }
+  .mini .card i { display: block; height: 3px; margin: 6px 6px 0; border-radius: 2px; background: var(--c-text); width: 55%; }
+  .mini .card i + i { margin-top: 4px; background: var(--c-link); width: 38%; }
+  .chip[aria-checked="true"] { color: var(--b2c-ui-text); font-weight: var(--b2c-weight-medium); }
+  .chip[aria-checked="true"] .mini { box-shadow: 0 0 0 2px var(--b2c-ui-panel), 0 0 0 4px var(--b2c-ui-accent); }
+  .chip:focus-visible { outline: none; }
+  .chip:focus-visible .mini { outline: var(--b2c-focus-ring-w) solid var(--b2c-ui-focus); outline-offset: 6px; }
+  .chips[aria-disabled="true"] .chip { opacity: .45; }
+  #this-page { margin-top: var(--b2c-space-2); margin-bottom: calc(-1 * var(--b2c-space-1)); }
+
+  /* ── Rows ── */
+  .row {
+    display: flex; align-items: center; gap: var(--b2c-space-3);
+    min-height: var(--b2c-row-h); padding: var(--b2c-space-1-5) var(--b2c-space-4);
+    transition: background-color var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .row.switch-row { cursor: pointer; }
+  .row.switch-row:hover { background: var(--b2c-ui-panel-hover); }
+  .row.is-disabled { cursor: default; }
+  .row.is-disabled:hover { background: none; }
+  .row[hidden] { display: none; }
+  .row-text { flex: 1; min-width: 0; }
+  .row-label { display: block; }
+  .row-desc { display: block; font-size: var(--b2c-text-sm); color: var(--b2c-ui-text-secondary); }
+  .is-disabled .row-label { color: var(--b2c-ui-text-disabled); }
+
+  /* ── Switch ── */
+  [role="switch"] {
+    flex: none; position: relative;
+    width: var(--b2c-switch-w); height: var(--b2c-switch-h); padding: 0;
+    border: 0; border-radius: var(--b2c-radius-full);
+    background: var(--b2c-ui-control);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b2c-ui-text) 8%, transparent);
+    transition: background-color var(--b2c-dur-fast) var(--b2c-ease-out);
+    cursor: pointer;
+  }
+  [role="switch"]::after {
+    content: ""; position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px; border-radius: var(--b2c-radius-sm);
+    background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25);
+    transition: transform var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  [role="switch"][aria-checked="true"] { background: var(--b2c-ui-accent-fill); box-shadow: none; }
+  [role="switch"][aria-checked="true"]::after { transform: translateX(14px); }
+  [role="switch"]:disabled { opacity: .45; cursor: default; }
+
+  /* ── Footer ── */
+  .ft { border-top: 1px solid var(--b2c-ui-separator); padding: var(--b2c-space-1) 0; }
+  .link-row {
+    display: flex; width: 100%; align-items: center; justify-content: space-between;
+    min-height: var(--b2c-row-h); padding: 0 var(--b2c-space-4);
+    border: 0; background: none; text-align: left; cursor: pointer;
+  }
+  .link-row:hover { background: var(--b2c-ui-panel-hover); }
+  .link-row:focus-visible { outline-offset: -2px; }
+  kbd {
+    font: var(--b2c-text-xs)/1 var(--b2c-font-ui); color: var(--b2c-ui-text-secondary);
+    letter-spacing: .04em;
+  }
+</style>
+</head>
+<body>
+  <header class="hd">
+    <span class="brand">b²c</span>
+    <span class="host" id="host">canvas.example.edu</span>
+  </header>
+
+  <section class="group" aria-labelledby="dm-label">
+    <div class="pad stack">
+      <span class="label" id="dm-label">Dark mode</span>
+      <div class="seg" role="radiogroup" aria-labelledby="dm-label" id="dm-seg"></div>
+      <div class="sched" id="dm-sched" role="group" aria-label="Schedule" hidden>
+        <label for="dm-from">From</label><input type="time" id="dm-from" step="60">
+        <label for="dm-to">To</label><input type="time" id="dm-to" step="60">
+      </div>
+      <div class="chips" role="radiogroup" aria-label="Style" id="dm-chips"></div>
+    </div>
+    <div id="this-page"></div>
+  </section>
+
+  <section class="group" aria-label="Features" id="features"></section>
+
+  <footer class="ft">
+    <button class="link-row" id="all-settings" type="button">
+      <span>All settings…</span><kbd aria-hidden="true">⌘,</kbd>
+    </button>
+  </footer>
+
+<script>
+/* ───────────────── State (one flat object; Dev: signals) ───────────────── */
+const PALETTES = {           /* design/spec/palettes.json (bg, surface, text), inlined for file:// */
+  dark:  { bg:"#18212d", surface:"#212b37", text:"#e8edf4", link:"school", nav:"school" },
+  gray:  { bg:"#1e1e1e", surface:"#282828", text:"#ededed", link:"school", nav:"school" },
+  black: { bg:"#000000", surface:"#101010", text:"#e8e8e8", link:"school", nav:"school" },
+  warm:  { bg:"#251f19", surface:"#2f2923", text:"#f3e9df", link:"school", nav:"school" },
+};
+/* "school" = derived from Canvas's brand variables (dark-mode.md §4). the pilot school: */
+const SCHOOL = { link: "#7dc8f3", nav: "#213921" };
+const resolve = c => ({ ...c, link: c.link === "school" ? SCHOOL.link : c.link, nav: c.nav === "school" ? SCHOOL.nav : c.nav });
+const params = new URLSearchParams(location.search);
+const state = {
+  "dark-mode.mode": "device",          /* off | always | device | schedule (schema: enabled + mode) */
+  "dark-mode.start": "20:00",
+  "dark-mode.end": "08:00",
+  "dark-mode.preset": "dark",          /* (placeholder) dark | gray | black | warm | custom */
+  "dark-mode.custom": params.has("custom")
+    ? { bg:"#1a1d24", surface:"#232833", text:"#e3e7ee", link:"#7fd1b9", nav:"school" } : null, /* (placeholder) */
+  "tab.showOriginal": false,           /* per tab, not stored */
+  "card-assignments.enabled": true,    /* (placeholder) */
+  "card-grades.enabled": true,         /* (placeholder) */
+  "better-todo.enabled": true,         /* (placeholder) */
+  "gpa-calculator.enabled": false,     /* (placeholder) */
+};
+const isCanvasTab = params.get("tab") !== "other";
+const watchers = [];
+const watch = fn => { watchers.push(fn); fn(); };
+const set = (k, v) => { state[k] = v; watchers.forEach(fn => fn()); };
+
+const sysDark = matchMedia("(prefers-color-scheme: dark)");
+sysDark.addEventListener("change", () => watchers.forEach(fn => fn()));
+function inSchedule() {
+  const now = new Date(), m = now.getHours() * 60 + now.getMinutes();
+  const toMin = t => { const [h, mm] = t.split(":").map(Number); return h * 60 + mm; };
+  const a = toMin(state["dark-mode.start"]), b = toMin(state["dark-mode.end"]);
+  return a <= b ? m >= a && m < b : m >= a || m < b;
+}
+function darkActive() {
+  switch (state["dark-mode.mode"]) {
+    case "always": return true;
+    case "device": return sysDark.matches;
+    case "schedule": return inSchedule();
+    default: return false;
+  }
+}
+
+/* ───────────────── Components ───────────────── */
+let uid = 0;
+const h = (tag, props = {}, ...kids) => {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) {
+    if (k === "class") el.className = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (k === "style") Object.assign(el.style, v);
+    else el.setAttribute(k, v);
+  }
+  el.append(...kids.filter(k => k != null));
+  return el;
+};
+
+/* RadioGroup: roving tabindex, arrows move and select (native radio feel). */
+function RadioGroup(groupEl, options, getValue, setValue, render) {
+  const items = options.map(o => {
+    const b = render(o);
+    b.setAttribute("role", "radio");
+    b.type = "button";
+    b.addEventListener("click", () => setValue(o.value));
+    groupEl.append(b);
+    return b;
+  });
+  groupEl.addEventListener("keydown", e => {
+    const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, Home: "first", End: "last" };
+    if (!(e.key in keys)) return;
+    e.preventDefault();
+    const live = options.map((o, i) => i).filter(i => !items[i].hidden);
+    const cur = live.indexOf(items.indexOf(document.activeElement));
+    let next = keys[e.key] === "first" ? 0 : keys[e.key] === "last" ? live.length - 1
+             : (cur + keys[e.key] + live.length) % live.length;
+    setValue(options[live[next]].value);
+    items[live[next]].focus();
+  });
+  watch(() => {
+    const v = getValue();
+    items.forEach((b, i) => {
+      const on = options[i].value === v;
+      b.setAttribute("aria-checked", on);
+      b.tabIndex = on ? 0 : -1;
+    });
+  });
+  return items;
+}
+
+/* Switch row: the whole row is the hit target; the button carries the role. */
+function SwitchRow({ key, label, desc, isDisabled, isHidden }) {
+  const id = "r" + (++uid);
+  const descEl = desc ? h("span", { class: "row-desc", id: id + "-d" }) : null;
+  const sw = h("button", { type: "button", role: "switch", "aria-labelledby": id + "-l",
+    ...(desc ? { "aria-describedby": id + "-d" } : {}) });
+  const row = h("div", { class: "row switch-row" },
+    h("span", { class: "row-text" }, h("span", { class: "row-label", id: id + "-l" }, label), descEl),
+    sw);
+  sw.addEventListener("click", () => set(key, !state[key]));
+  row.addEventListener("click", e => { if (!sw.contains(e.target) && !sw.disabled) sw.click(); });
+  watch(() => {
+    const dis = isDisabled ? isDisabled() : false;
+    sw.setAttribute("aria-checked", !!state[key]);
+    sw.disabled = dis;
+    row.classList.toggle("is-disabled", dis);
+    if (descEl) descEl.textContent = typeof desc === "function" ? desc() : desc;
+    if (isHidden) row.hidden = isHidden();
+  });
+  return row;
+}
+
+/* ───────────────── Build ───────────────── */
+// Dark mode segmented
+RadioGroup(document.getElementById("dm-seg"),
+  [{ value: "off", label: "Off" }, { value: "always", label: "On" },
+   { value: "device", label: "Match system" }, { value: "schedule", label: "Scheduled" }],
+  () => state["dark-mode.mode"], v => set("dark-mode.mode", v),
+  o => h("button", {}, o.label));
+
+// Schedule: appears under the segmented; the popup grows (see design note in reply).
+const sched = document.getElementById("dm-sched");
+const from = document.getElementById("dm-from"), to = document.getElementById("dm-to");
+from.addEventListener("change", () => set("dark-mode.start", from.value));
+to.addEventListener("change", () => set("dark-mode.end", to.value));
+watch(() => {
+  sched.hidden = state["dark-mode.mode"] !== "schedule";
+  from.value = state["dark-mode.start"]; to.value = state["dark-mode.end"];
+});
+
+// Style chips
+const chipsEl = document.getElementById("dm-chips");
+const chipOpts = Object.keys(PALETTES).map(k => ({ value: k, label: k[0].toUpperCase() + k.slice(1), pal: PALETTES[k] }));
+chipOpts.push({ value: "custom", label: "Custom" });
+const chipEls = RadioGroup(chipsEl, chipOpts, () => state["dark-mode.preset"], v => set("dark-mode.preset", v),
+  o => h("button", { class: "chip" },
+    h("span", { class: "mini", "aria-hidden": "true" }, h("span", { class: "card" }, h("i"), h("i"))),
+    h("span", { class: "name" }, o.label)));
+watch(() => {
+  chipOpts.forEach((o, i) => {
+    const raw = o.value === "custom" ? state["dark-mode.custom"] : o.pal;
+    const el = chipEls[i];
+    el.hidden = !raw;
+    if (raw) { const pal = resolve(raw); for (const r of ["bg", "surface", "text", "link", "nav"]) el.style.setProperty(`--c-${r}`, pal[r]); }
+  });
+  const off = state["dark-mode.mode"] === "off";
+  chipsEl.setAttribute("aria-disabled", off);
+  chipEls.forEach(el => el.disabled = off);
+});
+
+// Features
+const feats = document.getElementById("features");
+const thisPage = document.getElementById("this-page");
+if (!isCanvasTab) thisPage.remove();
+else thisPage.append(SwitchRow({
+  key: "tab.showOriginal", label: "Show original on this page",
+  desc: () => darkActive() ? "Until this tab navigates" : "Dark mode isn’t on right now",
+  isDisabled: () => !darkActive(),
+}));
+feats.append(
+  SwitchRow({ key: "card-assignments.enabled", label: "Assignments on cards" }),
+  SwitchRow({ key: "card-grades.enabled", label: "Grades on cards" }),
+  SwitchRow({ key: "better-todo.enabled", label: "Improved to-do list" }),
+  SwitchRow({ key: "gpa-calculator.enabled", label: "GPA calculator" }),
+);
+
+// All settings… (chrome.runtime.openOptionsPage() in the extension)
+const openSettings = () => { document.body.dataset.opened = "settings"; };
+document.getElementById("all-settings").addEventListener("click", openSettings);
+document.addEventListener("keydown", e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === ",") { e.preventDefault(); openSettings(); }
+  if (e.key === "Escape") window.close();
+});
+if (!isCanvasTab) document.getElementById("host").textContent = "Not a Canvas page";
+</script>
+</body>
+</html>

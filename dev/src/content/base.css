@@ -1,0 +1,41 @@
+/* b²c base. Every rule here and in features/<id>/style.css must be gated by an
+   html[data-b2c-*] attribute selector so nothing applies unless enabled. */
+
+/* ── Side panel column (src/core/side-panel.ts), reserved pre-paint whenever
+   any panel feature (to-do, notes, GPA) is on: html[data-b2c-side]. ── */
+html[data-b2c-side] b2c-side-panel {
+  display: block;
+}
+html[data-b2c-side] b2c-side-panel > * + * {
+  margin-top: var(--b2c-space-6, 24px);
+}
+/* #right-side-wrapper already pads 24px; sit flush with Recent Feedback. */
+html[data-b2c-side] #right-side-wrapper > b2c-side-panel {
+  padding: 0;
+  margin-bottom: var(--b2c-space-6, 24px);
+}
+/* New dashboard, Courses tab: a 288 px right column next to the course grid,
+   reserved from the first paint; stacks above the grid under 1140 px. */
+html[data-b2c-side] [data-testid="courses-tab-content"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 288px;
+  column-gap: var(--b2c-space-6, 24px);
+  align-items: start;
+}
+html[data-b2c-side] [data-testid="courses-tab-content"] > :not(b2c-side-panel) {
+  grid-column: 1;
+}
+html[data-b2c-side] [data-testid="courses-tab-content"] > b2c-side-panel {
+  grid-column: 2;
+  grid-row: 1 / span 20;
+  padding-top: var(--b2c-space-6, 24px);
+}
+@media (max-width: 1139px) {
+  html[data-b2c-side] [data-testid="courses-tab-content"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html[data-b2c-side] [data-testid="courses-tab-content"] > b2c-side-panel {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/user/Pictures/wallpapers/forest-mist.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f1512",
+        "foreground": "#c9d3cc",
+        "cursor": "#c9d3cc"
+    },
+    "colors": {
+        "color0": "#0f1512",
+        "color1": "#4f7a5b",
+        "color2": "#5d8a63",
+        "color3": "#7a8f5a",
+        "color4": "#6b8fa3",
+        "color5": "#8a7fa1",
+        "color6": "#6e9e94",
+        "color7": "#c9d3cc",
+        "color8": "#59625c",
+        "color9": "#4f7a5b",
+        "color10": "#5d8a63",
+        "color11": "#7a8f5a",
+        "color12": "#6b8fa3",
+        "color13": "#8a7fa1",
+        "color14": "#6e9e94",
+        "color15": "#c9d3cc"
+    }
+}

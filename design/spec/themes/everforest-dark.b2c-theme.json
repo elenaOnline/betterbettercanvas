@@ -1,0 +1,37 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Everforest Dark",
+  "author": "b²c",
+  "source": "https://github.com/sainnhe/everforest/blob/master/palette.md",
+  "palette": {
+    "dark": {
+      "bg": "#2d353b",
+      "surface": "#343f44",
+      "surfaceRaised": "#3d484d",
+      "border": "#475258",
+      "text": "#ebdec1",
+      "textSecondary": "#bcc9bf",
+      "textTertiary": "#a9b7ad",
+      "link": "#94d1c9",
+      "accent": "#687e41",
+      "nav": "#232a2e",
+      "navText": "#d3c6aa",
+      "success": "#a7c080",
+      "warning": "#dbbc7f",
+      "danger": "#e67e80"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#dd7678",
+        "#ce8260",
+        "#ae9054",
+        "#859d5f",
+        "#649f98",
+        "#be83a0"
+      ]
+    }
+  }
+}

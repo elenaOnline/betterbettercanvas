@@ -1,0 +1,19 @@
+{
+  "canvas_lms_sha": "1c9f0bb8013ed69c4f2efe11fd483025469b7e6c",
+  "canvas_lms_commit_date": "2026-04-30T13:49:40Z",
+  "sass": "1.105.2",
+  "@instructure/ui-icons": "11.6.0",
+  "@instructure/ui-themes": "11.6.0",
+  "unresolved_css_urls": [
+    "/fonts/open_dyslexic/OpenDyslexic-BoldItalic.woff2",
+    "/images/4_percent_opacity.png",
+    "/images/ajax-loader-black-on-white-static.gif",
+    "/images/ajax-loader-black-on-white.gif",
+    "/images/binder.png",
+    "/images/blue/canvas-icons-16x16-blue.png",
+    "/images/messages/attach-gray.png",
+    "/images/webcam_preview.png"
+  ],
+  "failed_bundles": [],
+  "built_at": "2026-10-20T06:25:34.299Z"
+}

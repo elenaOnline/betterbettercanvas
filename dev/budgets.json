@@ -1,0 +1,25 @@
+{
+  "$comment": "Weight and speed budgets (the owner, v2: 'helping speed and being light weight'). Enforced by scripts/budgets.mjs on every ship (bytes) and test/e2e/budgets.spec.ts (@perf, time and requests). Lower a number when you beat it; raising one needs a reason in board/decisions.md.",
+  "bytes": {
+    "boot.js": 4096,
+    "main.js": 60000,
+    "content.css": 180000,
+    "env-main.js": 2048,
+    "dark-instui.js": 8192,
+    "sw.js": 16384,
+    "popup.js": 64000,
+    "chunks/*.js": 60000,
+    "options.js": 360000
+  },
+  "time": {
+    "$comment": "ms, heavy mock dashboard, every feature on, 4x CPU, warm cache. startPerFeature/startTotal = a feature's own start() work (excluding its chunk load); chunkLoadWall = slowest lazy chunk import (they load concurrently)",
+    "startPerFeature": 25,
+    "startTotal": 150,
+    "chunkLoadWall": 200
+  },
+  "requests": {
+    "$comment": "Canvas API requests b2c adds per warm dashboard load beyond Canvas's own (measured against b2c paused); 0 = everything served from cache within TTL",
+    "dashboardWarm": 0,
+    "nonDashboardWarm": 1
+  }
+}

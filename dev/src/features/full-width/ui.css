@@ -1,0 +1,5 @@
+.b2c-page-width { display: flex; gap: var(--b2c-space-0-5); border: 0; padding: var(--b2c-space-1); background: var(--b2c-ui-control); border-radius: var(--b2c-radius-md); }
+.b2c-page-width label { position: relative; padding: var(--b2c-space-1) var(--b2c-space-3); border-radius: var(--b2c-radius-sm); }
+.b2c-page-width label:has(:checked) { background: var(--b2c-ui-control-thumb); box-shadow: var(--b2c-ui-shadow); }
+.b2c-page-width input { position: absolute; opacity: 0; }
+.b2c-page-width label:has(:focus-visible) { outline: var(--b2c-focus-ring-w) solid var(--b2c-ui-focus); }

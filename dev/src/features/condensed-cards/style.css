@@ -1,0 +1,7 @@
+html[data-b2c-condensed-cards] .ic-DashboardCard__header_hero,
+html[data-b2c-condensed-cards] .ic-DashboardCard__header_image { height: 64px !important; }
+html[data-b2c-condensed-cards] .ic-DashboardCard__header-title {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+html[data-b2c-condensed-cards] .ic-DashboardCard__header-subtitle,
+html[data-b2c-condensed-cards] .ic-DashboardCard__header-term { display: none !important; }

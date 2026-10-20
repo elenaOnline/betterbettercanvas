@@ -1,0 +1,7902 @@
+[
+  {
+    "selector": "#DashboardCard_Container",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dashboard layout: card container; card order/layout: classic dashboard card container; card layout observer targets; dashboard card grades & card assignments (classic + new dashboard)"
+  },
+  {
+    "selector": "#DashboardCard_Container .ic-DashboardCard__box__container [data-testid=\"draggable-card\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card order: cards inside classic box container"
+  },
+  {
+    "selector": "#ag-list",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "custom assignments section on assignments page"
+  },
+  {
+    "selector": "#announcementWrapper",
+    "source": "5.12.6",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "update message on dashboard"
+  },
+  {
+    "selector": "#dashboard.ic-dashboard-app",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "Canvas adapter: root anchor, school logo, new-vs-old dashboard detection"
+  },
+  {
+    "selector": "#file-preview-iframe",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "file annotation popup: detect file preview"
+  },
+  {
+    "selector": "#file-preview-modal-alert",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "file annotation popup: detect file preview"
+  },
+  {
+    "selector": "#global_nav_dashboard_link",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar button: anchor beside Dashboard global-nav item"
+  },
+  {
+    "selector": "#global_nav_profile_link",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "profile avatar from global-nav profile link"
+  },
+  {
+    "selector": "#header",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "product tour: find Canvas #header to anchor BC hub button; product tour: observe Canvas header size; sidebar/layout CSS (header, nav tray, wrapper, card placeholders) [mixed with BC-owned parts; original: #header > bettercampus-element]"
+  },
+  {
+    "selector": "#main",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "theme: paint #main with theme background"
+  },
+  {
+    "selector": "#menu",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar editor: Canvas global nav #menu and unread badges; custom sidebar: restyle Canvas global nav (#header/#menu items, labels, badges, icons)"
+  },
+  {
+    "selector": "#menu.ic-app-header__menu-list",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar button mount anchor/watch (global nav list)"
+  },
+  {
+    "selector": "#quiz-taking",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "quiz safe mode: detect quiz pages to suppress BC overlays"
+  },
+  {
+    "selector": "#quiz_form",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "quiz safe mode: detect quiz pages to suppress BC overlays"
+  },
+  {
+    "selector": "#quiz_show",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "quiz safe mode: detect quiz pages to suppress BC overlays"
+  },
+  {
+    "selector": "#right-side",
+    "source": "5.12.6",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "Better Todo sidebar inserted into #right-side (observer target)"
+  },
+  {
+    "selector": "#right-side-wrapper",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "better todo: hide/replace Canvas right sidebar To Do"
+  },
+  {
+    "selector": "#section-tabs a",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "course subpage CTA: detect course navigation links"
+  },
+  {
+    "selector": "#wrapper",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders); custom sidebar: restyle Canvas global nav (#header/#menu items, labels, badges, icons); Canvas adapter: root anchor, school logo, new-vs-old dashboard detection"
+  },
+  {
+    "selector": "#wrapper.ic-Layout-wrapper",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders); LMS detection: identify a Canvas page"
+  },
+  {
+    "selector": ".assignment-date-due span:is([data-html-tooltip-title])",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "assignment details button: assignments-list rows (title, score, due)"
+  },
+  {
+    "selector": ".css-gwlm0n-gridRow",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "calendar sync button on assignments page (InstUI grid row)"
+  },
+  {
+    "selector": ".ef-file-preview-overlay",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "file annotation popup: detect file preview"
+  },
+  {
+    "selector": ".events_list.recent_feedback",
+    "source": "5.12.6",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "Better Todo sidebar inserted into #right-side (observer target)"
+  },
+  {
+    "selector": ".ic-Dashboard-header__actions",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "search bar: anchor in dashboard header"
+  },
+  {
+    "selector": ".ic-DashboardCard",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "custom cursor on clickable Canvas elements; dashboard detection: classic cards vs new dashboard tabs; card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons"
+  },
+  {
+    "selector": ".ic-DashboardCard__action",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons; card link icons (custom images) [mixed with BC-owned parts; original: ${…} .ic-DashboardCard__action]"
+  },
+  {
+    "selector": ".ic-DashboardCard__action-container",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons; card link icons (custom images)"
+  },
+  {
+    "selector": ".ic-DashboardCard__action-layout",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customizations: name, code, color, image, link icons; card link icons (custom images)"
+  },
+  {
+    "selector": ".ic-DashboardCard__box__container",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); GPA calculator / dashboard notes insertion point; dashboard card grades & card assignments (classic + new dashboard)"
+  },
+  {
+    "selector": ".ic-DashboardCard__header",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customizations: name, code, color, image, link icons; dashboard cards: assignments, grades, customization"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-button",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-button-bg",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons; card colors/gradient/names (customizeCards, changeColorPreset) [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header-button-bg]"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-subtitle",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons; dashboard cards: assignments, grades, customization"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-term",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customizations: name, code, color, image, link icons; aesthetic toggles (condensed cards, hide logo, overlay off, hide feedback, full width)"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-title",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header-title]"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-title > span",
+    "source": "5.12.6",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card colors/gradient/names (customizeCards, changeColorPreset)"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-title span",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card colors/gradient/names (customizeCards, changeColorPreset) [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header-title span]"
+  },
+  {
+    "selector": ".ic-DashboardCard__header_content",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons"
+  },
+  {
+    "selector": ".ic-DashboardCard__header_hero",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card customizations: name, code, color, image, link icons; card colors/gradient/names (customizeCards, changeColorPreset) [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header_hero]"
+  },
+  {
+    "selector": ".ic-DashboardCard__header_image",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); dashboard cards: assignments, grades, customization [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header_image]"
+  },
+  {
+    "selector": ".ic-DashboardCard__link",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customizations: name, code, color, image, link icons; dashboard card grades & card assignments (classic + new dashboard); card course-id lookup (href) for assignments/grades/customization"
+  },
+  {
+    "selector": ".ic-app-course-menu a",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "course subpage CTA: detect course navigation links"
+  },
+  {
+    "selector": ".ic-app-crumbs",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "course subpage CTA: anchor in breadcrumbs bar"
+  },
+  {
+    "selector": ".ic-app-crumbs a",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "course subpage CTA: anchor in breadcrumbs bar"
+  },
+  {
+    "selector": ".ic-app-crumbs a[href=\"/courses/${…}\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "course subpage CTA: anchor in breadcrumbs bar"
+  },
+  {
+    "selector": ".ic-app-header__logomark",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "Canvas adapter: root anchor, school logo, new-vs-old dashboard detection"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-item",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar button: anchor beside Dashboard global-nav item; custom sidebar: restyle Canvas global nav (#header/#menu items, labels, badges, icons)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-link",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "custom sidebar: restyle Canvas global nav (#header/#menu items, labels, badges, icons)"
+  },
+  {
+    "selector": ".ic-app-nav-toggle-and-crumbs",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any",
+      "course_home"
+    ],
+    "feature": "course subpage CTA: anchor in breadcrumbs bar"
+  },
+  {
+    "selector": ".ic-avatar img",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "profile avatar from global-nav profile link"
+  },
+  {
+    "selector": ".ig-details",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "assignment details button: assignments-list rows (title, score, due)"
+  },
+  {
+    "selector": ".ig-row[data-item-id]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "assignment details button: assignments-list rows (title, score, due)"
+  },
+  {
+    "selector": ".ig-title",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "assignment details button: assignments-list rows (title, score, due)"
+  },
+  {
+    "selector": ".js-score .score-display",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "assignment details button: assignments-list rows (title, score, due)"
+  },
+  {
+    "selector": ".menu-item-icon-container",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "custom sidebar: restyle Canvas global nav (#header/#menu items, labels, badges, icons)"
+  },
+  {
+    "selector": ".menu-item__badge",
+    "source": "both",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar editor: Canvas global nav #menu and unread badges"
+  },
+  {
+    "selector": ".menu-item__badge span[aria-hidden='true']",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "custom sidebar: restyle Canvas global nav (#header/#menu items, labels, badges, icons)"
+  },
+  {
+    "selector": ".menu-item__text",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "custom sidebar: restyle Canvas global nav (#header/#menu items, labels, badges, icons)"
+  },
+  {
+    "selector": ".right-of-crumbs",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "course subpage CTA: anchor in breadcrumbs bar"
+  },
+  {
+    "selector": ".section-tabs a",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "course subpage CTA: detect course navigation links"
+  },
+  {
+    "selector": ".tox-edit-area__iframe",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "RCE dark mode: TinyMCE editor iframe"
+  },
+  {
+    "selector": "[NewDashCardAssignments] Error mounting",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dashboard card grades & card assignments (classic + new dashboard)"
+  },
+  {
+    "selector": "[data-testid=\"course-${…}-code\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new Canvas dashboard: grade-card rename/code/bookmarks/assignments"
+  },
+  {
+    "selector": "[data-testid=\"course-${…}-name\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new Canvas dashboard: grade-card rename/code/bookmarks/assignments"
+  },
+  {
+    "selector": "[data-testid=\"dashboard-tab-content\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card layout observer targets"
+  },
+  {
+    "selector": "[data-testid=\"dashboard-tabs\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dashboard detection: classic cards vs new dashboard tabs; dashboard card grades & card assignments (classic + new dashboard); Canvas adapter: root anchor, school logo, new-vs-old dashboard detection"
+  },
+  {
+    "selector": "[data-testid=\"dashboard-tabs\"] div[role=\"tablist\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "search bar: anchor in dashboard header"
+  },
+  {
+    "selector": "[data-testid=\"draggable-card\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dashboard card grades & card assignments (classic + new dashboard)"
+  },
+  {
+    "selector": "[data-testid=\"draggable-card\"] a[href*=\"/courses/\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card order: course id from card link (scoped)"
+  },
+  {
+    "selector": "[data-testid^=\"course-grade-card\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "custom cursor on clickable Canvas elements; dashboard detection: classic cards vs new dashboard tabs; dashboard card grades & card assignments (classic + new dashboard)"
+  },
+  {
+    "selector": "a[data-testid^=\"course-work-item-course-link\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new Canvas dashboard: grade-card rename/code/bookmarks/assignments"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new-dashboard grade card styling; new Canvas dashboard: grade-card rename/code/bookmarks/assignments [mixed with BC-owned parts; original: div[data-testid^=\"course-grade-card\"] .bc-grade-card-header | div[data-testid^=\"course-grade-card\"] .bc-new-dash-assignments | div[data-testid^=\"course-grade-card\"] .bc-new-dash-bookmark | div[data-testid^=\"course-grade-card\"] .bc-new-dash-bookmarks]"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] > span",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new-dashboard grade card styling; card assignments mount point (:scope > span)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] > span > span:first-child > div",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new dashboard grade card header (scoped :scope > span > span:first-child > div)"
+  },
+  {
+    "selector": "form[data-tool-id=\"Quizzes 2\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "quiz safe mode: detect quiz pages to suppress BC overlays; quiz safe mode: detect New Quizzes LTI to skip theming"
+  },
+  {
+    "selector": "iframe.tool_launch[data-lti-launch=\"true\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "quiz safe mode: detect quiz pages to suppress BC overlays; quiz safe mode: detect New Quizzes LTI to skip theming"
+  },
+  {
+    "selector": "span[data-testid$=\"-grade\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dashboard card grades & card assignments (classic + new dashboard)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"]",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new Canvas dashboard: grade-card rename/code/bookmarks/assignments"
+  },
+  {
+    "selector": "span[direction=\"row\"] > span:first-child > div",
+    "source": "9.9.1",
+    "kind": "js",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new Canvas dashboard: grade-card rename/code/bookmarks/assignments"
+  },
+  {
+    "selector": "#application",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "embedded Canvas page inside BC widget window"
+  },
+  {
+    "selector": "#compose-message-modal",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal [class*=\"modalFooter\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal [class*=\"modalHeader\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal button:not(#send-message-button)",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal button:not(#send-message-button) > span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal button:not(#send-message-button) > span > span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal h2",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal input",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal input::placeholder",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal label",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal span:not(#send-message-button span)",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal svg path",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal textarea",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#compose-message-modal textarea::placeholder",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#grade-summary-content",
+    "source": "5.12.6",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "grades"
+    ],
+    "feature": "content.css (card/GPA styling) [mixed with BC-owned parts; original: #grade-summary-content ~ .extension-calcgpa]"
+  },
+  {
+    "selector": "#grades_summary td.assignment_score",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "grades"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#grades_summary td.details",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "grades"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#grades_summary th.assignment_score",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "grades"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#grades_summary th.details",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "grades"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#header.ic-app-header",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "#main:has(#dashboard-planner:not([style*=\"display: none\"])) #right-side-wrapper",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "better todo: hide Canvas To Do sidebar"
+  },
+  {
+    "selector": "#mobile-header",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "embedded Canvas page inside BC widget window"
+  },
+  {
+    "selector": "#nav-tray-portal",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#nav-tray-portal > span > span",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": "#not_right_side:has(#grades_summary) #content",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "grades"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#not_right_side:has(#grades_summary) #content-wrapper",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "grades"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#right-side-wrapper:has(#student-grades-right-content)",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard",
+      "course_home",
+      "grades"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": ".Sidebar__TodoListContainer",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "better todo: hide Canvas To Do sidebar"
+  },
+  {
+    "selector": ".btn",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "custom cursor on clickable Canvas elements; injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": ".ic-DashboardCard *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "custom cursor on clickable Canvas elements"
+  },
+  {
+    "selector": ".ic-DashboardCard:has(> .ic-DashboardCard__placeholder-svg)",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": ".ic-DashboardCard:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); card grade badge; content.css (card/GPA styling) [mixed with BC-owned parts; original: .ic-DashboardCard:hover .bettercampus-hover-only | .ic-DashboardCard:hover .bettercanvas-card-edit-btn | .ic-DashboardCard:hover .bettercanvas-card-grade.bettercanvas-hover-only | .ic-DashboardCard:hover .bettercanvas-due-chevron]"
+  },
+  {
+    "selector": ".ic-DashboardCard:hover .ic-DashboardCard__header-button",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image)"
+  },
+  {
+    "selector": ".ic-DashboardCard:nth-of-type(n) .ic-DashboardCard__header_hero",
+    "source": "5.12.6",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "gradient cards: per-card hero gradient (built by string concat in changeGradientCards)"
+  },
+  {
+    "selector": ".ic-DashboardCard__action-layout img",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image)"
+  },
+  {
+    "selector": ".ic-DashboardCard__action-layout svg",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image)"
+  },
+  {
+    "selector": ".ic-DashboardCard__action:hover",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image)"
+  },
+  {
+    "selector": ".ic-DashboardCard__header a",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image)"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-subtitle a",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image)"
+  },
+  {
+    "selector": ".ic-DashboardCard__header-title a",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image)"
+  },
+  {
+    "selector": ".ic-DashboardCard__header_hero::after",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image) [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header_hero::after]"
+  },
+  {
+    "selector": ".ic-DashboardCard__header_hero::before",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image) [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header_hero::before]"
+  },
+  {
+    "selector": ".ic-DashboardCard__header_image::after",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image) [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header_image::after]"
+  },
+  {
+    "selector": ".ic-DashboardCard__header_image::before",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image) [mixed with BC-owned parts; original: .${…} .ic-DashboardCard__header_image::before]"
+  },
+  {
+    "selector": ".ic-DashboardCard__placeholder-animates > *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": ".ic-Layout-contentMain",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "better todo: hide Canvas To Do sidebar"
+  },
+  {
+    "selector": ".ic-Layout-wrapper",
+    "source": "5.12.6",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "aesthetic toggles (condensed cards, hide logo, overlay off, hide feedback, full width)"
+  },
+  {
+    "selector": ".ic-app-header__logomark-container",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "aesthetic toggles (condensed cards, hide logo, overlay off, hide feedback, full width)"
+  },
+  {
+    "selector": ".ig-list .ig-row",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "assignment details button layout [mixed with BC-owned parts; original: .ig-list .ig-row a.bc-overridden-value | .ig-list .ig-row a.bc-overridden-value:focus | .ig-list .ig-row a.bc-overridden-value:hover | .ig-list .ig-row a.bc-overridden-value:visited]"
+  },
+  {
+    "selector": ".ig-row__layout",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "assignment details button layout"
+  },
+  {
+    "selector": ".recent_feedback",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "card customization CSS (actions, hero, header, image); aesthetic toggles (condensed cards, hide logo, overlay off, hide feedback, full width)"
+  },
+  {
+    "selector": ".tray-with-space-for-global-nav",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": ".ui-button",
+    "source": "both",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "custom cursor on clickable Canvas elements; injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": ".ui-tooltip [class*=arrow i]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": ".ui-tooltip-content:after",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": ".ui-tooltip-content:before",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": ".ui-tooltip:after",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": ".ui-tooltip:before",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": "[data-testid*=\"course-card\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "custom cursor on clickable Canvas elements"
+  },
+  {
+    "selector": "[data-testid*=\"course-card\"] *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "custom cursor on clickable Canvas elements"
+  },
+  {
+    "selector": "[data-testid^=\"course-grade-card\"] *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "custom cursor on clickable Canvas elements"
+  },
+  {
+    "selector": "[data-testid^=\"widget-container-todo_list-widget-\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "better todo: hide Canvas To Do sidebar"
+  },
+  {
+    "selector": "body > #nav-tray-portal > span > span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar/layout CSS (header, nav tray, wrapper, card placeholders)"
+  },
+  {
+    "selector": "body > .ui-tooltip:has(~.ui-tooltip)",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "injected stylesheet (content-scripts/all.css); global layout CSS (assets/main.css)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] > span > span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new-dashboard grade card styling"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] img",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "new-dashboard grade card styling [mixed with BC-owned parts; original: div[data-testid^=\"course-grade-card\"] .bc-new-dash-bookmark img]"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"]:hover",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "card grade badge (new dashboard) [mixed with BC-owned parts; original: div[data-testid^=\"course-grade-card\"]:hover .bc-new-dash-grade-pill]"
+  },
+  {
+    "selector": "html body .ui-tooltip",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "high",
+    "pages": [
+      "any"
+    ],
+    "feature": "sidebar z-index + grades page layout fixes"
+  },
+  {
+    "selector": "#GradeSummarySelectMenuGroup span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "#TextInput_0",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#announcementWrapper > div > div",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#application.ic-app",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#assignment_show .student-assignment-overview",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#assignment_sort_order_select_menu",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#assignments-student-footer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#breadcrumbs",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendar-app .fc-agendaWeek-view .fc-body",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendar-app .fc-agendaWeek-view .fc-day-grid .fc-today",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "#calendar-app .fc-agendaWeek-view .fc-event",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#calendar-app .fc-event",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendar-app .fc-month-view .fc-body",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendar-app .fc-month-view .fc-today",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-agendaWeek-view .fc-body",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-agendaWeek-view .fc-day-grid .fc-today",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-agendaWeek-view .fc-event",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-event",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-month-view .fc-body",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-month-view .fc-today",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-row .fc-content-skeleton td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#calendar-drag-and-drop-container .fc-row .fc-helper-skeleton td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#calendar-list-holder",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#calendars-context-list .context_list_context:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#comments-tray",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#content-wrapper .user_content.not_design_tools a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "#content-wrapper .user_content.not_design_tools h3",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#content-wrapper .user_content.not_design_tools table tbody tr:nth-child(2n) td",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#content-wrapper .user_content.not_design_tools table tbody tr:nth-child(even) td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#content-wrapper .user_content.not_design_tools table td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#content-wrapper .user_content.not_design_tools table th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#context-list .context_list_context:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#context-list-holder",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#course_select_menu",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#dashboard",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#google_docs_tree li.file:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#gradebook_header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#grades_summary th.title",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#grades_summary tr.final_grade",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#inbox-conversation-holder *",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#kl_banner",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_banner_left",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_banner_right",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_content_block_0",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_content_block_0 h3:first-child",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_content_block_0 h3:first-child i",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_content_block_0 h3:nth-child(1)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_content_block_0 h3:nth-child(1) i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_custom_block_0",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_custom_block_0 h3:first-child",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_custom_block_0 h3:first-child i",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_custom_block_0 h3:nth-child(1)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_custom_block_0 h3:nth-child(1) i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_custom_block_1",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_custom_block_1 h3:first-child",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_custom_block_1 h3:first-child i",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_custom_block_1 h3:nth-child(1)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_custom_block_1 h3:nth-child(1) i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_custom_block_2",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_custom_block_2 h3:first-child",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_custom_block_2 h3:first-child i",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#kl_custom_block_2 h3:nth-child(1)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_custom_block_2 h3:nth-child(1) i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_readings p",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3 .ic-Table",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3 .table",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings #kl_banner #kl_banner_left",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings #kl_banner .kl_subtitle",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings #kl_modules h3",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings #kl_modules h3:not(.ui-state-default) i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings > div",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings > div > h3:not(.ui-state-default)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings > div > h3:not(.ui-state-default) i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings h4",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings_box_left #kl_modules h3",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings_box_left #kl_modules h3 i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings_box_left > div",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings_box_left > div > h3 i",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings_box_left > div > h3:not(.ui-state-default)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_colored_headings_box_left h4",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#kl_wrapper_3.kl_emta h3:not(.ui-state-default)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "#last_saved_indicator",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "#left-side",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#media_comment_maybe",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#minical",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#minical .event::after",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "#minical .event:after",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "#minical .fc-bg .fc-state-highlight",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "#minical .fc-other-month",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "#minical .fc-toolbar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#minical .fc-widget-content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#nav-tray-portal a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "#nav_disabled_list li.navitem",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "profile_settings"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "#other-calendars-context-list .context_list_context:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#other-calendars-list-holder",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#planner-today-btn",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#questions .assessment_question_bank",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#questions .group_bottom",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#questions .group_top",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#questions .insufficient_count_warning",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#questions .question_holder.group",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#questions.assessing",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#questions.assessment_results .question .header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#quiz_edit_wrapper #quiz_tabs #quiz_options_form .option-group",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#quiz_show .description.teacher-version",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#quiz_show ul#quiz_student_details",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#right-side .events_list .event-details:after",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home",
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#right-side .events_list .todo-details:after",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#right-side .h2",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#right-side .shared-space h2",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#right-side .to-do-list .event-details:after",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home",
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#right-side .to-do-list .todo-details:after",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "#right-side h2",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "#right_side .content_box",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#right_side div.comment",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home",
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#submit_file_button",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "#syllabus tr.date.date_passed td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#syllabus tr.date.date_passed th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#syllabus tr.date.related td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#syllabus tr.date.related th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#syllabus tr.date.selected td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#syllabus tr.date.selected th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "#tinymce",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "#undated-events",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "#undated-events .event",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".Button",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".Button--active.ui-button",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".Button.Button--active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".Button.active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".ColorPicker__Container",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".CompletedItemsFacade-styles__root",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".Container__DueDateRow",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".Container__DueDateRow-item",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".CourseImageSelector",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".Day-styles__root",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".DyQTK_ddES",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".EmptyDays-styles__root",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".Gradebook__ColumnHeaderDetail--primary a",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".Gradebook__ColumnHeaderDetail--primary a *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".Grouping-styles__title",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".Grouping-styles__title::after",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".Grouping-styles__title:after",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": ".MlJlv_ebWM",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".MyTable",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".PlannerHeader-styles__root",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".PlannerItem-styles__root",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".PlannerItem-styles__type > span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".StickyButton-styles__root",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ToDoSidebarItem svg",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".ToDoSidebarItem__Icon",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".ToDoSidebarItem__Info > span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".ToDoSidebarItem__Title a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".XOwIb_eLeB[aria-selected]",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ac-input-box",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ac-result-container",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ac-result-wrapper:before",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ac-token",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".active",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: .bettercanvas-todosidebar-time-item.active | .bettercanvas-todosidebar-time-item.active .bettercanvas-todosidebar-time-item-text]"
+  },
+  {
+    "selector": ".active svg",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: .bettercanvas-todo-control-btn.active svg]"
+  },
+  {
+    "selector": ".active.ui-button",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".agenda-day",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".agenda-day.agenda-today",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".agenda-event__item-container:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".agenda-event__item-container:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".agenda-wrapper",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ajas-search-widget__btn--search",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ajas-search-widget__form input",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".al-options",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".alert-info",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".assignment-student-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".avatar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".baylor-table td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".baylor-table tr:nth-of-type(2n + 1)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".baylor-table tr:nth-of-type(odd)",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": ".baylorMainContainer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".bjXfh_daKB",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".bjXfh_daKB span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".blnAQ_kWwi",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".border",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".bottom-reply-with-box",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".btn.Button--active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".btn.active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".btn.ui-button.ui-state-active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".cECYn_bXiG",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".calendar .fc-row .fc-content-skeleton td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".calendar .fc-row .fc-helper-skeleton td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".canvas-rce__skins--root",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".card",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".caret",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".ccWIh_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".closed-for-comments-discussions-v2__wrapper",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".communication_message",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".container_0 .slick-cell",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".container_0 .slick-cell:first-child",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".container_0 .slick-header-column:first-child",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".container_1 .slick-cell",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".context_module_item.context_module_item_hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".conversations .panel",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".course-list-table-row:hover",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "courses"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".course-list-table-row:hover td",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "courses"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".course_details td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".css-1dn3ise-textInput__facade",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".css-1fwux0x-view--block",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".css-1sr6v3o-text",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".css-1v8v5q1-optionItem",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".css-1veueey-textInput__facade",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".css-1vqfmz1-view",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".css-26xxi8-view--block",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".css-7naoe-textInp",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".css-7naoe-textInput__facade",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".css-8bodfv-text",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".css-9fqfm7-view--block",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".css-sg1rn7-view",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".css-vxe90h-view--inlineBlock",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".dCppM_ddES",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".dLyYq_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".dNoYT_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussion-entries .entry",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussion-entries .entry .entry",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".discussion-fyi",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".discussion-reply-box",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".discussion-section h4",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussion-section p",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussion-section ul",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussion-section.alert .discussion-points",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".discussion-section.alert .discussion-title",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".discussion-section.message_wrapper table",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions",
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".discussion_entry",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussion_entry > .discussion-entry-reply-area",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".discussions-v2__container-image",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussions-v2__placeholder",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".discussions-v2__wrapper > span > span > span > span > button > span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".discussions-v2__wrapper > span > span > span > span > button > span > span > svg",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".dpCPB_caGd",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".dropdown-menu",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".dropdown-menu .divider",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".dropdown-menu li > a:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".dropdown-menu li > a:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".dropdown-submenu:hover > a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".eHQDY_dTxv",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".eHQDY_ddES .eHQDY_eWAY",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".eHzxc_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".eIQkd_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".eMdva_bgqc",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".eMdva_pypk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".eMdva_pypk .eMdva_dnnz",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ef-directory-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-directory-header]"
+  },
+  {
+    "selector": ".ef-directory-header a[role=\"button\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-directory-header a[role=\"button\"]]"
+  },
+  {
+    "selector": ".ef-directory-header a[role=\"button\"]:hover",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-directory-header a[role=\"button\"]:hover]"
+  },
+  {
+    "selector": ".ef-directory-header button",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-directory-header button]"
+  },
+  {
+    "selector": ".ef-directory-header button:hover",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-directory-header button:hover]"
+  },
+  {
+    "selector": ".ef-footer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-footer]"
+  },
+  {
+    "selector": ".ef-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-header]"
+  },
+  {
+    "selector": ".ef-header a[role=\"button\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-header a[role=\"button\"]]"
+  },
+  {
+    "selector": ".ef-header a[role=\"button\"]:hover",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-header a[role=\"button\"]:hover]"
+  },
+  {
+    "selector": ".ef-header button",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-header button]"
+  },
+  {
+    "selector": ".ef-header button:hover",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-header button:hover]"
+  },
+  {
+    "selector": ".ef-item-row:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ef-main",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-main]"
+  },
+  {
+    "selector": ".ef-main .ef-folder-content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ef-main .ef-folder-content]"
+  },
+  {
+    "selector": ".emSEn_QUBp:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".enRcg_bGBk.enRcg_fpfC",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".entry > .bottom-reply-with-box .discussion-entry-reply-area",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".erWSf_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".error_box .error_text",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".even .slick-cell",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".event-details",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".event-details-content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".event-details-footer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".event-details-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fLzZc_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".fOyUs_bGBk.fOyUs_desw.bDzpk_bGBk.bDzpk_busO.bDzpk_fZWR.bDzpk_qOas",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".fOyUs_bvKN",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".fOyUs_dUgE",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".fOyUs_dsNY",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fOyUs_fZwI",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".fOyUs_kXoP",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".fOyUs_tIxX",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fQfxa_bCUx.fQfxa_eCSh",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".fQfxa_dqAF.fQfxa_buuG",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".fQfxa_dqAF.fQfxa_eCSh",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".fake-link",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".fc-event .fc-bg",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".fc-unthemed .fc-divider",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fc-unthemed .fc-popover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fc-unthemed .fc-row",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fc-unthemed tbody",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fc-unthemed td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fc-unthemed th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fc-unthemed thead",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".fdyuz_bGBk",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".file-upload-submission",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".form",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".form-actions",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".form-dialog .form-controls",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ftPBL_bGBk:not(.ftPBL_bGiS)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".gradebook-cell.grayed-out",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".header-bar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".hr",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-Action-header.ic-Action-header--before-item-groups",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-Dashboard-header__layout",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-Dashboard-header__title",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-DashboardCard__action-badge",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ic-DashboardCard__placeholder-svg .ic-DashboardCard__placeholder-animates > *",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ic-Table",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table]"
+  },
+  {
+    "selector": ".ic-Table tbody td",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table tbody td]"
+  },
+  {
+    "selector": ".ic-Table tbody th",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table tbody th]"
+  },
+  {
+    "selector": ".ic-Table tbody tr:hover td",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table tbody tr:hover td]"
+  },
+  {
+    "selector": ".ic-Table tbody tr:hover th",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table tbody tr:hover th]"
+  },
+  {
+    "selector": ".ic-Table tbody tr:nth-child(even) td",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table tbody tr:nth-child(even) td]"
+  },
+  {
+    "selector": ".ic-Table tbody tr:nth-child(even) th",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table tbody tr:nth-child(even) th]"
+  },
+  {
+    "selector": ".ic-Table td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-Table th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-Table thead th",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1) [mixed with BC-owned parts; original: html.bettercampus-course-files-page .ic-Table thead th]"
+  },
+  {
+    "selector": ".ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-alert:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-danger:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-neutral:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-success:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ic-Table.ic-Table--hover-row tbody tr:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ic-Table.ic-Table--striped tbody tr:nth-child(odd)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ic-app-course-menu.with-left-side #left-side.XOwIb_eLeB:not([aria-selected]):not([aria-disabled]):hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home",
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-app-footer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-app-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".ic-app-header::before",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (sidebar)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-item--active svg",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-item.ic-app-header__menu-list-item--active .ic-app-header__menu-list-link",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-item.ic-app-header__menu-list-item--active .menu-item__text",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-item.ic-app-header__menu-list-item--active svg",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-link .ic-icon-svg",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (sidebar-text)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-link .menu-item__text",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (sidebar-text)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-link svg",
+    "source": "5.12.6",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-link:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ic-app-header__menu-list-link:hover",
+    "source": "5.12.6",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".ic-app-header__secondary-navigation",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".ic-avatar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".ic-discussion-row",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-flash-error",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-flash-info",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-flash-success",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-flash-warning",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ic-item-row",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".ic-item-row__meta-content-timestamp p",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": ".ic-notification",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ic-notification__content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ic-notification__icon",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ic-tokeninput-input",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ic-tokeninput-list",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ic-tokens",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ic-unread-badge",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ic-unread-badge__total-count",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".ig-header .name",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".ig-list .icon-drag-handle",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".ig-list .ig-row .ig-empty-msg",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".ig-list .ig-row.ig-row-empty",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ig-list .ig-row:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".instructure_file_link",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".item-group-condensed .ig-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules",
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".item-group-condensed .ig-row",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".item-group-condensed .item-group-expandable",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules",
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".item-group-container",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignments"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".item-group-expandable .emptyMessage",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".jumbotron",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".kl_flex_column h4",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".kl_image_round_white_border",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".kl_image_white_border",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".kl_mod_text",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".kl_panels_wrapper .ui-accordion-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".kl_shadow_2",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".kl_shadow_b2",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".kl_wrapper .ui-accordion-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".list-view a.active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".message-detail.conversations__message-detail .date",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".message-detail.conversations__message-detail .message-content > li",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".message-detail.conversations__message-detail .message-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".message-detail.conversations__message-detail .user-info .context",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".message-detail.span8 .date",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".message-detail.span8 .message-content > li",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".message-detail.span8 .message-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".message-detail.span8 .user-info .context",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".message-list .date",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".message-list .message-count",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".message-list .messages > li",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".message-list .messages > li:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".message-list .read-state.read:before",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".message-list .read-state:before",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".message-list .summary",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".mini-cal-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".mini_calendar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".mini_calendar .day.has_event",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".mini_calendar .day.other_month",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".mini_calendar .day.today",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".module-sequence-footer .module-sequence-footer-content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "modules"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".muted",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".muted-notice",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".nav-badge",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".nav-icon",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".nav_list li.disabled",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".nav_list li.navitem",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".navigation-tray-container",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".no-touch .ic-DashboardCard:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".no-touch .ic-DashboardCard__action:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".odd .slick-cell",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".outcomes-browser .outcomes-content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".outcomes-browser .outcomes-main",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".outcomes-browser .outcomes-sidebar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".outcomes-browser .outcomes-toolbar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".page-action-list a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".page-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".pages.show .page-title",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".pagination ul > li > a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".pagination ul > li > span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".panel-border",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".pinned-discussions-v2__wrapper",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".popover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".profile_table .data_description",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "profile_settings"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".published-status.published .icon-publish::before",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".published-status.published .icon-publish:before",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": ".qBMHb_cSXm",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".question",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".question .header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".question .header .question_points_holder",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".question .question_comment.question_neutral_comment",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".question.matching_question .answer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".question.multiple_answers_question .answer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".question.multiple_choice_question .answer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".question.true_false_question .answer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".question_editing",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".quiz-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".quiz-submission",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".quiz_comment",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".quiz_comment:after",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".quiz_comment:before",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".recent-activity-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".recent_activity > li",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".recent_activity > li .unread-count",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".recent_activity > li .unread.message-list .read-state:before",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".recent_feedback .event-details",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "course_home",
+      "calendar"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".rubric_container .rubric_title",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades",
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".rubric_container td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades",
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".rubric_container th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades",
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".slick-header-column",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".slick-header-column.ui-state-default",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".stream-details tr:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".stream_header:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".student_assignment .context",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".submission-details-comments .comments",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment",
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".submission-details-container",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".submission-details-header__heading-and-grades",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".submission-late-pill span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".submission-missing-pill span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".submission_attachment button > span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".table td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".table th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".table-bordered",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".table-bordered td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".table-bordered th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".text-sidebar",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme) [mixed with BC-owned parts; original: .bettercanvas-extension-button.bc-active .text-sidebar]"
+  },
+  {
+    "selector": ".toolbarView .headerBar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".topic .entry-content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".tox .tox-collection--list .tox-collection__group",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".tox .tox-collection--list .tox-collection__item--active:not(.tox-collection__item--state-disabled)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".tox .tox-collection--list .tox-collection__item--enabled",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".tox .tox-collection__item-accessory",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".tox .tox-edit-area",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".tox .tox-edit-area.active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".tox .tox-edit-area.active iframe",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".tox .tox-edit-area__iframe",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".tox .tox-mbtn--active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".tox .tox-mbtn:hover:not(:disabled):not(.tox-mbtn--active)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".tox .tox-menu",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".tox .tox-menubar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".tox .tox-split-button .tox-tbtn.tox-split-button__chevron",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".tox .tox-split-button .tox-tbtn.tox-split-button__chevron:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".tox .tox-split-button:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".tox .tox-split-button__chevron svg",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".tox .tox-tbtn svg",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".tox .tox-tbtn svg g",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".tox .tox-tbtn svg path",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-1)"
+  },
+  {
+    "selector": ".tox .tox-tbtn.tox-tbtn--enabled:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".tox .tox-tbtn:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".tox .tox-toolbar",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".tox .tox-toolbar__overflow",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".tox .tox-toolbar__primary",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".tox:not(.tox-tinymce-inline) .tox-editor-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".tray-with-space-for-global-nav > div > span > form > button > span",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".ui-button.ui-state-active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".ui-button.ui-state-active.ui-state-hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".ui-button.ui-state-active:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".ui-datepicker .ui-datepicker-time",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".ui-datepicker .ui-dialog .ui-datepicker-time",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".ui-datepicker .ui-dialog .ui-widget-header.ui-datepicker-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-dialog .ui-datepicker .ui-datepicker-time",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".ui-dialog .ui-datepicker .ui-widget-header.ui-datepicker-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-dialog .ui-dialog-buttonpane",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".ui-dialog .ui-dialog-titlebar-close.ui-state-focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ui-dialog .ui-dialog-titlebar-close.ui-state-hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".ui-dialog .ui-dialog-titlebar.ui-widget-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-kyle-menu",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-menu .ui-menu-item .ui-progressbar a.ui-widget-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ui-menu .ui-menu-item a.ui-state-active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ui-menu .ui-menu-item a.ui-state-focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ui-menu .ui-menu-item a.ui-state-hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ui-progressbar .btn.ui-button.ui-widget-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".ui-progressbar .ui-button.ui-widget-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": ".ui-progressbar .ui-menu .ui-menu-item a.ui-widget-header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": ".ui-state-default",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav .kl_panel_heading.ui-state-default:not(.ui-tabs-active)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav li.ui-state-hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav li.ui-tabs-active",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav li.ui-tabs-active a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav li.ui-tabs-active.ui-state-hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav li.ui-tabs-active:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-nav li:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-tabs .ui-tabs-panel",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-widget-content",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".ui-widget-header .ui-state-default",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": ".uneditable-input",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": ".uneditable-input.ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".unpinned-discussions-v2__wrapper",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "discussions"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".unpublished_courses_redesign .ic-DashboardCard__box__header",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard",
+      "courses"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": ".unread-grade",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "grades",
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": ".with-left-side #left-side",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": ".yyQPt_blJt",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": ".yyQPt_cSXm",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "[class*=\"-textInput__facade\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "body.responsive_awareness .message-list-scroller",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "inbox"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "button.active",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0) [mixed with BC-owned parts; original: #bettercanvas-search-filters button.active]"
+  },
+  {
+    "selector": "div.checkbox",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "div.checkbox:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "div.form-column-right label:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "div.overrides-column-right label:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "div[class*=\"tabs__panelsContainer\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "div[class*=\"view-panel__content\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "div[data-cid=\"Transition\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "div[data-testid=\"dashboard-tab-content\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "div[data-testid=\"dashboard-tabs\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "div[data-testid=\"dashboard-tabs\"] *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "div[data-testid=\"dashboard-tabs\"] > *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "div[data-testid=\"feedback-question-tile\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "div[data-testid=\"feedback-question-tile\"] *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "div[data-testid=\"tool-bar\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] a[data-cid=\"Link\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] a[data-cid=\"Link\"] span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] span[data-testid$=\"-code\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] span[data-testid$=\"-name\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-grade-card\"] span[data-testid$=\"-term\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "div[data-testid^=\"course-progress-item-\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "div[data-testid^=\"todo-item-\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "form.question_form .form_answers .answer",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "img.kl_image_round_white_border",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "img.kl_image_white_border",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "course_home"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "input.enRcg_bGBk[type].enRcg_fpfC",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"color\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"date\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"datetime\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"datetime-local\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"email\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"month\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"number\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"password\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"search\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"tel\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"text\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"time\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"url\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=\"week\"].ic-Input:focus",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "input[type=color].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=date].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=datetime-local].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=datetime].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=email].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=month].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=number].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=password].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=search].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=tel].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=text].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=time].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=url].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "input[type=week].ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode CSS (generateDarkModeCSS)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] [data-cid=\"Checkbox\"] label",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] [data-cid=\"Checkbox\"] span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] [data-cid=\"Checkbox\"] span[class*=\"toggleFacade__facade\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] [data-cid=\"Checkbox\"] svg",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] a[data-cid=\"Link\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] a[data-cid=\"Link\"] span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] button",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] button[data-cid*=\"Button\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] button[data-cid*=\"Button\"] span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] div:not([data-testid^=\"statistics-card-\"])",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] div[data-testid^=\"course-grade-card\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] div[data-testid^=\"statistics-card-\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] div[data-testid^=\"statistics-card-\"] > *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] h2",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] label[data-cid=\"TextInput\"] > span:first-child",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] label[data-cid=\"TextInput\"] input",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] label[data-cid=\"TextInput\"] span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] li[data-cid=\"ListItem\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-0)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] span span div[data-testid^=\"statistics-card-\"][class] > div[class]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] span[class*=\"-avatar\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] span[color=\"secondary\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] span[data-testid*=\"-avatar\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "section[data-testid*=\"-widget\"] ul[data-cid=\"List\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "select.ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "span.fOyUs_bGBk.fOyUs_desw.bDzpk_bGBk.bDzpk_busO.bDzpk_cQFX.bDzpk_bZNM",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "span[data-testid*=\"-status-pill-\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "span[data-testid=\"widget-columns\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "span[data-testid=\"widget-columns\"] > *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (_base)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] > div",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] div span[direction=\"row\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] div span[direction=\"row\"] > span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] div span[direction=\"row\"] span[direction=\"column\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] div span[direction=\"row\"] span[direction=\"column\"] > span",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] div:has(> span > [data-testid$=\"-icon\"])",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] span[data-testid*=\"-status-pill-\"] span[direction=\"row\"]",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "span[data-testid^=\"listed-course-work-item\"] span[data-testid*=\"-status-pill-\"] span[direction=\"row\"] > *",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "dashboard"
+    ],
+    "feature": "dark-mode/theme CSS (background-2)"
+  },
+  {
+    "selector": "table.seas-homepage-table",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "table.seas-homepage-table tr:nth-child(odd)",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "table.summary caption",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "table.summary tbody th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "table.summary td",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (background-0)"
+  },
+  {
+    "selector": "table.summary thead th",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "textarea.ic-Input:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "any"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "ul#question_list li.current_question",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "ul#question_list.read_only li.seen",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (text-2)"
+  },
+  {
+    "selector": "ul.outcome-level",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (borders)"
+  },
+  {
+    "selector": "ul.outcome-level li.selected a",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (background-1)"
+  },
+  {
+    "selector": "ul.outcome-level li.selected a::before",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (links)"
+  },
+  {
+    "selector": "ul.outcome-level li.selected a:before",
+    "source": "9.9.1",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode CSS (assets/dark.css; same rules as JS-embedded theme)"
+  },
+  {
+    "selector": "ul.outcome-level li:focus",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  },
+  {
+    "selector": "ul.outcome-level li:hover",
+    "source": "both",
+    "kind": "css",
+    "priority": "low",
+    "pages": [
+      "assignment"
+    ],
+    "feature": "dark-mode/theme CSS (buttons)"
+  }
+]

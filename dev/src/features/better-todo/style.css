@@ -1,0 +1,13 @@
+/* better-todo, gated on html[data-b2c-better-todo] (pre-paint, via the mirror).
+   The side panel column itself is core's (src/core/side-panel.ts, base.css).
+
+   Classic dashboard: hide Canvas's own To Do and Coming Up in the right column
+   from the first paint; the b²c panel replaces them. Recent Feedback stays.
+   If the panel can't mount, index.ts sets data-b2c-better-todo-fallback and
+   Canvas's own list comes back. */
+html[data-b2c-better-todo]:not([data-b2c-better-todo-fallback]) #right-side .Sidebar__TodoListContainer,
+html[data-b2c-better-todo]:not([data-b2c-better-todo-fallback]) #right-side .todo-list-header,
+html[data-b2c-better-todo]:not([data-b2c-better-todo-fallback]) #right-side .to-do-list,
+html[data-b2c-better-todo]:not([data-b2c-better-todo-fallback]) #right-side .coming_up {
+  display: none !important;
+}

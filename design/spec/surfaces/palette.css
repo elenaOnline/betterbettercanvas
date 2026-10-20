@@ -1,0 +1,219 @@
+/* b²c palette: layers (a) brand-variable remap and (d) hand rules, for ANY
+   theme (light or dark). Spec: dark-mode.md (mechanism) + rice.md (themes).
+   Gates (palette engine, 2026-10-20):
+     html[data-b2c-theme="on"]                          every non-identity theme
+     html[data-b2c-theme="on"][data-b2c-scheme="dark"]   dark-only rules
+   The --b2c-dm-* variables are the palette ROLES for whichever scheme is
+   active (the name is historical; boot sets them for light themes too).
+   Layer (b), the generated literal map, and layer (c), InstUI, are Dev's. */
+
+/* ═════════════ Universal: every theme ═════════════ */
+html[data-b2c-theme="on"] {
+  background: var(--b2c-dm-bg);
+  --b2c-dm-hover: color-mix(in oklch, var(--b2c-dm-link) 10%, var(--b2c-dm-surface));
+  --b2c-dm-selected: color-mix(in oklch, var(--b2c-dm-link) 18%, var(--b2c-dm-surface));
+  --b2c-dm-success-tint: color-mix(in oklch, var(--b2c-dm-success) 16%, var(--b2c-dm-surface));
+  --b2c-dm-danger-tint: color-mix(in oklch, var(--b2c-dm-danger) 16%, var(--b2c-dm-surface));
+  --b2c-dm-warning-tint: color-mix(in oklch, var(--b2c-dm-warning) 16%, var(--b2c-dm-surface));
+  --b2c-dm-info-tint: color-mix(in oklch, var(--b2c-dm-link) 16%, var(--b2c-dm-surface));
+  --b2c-dm-highlight: color-mix(in oklch, #ffd54f 28%, var(--b2c-dm-surface));
+  --b2c-dm-nav-active: color-mix(in oklch, #ffffff 14%, var(--b2c-dm-nav));
+
+  /* "Theme colour" nav instead of the school's (setting palette.navStyle) */
+  &[data-b2c-nav-style="theme"] { --b2c-dm-nav: var(--b2c-dm-surface); }
+
+  /* (a) Brand variables, remapped on body (derived colours are computed on
+     <html> from Canvas's original values; remapping there would be a cycle) */
+  & body {
+    --ic-brand-font-color-dark: var(--b2c-dm-text);
+    --ic-brand-font-color-dark-lightened-15: var(--b2c-dm-text-secondary);
+    --ic-brand-font-color-dark-lightened-28: var(--b2c-dm-text-secondary);
+    --ic-link-color: var(--b2c-dm-link);
+    --ic-link-color-darkened-10: var(--b2c-dm-link);
+    --ic-link-color-lightened-10: var(--b2c-dm-link);
+    --ic-brand-primary: var(--b2c-dm-accent);
+    --ic-brand-primary-darkened-5: var(--b2c-dm-accent);
+    --ic-brand-primary-darkened-10: var(--b2c-dm-accent);
+    --ic-brand-primary-darkened-15: var(--b2c-dm-accent);
+    --ic-brand-primary-lightened-5: var(--b2c-dm-accent);
+    --ic-brand-primary-lightened-10: var(--b2c-dm-accent);
+    --ic-brand-primary-lightened-15: var(--b2c-dm-accent);
+    --ic-brand-button--primary-bgd: var(--b2c-dm-accent);
+    --ic-brand-button--primary-bgd-darkened-5: var(--b2c-dm-accent);
+    --ic-brand-button--primary-bgd-darkened-15: var(--b2c-dm-accent);
+    --ic-brand-button--primary-text: #ffffff;
+    --ic-brand-button--secondary-bgd: var(--b2c-dm-surface-raised);
+    --ic-brand-button--secondary-bgd-darkened-5: var(--b2c-dm-surface-raised);
+    --ic-brand-button--secondary-bgd-darkened-15: var(--b2c-dm-surface-raised);
+    --ic-brand-button--secondary-text: var(--b2c-dm-text);
+    --ic-brand-global-nav-bgd: var(--b2c-dm-nav);
+    --ic-brand-global-nav-logo-bgd: var(--b2c-dm-nav);
+    --ic-brand-global-nav-ic-icon-svg-fill: var(--b2c-dm-nav-text);
+    --ic-brand-global-nav-ic-icon-svg-fill--active: var(--b2c-dm-nav-text);
+    --ic-brand-global-nav-menu-item__text-color: var(--b2c-dm-nav-text);
+    --ic-brand-global-nav-menu-item__text-color--active: var(--b2c-dm-nav-text);
+    --ic-brand-global-nav-avatar-border: var(--b2c-dm-nav-text);
+    background: var(--b2c-dm-bg);
+    color: var(--b2c-dm-text);
+  }
+
+  /* Page shells */
+  & :is(#application, #wrapper, #main, #not_right_side, #content-wrapper, #content,
+        #right-side-wrapper, #left-side, .ic-app-nav-toggle-and-crumbs) {
+    background-color: var(--b2c-dm-bg);
+  }
+
+  /* Global nav: active item (#header raises specificity above the generated layer) */
+  & #header .ic-app-header__menu-list-item--active {
+    & .ic-app-header__menu-list-link,
+    & .ic-app-header__menu-list-link:hover { background-color: var(--b2c-dm-nav-active); }
+    & .ic-icon-svg { fill: var(--b2c-dm-nav-text); }
+    & .menu-item__text { color: var(--b2c-dm-nav-text); }
+  }
+
+  /* Breadcrumbs */
+  & #breadcrumbs li a { color: var(--b2c-dm-text-secondary); }
+  & #breadcrumbs li:last-of-type a { color: var(--b2c-dm-text); }
+
+  /* Course nav */
+  & #section-tabs .section a { color: var(--b2c-dm-text-secondary); }
+  & #section-tabs .section a:hover { color: var(--b2c-dm-text); background: var(--b2c-dm-hover); }
+  & #section-tabs .section a.active { color: var(--b2c-dm-text); border-left-color: var(--b2c-dm-link); }
+
+  /* Surfaces (elevation colour is universal; how depth shows is per scheme) */
+  & :is(.ic-DashboardCard, .ic-DashboardCard__header_content, .ig-header, .ig-row,
+        .ToDoSidebarItem, .ui-dialog, .ui-widget-content,
+        #grades_summary tr.student_assignment, .ic-item-row) {
+    background-color: var(--b2c-dm-surface);
+    border-color: var(--b2c-dm-border);
+  }
+  & #grades_summary tr.student_assignment:nth-child(even) {
+    background-color: color-mix(in oklch, var(--b2c-dm-surface-raised) 50%, var(--b2c-dm-surface));
+  }
+  & .ic-DashboardCard__placeholder-svg { background: var(--b2c-dm-surface); }
+  & .ic-DashboardCard__placeholder-svg :is(rect, path) { fill: var(--b2c-dm-surface-raised); }
+  /* Colour budget: the hero carries the course colour, so the title is text */
+  & :is(.ic-DashboardCard__header-title, .ic-DashboardCard__header-title span) {
+    color: var(--b2c-dm-text) !important;
+  }
+  & :is(.ic-DashboardCard__header-subtitle, .ic-DashboardCard__header-term, .ic-DashboardCard__action) {
+    color: var(--b2c-dm-text-secondary);
+  }
+  & .ic-DashboardCard__action:hover { color: var(--b2c-dm-text); }
+
+  /* Right sidebar */
+  & #right-side :is(h2, .h2) { color: var(--b2c-dm-text); border-bottom-color: var(--b2c-dm-border); }
+
+  /* Menus, popovers, tooltips */
+  & :is(.ui-menu, .al-options, .ui-tooltip, .popover) {
+    background-color: var(--b2c-dm-surface-raised);
+    color: var(--b2c-dm-text);
+    border-color: var(--b2c-dm-border);
+  }
+
+  /* Forms: inputs sunken (bg) with a border */
+  & :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"]), select, textarea) {
+    background-color: var(--b2c-dm-bg);
+    color: var(--b2c-dm-text);
+    border-color: var(--b2c-dm-border);
+  }
+  & ::placeholder { color: var(--b2c-dm-text-tertiary); }
+
+  /* Focus and selection follow the theme's link colour */
+  & :focus-visible { outline: 2px solid var(--b2c-dm-link); outline-offset: 2px; }
+  & ::selection {
+    background: color-mix(in oklch, var(--b2c-dm-link) 35%, var(--b2c-dm-bg));
+    color: var(--b2c-dm-text);
+  }
+
+  /* User content: base text follows the theme; authored near-black → text */
+  & :is(.user_content, .show-content) { color: var(--b2c-dm-text); }
+  & .user_content :is([style*="color: rgb(0, 0, 0)"], [style*="color: #000"], [style*="color:#000"],
+                      [style*="color: rgb(51, 51, 51)"], [style*="color: #333"],
+                      [style*="color: #2d3b45"], [style*="color: rgb(45, 59, 69)"],
+                      [style*="color: #273540"], [style*="color: rgb(39, 53, 64)"]) {
+    color: var(--b2c-dm-text) !important;
+  }
+  & .user_content :is(table, td, th) { border-color: var(--b2c-dm-border); }
+  & .user_content th:not([style*="background"], [bgcolor]) { background-color: var(--b2c-dm-surface-raised); }
+
+  /* Iframes we can't style: a quiet frame */
+  & iframe { border-color: var(--b2c-dm-border); }
+
+  /* Canvas High Contrast (user flag): AAA (dark-mode.md §7) */
+  &:has(link[href*="high_contrast"]) {
+    /* on <html>, where tertiary is still the original role value */
+    --b2c-dm-border: var(--b2c-dm-text-tertiary);
+    & body {
+      --b2c-dm-text-secondary: var(--b2c-dm-text);
+      --b2c-dm-text-tertiary: var(--b2c-dm-text);
+    }
+    & a { text-decoration: underline; }
+  }
+
+  /* Print stays plain */
+  @media print {
+    &, & body { background: #fff; color: #000; color-scheme: light; }
+  }
+}
+
+/* ═════════════ Dark scheme only ═════════════ */
+html[data-b2c-theme="on"][data-b2c-scheme="dark"] {
+  color-scheme: dark;
+
+  /* Depth by lightness and a hairline, not shadows */
+  & .ic-DashboardCard { box-shadow: 0 0 0 1px var(--b2c-dm-border); }
+  & .ic-DashboardCard:hover { box-shadow: 0 0 0 1px var(--b2c-dm-border), 0 4px 16px rgba(0, 0, 0, .45); }
+  & :is(.ui-menu, .al-options, .ui-tooltip, .popover) { box-shadow: 0 4px 16px rgba(0, 0, 0, .5); }
+
+  /* Canvas's light emboss blurs on dark */
+  & body, & body * { text-shadow: none !important; }
+
+  /* Breadcrumb arrow image is drawn for light pages */
+  & #breadcrumbs li:not(.home) + li::before { filter: invert(1) opacity(.6); }
+
+  /* School sidebar logo as a light monochrome mark */
+  & :is(.ic-sidebar-logo img, .ic-sidebar-logo__image) { filter: brightness(0) invert(0.88); }
+
+  /* Authored backgrounds keep their colour; text on them goes dark */
+  & .user_content :is([style*="background"], [bgcolor]) { color: #1b2330; }
+  & .user_content :is([style*="background"], [bgcolor]) a { color: #005f85; }
+
+  /* Images: white plate for transparent line art; math glyphs inverted */
+  & .user_content img:not(.equation_image) {
+    background-color: #ffffff;
+    border-radius: var(--b2c-radius-sm);
+  }
+  & img.equation_image {
+    filter: invert(1) hue-rotate(180deg) brightness(0.93);
+    background: transparent;
+  }
+  &[data-b2c-dim-images] :is(img:not(.equation_image), video) {
+    filter: brightness(.85);
+    transition: filter var(--b2c-dur-fast) var(--b2c-ease-out);
+    &:hover { filter: none; }
+  }
+
+  /* High Contrast in dark: stronger links (≥ 7:1 on every bundled theme) and a
+     darker accent behind white button text (the pilot school 8.2:1) */
+  &:has(link[href*="high_contrast"]) body {
+    --ic-link-color: oklch(from var(--b2c-dm-link) 0.93 min(c, 0.08) h);
+    --ic-brand-button--primary-bgd: oklch(from var(--b2c-dm-accent) 0.42 c h);
+  }
+}
+
+/* ═════════════ Light scheme only ═════════════ */
+html[data-b2c-theme="on"][data-b2c-scheme="light"] {
+  color-scheme: light;
+  /* Depth by Canvas's own shadows: nothing to override. */
+
+  /* High Contrast in light: darker links and accent (AAA, checked by
+     check_themes.py's HC pass) */
+  &:has(link[href*="high_contrast"]) body {
+    --ic-link-color: oklch(from var(--b2c-dm-link) min(l, 0.36) c h);
+    --ic-brand-button--primary-bgd: oklch(from var(--b2c-dm-accent) min(l, 0.42) c h);
+  }
+}
+
+/* Theme switch: no transitions for one frame (any scheme) */
+html[data-b2c-switching] * { transition: none !important; }

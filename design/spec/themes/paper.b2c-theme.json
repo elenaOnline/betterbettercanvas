@@ -1,0 +1,24 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Paper",
+  "author": "b²c",
+  "palette": {
+    "light": {
+      "bg": "#f6f6f3",
+      "surface": "#ffffff",
+      "surfaceRaised": "#eeeeea",
+      "border": "#d5d5cf",
+      "text": "#1f2328",
+      "textSecondary": "#4a4f57",
+      "textTertiary": "#5a5f67",
+      "link": "school",
+      "accent": "school",
+      "nav": "school",
+      "navText": "#ffffff",
+      "success": "#1e7a3c",
+      "warning": "#9a5208",
+      "danger": "#b8232a"
+    }
+  }
+}

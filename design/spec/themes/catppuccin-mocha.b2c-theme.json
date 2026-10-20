@@ -1,0 +1,39 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Catppuccin Mocha",
+  "author": "b²c",
+  "source": "https://catppuccin.com/palette",
+  "palette": {
+    "dark": {
+      "bg": "#1e1e2e",
+      "surface": "#181825",
+      "surfaceRaised": "#313244",
+      "border": "#45475a",
+      "text": "#cdd6f4",
+      "textSecondary": "#bac2de",
+      "textTertiary": "#9aa0b9",
+      "link": "#92beff",
+      "accent": "#8a66b2",
+      "nav": "#11111b",
+      "navText": "#cdd6f4",
+      "success": "#a6e3a1",
+      "warning": "#f9e2af",
+      "danger": "#f38ba8"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#db7592",
+        "#c9855b",
+        "#a89262",
+        "#68a263",
+        "#54a296",
+        "#4a9ec2",
+        "#6c95d9",
+        "#a985d3"
+      ]
+    }
+  }
+}

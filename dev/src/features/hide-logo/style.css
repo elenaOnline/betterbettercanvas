@@ -1,0 +1,2 @@
+html[data-b2c-hide-logo] .ic-app-header__logomark-container,
+html[data-b2c-hide-logo] .ic-sidebar-logo { display: none !important; }

@@ -1,0 +1,3 @@
+/* This is independent of Canvas's account-level overlay preference. */
+html[data-b2c-card-overlay="on"] .ic-DashboardCard__header_image .ic-DashboardCard__header_hero { opacity: .6 !important; }
+html[data-b2c-card-overlay="off"] .ic-DashboardCard__header_image .ic-DashboardCard__header_hero { opacity: 0 !important; }

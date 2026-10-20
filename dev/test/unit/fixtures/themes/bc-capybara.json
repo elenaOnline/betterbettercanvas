@@ -1,0 +1,38 @@
+{
+  "color": "brown",
+  "score": 4441,
+  "title": "Capybara by ksucpea",
+  "exports": {
+    "disable_color_overlay": false,
+    "gradient_cards": false,
+    "dark_mode": true,
+    "card_colors": [
+      "#755215"
+    ],
+    "custom_font": {
+      "family": "'Rubik'",
+      "link": "Rubik:wght@400;700"
+    },
+    "dark_preset": {
+      "background-0": "#170d03",
+      "background-1": "#251c04",
+      "background-2": "#0c0c0c",
+      "borders": "#1e1e1e",
+      "links": "#dfa581",
+      "sidebar": "linear-gradient(#9b5a32, #1e1506)",
+      "sidebar-text": "#f5f5f5",
+      "text-0": "#f5f5f5",
+      "text-1": "#e2e2e2",
+      "text-2": "#ababab"
+    },
+    "custom_cards": [
+      "https://i.pinimg.com/originals/ca/93/0c/ca930c4f2edd5012863a38182759bfb5.gif",
+      "https://i.ytimg.com/vi/FWcoYPoD6us/maxresdefault.jpg",
+      "https://i.redd.it/kc2xbmo8kiy71.jpg",
+      "https://i.gifer.com/7Luh.gif",
+      "https://media.tenor.com/fdT-j77p2D4AAAAd/capybara-eating.gif",
+      "https://media.tenor.com/1kZ2j73pGDUAAAAC/capybara-ok-he-pull-up.gif"
+    ]
+  },
+  "preview": "https://i.redd.it/kc2xbmo8kiy71.jpg"
+}

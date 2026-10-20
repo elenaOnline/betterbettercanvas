@@ -1,0 +1,4 @@
+.vendor/
+.tools/
+.certs/
+node_modules/

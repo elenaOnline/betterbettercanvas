@@ -1,0 +1,52 @@
+/* Generic Canvas default brand for the standalone mock (used when the
+   captured school brand in vendor-live/ is absent). Variable names follow
+   canvas-lms's brandable_variables; the values are Canvas's stock defaults,
+   with darkened/lightened shades computed here (Sass darken/lighten). */
+:root {
+--ic-brand-primary-darkened-5: #266DA7;
+--ic-brand-primary-darkened-10: #225F92;
+--ic-brand-primary-darkened-15: #1D527E;
+--ic-brand-primary-lightened-5: #3187D0;
+--ic-brand-primary-lightened-10: #4593D5;
+--ic-brand-primary-lightened-15: #5A9FD9;
+--ic-brand-button--primary-bgd-darkened-5: #266DA7;
+--ic-brand-button--primary-bgd-darkened-15: #1D527E;
+--ic-brand-button--secondary-bgd-darkened-5: #232E36;
+--ic-brand-button--secondary-bgd-darkened-15: #0F1317;
+--ic-brand-font-color-dark-lightened-15: #4B6373;
+--ic-brand-font-color-dark-lightened-28: #66859B;
+--ic-link-color-darkened-10: #0A4D84;
+--ic-link-color-lightened-10: #1283E2;
+--ic-brand-primary: #2B7ABC;
+--ic-brand-font-color-dark: #2D3B45;
+--ic-link-color: #0E68B3;
+--ic-brand-button--primary-bgd: var(--ic-brand-primary);
+--ic-brand-button--primary-text: #ffffff;
+--ic-brand-button--secondary-bgd: #2D3B45;
+--ic-brand-button--secondary-text: #ffffff;
+--ic-brand-global-nav-bgd: #334451;
+--ic-brand-global-nav-ic-icon-svg-fill: #ffffff;
+--ic-brand-global-nav-ic-icon-svg-fill--active: var(--ic-brand-primary);
+--ic-brand-global-nav-menu-item__text-color: #ffffff;
+--ic-brand-global-nav-menu-item__text-color--active: var(--ic-brand-primary);
+--ic-brand-global-nav-avatar-border: #ffffff;
+--ic-brand-global-nav-menu-item__badge-bgd: var(--ic-brand-primary);
+--ic-brand-global-nav-menu-item__badge-bgd--active: var(--ic-brand-primary);
+--ic-brand-global-nav-menu-item__badge-text: #ffffff;
+--ic-brand-global-nav-menu-item__badge-text--active: #ffffff;
+--ic-brand-global-nav-logo-bgd: #334451;
+--ic-brand-header-image: none;
+--ic-brand-mobile-global-nav-logo: none;
+--ic-brand-watermark: ;
+--ic-brand-watermark-opacity: 1.0;
+--ic-brand-favicon: none;
+--ic-brand-apple-touch-icon: none;
+--ic-brand-msapplication-tile-color: var(--ic-brand-primary);
+--ic-brand-msapplication-tile-square: none;
+--ic-brand-msapplication-tile-wide: none;
+--ic-brand-right-sidebar-logo: none;
+--ic-brand-Login-body-bgd-color: #334451;
+--ic-brand-Login-body-bgd-image: ;
+--ic-brand-Login-body-bgd-shadow-color: #2D3B45;
+--ic-brand-Login-logo: none;
+}

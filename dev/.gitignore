@@ -1,0 +1,10 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+.scratch/
+mock-canvas/.certs/
+mock-canvas/.vendor/
+mock-canvas/.tools/
+keys/*.pem
+release/

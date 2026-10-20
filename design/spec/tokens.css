@@ -1,0 +1,165 @@
+/* b²c design tokens. Owner: Design. Dev imports this file verbatim.
+   Plain custom properties only: no @import, no url().
+   Three groups:
+     1. --b2c-ui-*   b²c's own UI (popup, settings page). Follows system light/dark.
+     2. --b2c-dm-*   dark-mode roles painted onto Canvas. Defaults = "dark" preset;
+                     user/preset values arrive at runtime on <html> (via the mirror).
+     3. --b2c-w-*    injected widgets on Canvas (card assignments, to-do, GPA, notes).
+                     They look like Canvas in light, and take dark-mode roles in dark.
+   Shared scales (type, space, radius, motion) sit at the top. */
+
+:root {
+  /* ── Type ─────────────────────────────────────────────── */
+  --b2c-font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --b2c-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Canvas's own face; widgets inherit it from the page when present. */
+  --b2c-font-canvas: "LatoWeb", "Lato Extended", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --b2c-text-xs: 11px;   /* captions, keyboard hints */
+  --b2c-text-sm: 12px;   /* descriptions, metadata */
+  --b2c-text-md: 13px;   /* UI body (popup/settings rows) */
+  --b2c-text-lg: 15px;   /* section headers */
+  --b2c-text-xl: 20px;   /* settings page title */
+  --b2c-leading-tight: 1.25;
+  --b2c-leading: 1.4;
+  --b2c-weight-regular: 400;
+  --b2c-weight-medium: 500;
+  --b2c-weight-bold: 600;
+
+  /* ── Space (4 px grid, plus 2 and 6 for hairline adjustments) ─ */
+  --b2c-space-0-5: 2px;
+  --b2c-space-1: 4px;
+  --b2c-space-1-5: 6px;
+  --b2c-space-2: 8px;
+  --b2c-space-3: 12px;
+  --b2c-space-4: 16px;
+  --b2c-space-5: 20px;
+  --b2c-space-6: 24px;
+  --b2c-space-8: 32px;
+
+  /* ── Shape: ONE dial. the owner, 2026-10-19: "i way prefer square styling to
+        circle styling". No pills, no circles: every b²c radius derives from
+        --b2c-corner, so the later visual pass turns one knob. ── */
+  --b2c-corner: 2px;
+  --b2c-radius-sm: var(--b2c-corner);                 /* chips, badges, checkboxes */
+  --b2c-radius-md: var(--b2c-corner);                 /* buttons, inputs, color wells, switches */
+  --b2c-radius-lg: calc(var(--b2c-corner) * 1.5);     /* popovers, menus, panels */
+  --b2c-radius-full: var(--b2c-corner);               /* was 999px; nothing is round now */
+  --b2c-card-radius: var(--b2c-corner);               /* Canvas cards b²c decorates (layout slider default) */
+
+  /* ── Motion ───────────────────────────────────────────── */
+  --b2c-dur-fast: 120ms;   /* hover, press, switch knob */
+  --b2c-dur-base: 180ms;   /* disclosure, row collapse */
+  --b2c-dur-slow: 280ms;   /* to-do completion settle */
+  --b2c-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --b2c-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --b2c-hover-delay: 350ms; /* hover previews open after this; close immediately */
+
+  /* ── Sizes ────────────────────────────────────────────── */
+  --b2c-row-h: 36px;        /* settings row min height */
+  --b2c-control-h: 28px;    /* segmented, buttons, inputs */
+  --b2c-switch-w: 32px;
+  --b2c-switch-h: 18px;
+  --b2c-popup-w: 360px;
+  --b2c-settings-max-w: 720px;
+  --b2c-focus-ring-w: 2px;
+
+  /* ── 1. b²c UI colours: light ─────────────────────────── */
+  --b2c-ui-bg: #f5f5f7;
+  --b2c-ui-panel: #ffffff;
+  --b2c-ui-panel-hover: #f0f0f2;
+  --b2c-ui-control: #e6e6ea;          /* segmented track, switch off track */
+  --b2c-ui-separator: rgba(0, 0, 0, 0.09);
+  --b2c-ui-text: #1d1d1f;
+  --b2c-ui-text-secondary: #5e5e63;
+  --b2c-ui-text-disabled: #9d9da3;
+  --b2c-ui-accent: #2b66d9;
+  --b2c-ui-accent-text: #ffffff;
+  --b2c-ui-accent-fill: #2b66d9;      /* filled controls (switch on, primary button): white text >= 4.5:1 */
+  --b2c-ui-control-thumb: #ffffff;    /* switch knob, selected segment */
+  --b2c-ui-focus: #2b66d9;
+  --b2c-ui-danger: #c42e22;
+  --b2c-ui-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+
+  /* ── 2. Dark-mode roles (defaults = "dark" preset, palettes.json).
+         boot.js overrides these from the mirror. link / nav / accent derive from
+         the school's brand variables unless she has set a custom value
+         (surfaces/dark-mode.md §4). ── */
+  --b2c-dm-bg: #18212d;
+  --b2c-dm-surface: #212b37;
+  --b2c-dm-surface-raised: #2b3541;
+  --b2c-dm-border: #444e5b;
+  --b2c-dm-text: #e8edf4;
+  --b2c-dm-text-secondary: #bec3c9;
+  --b2c-dm-text-tertiary: #a2a7ac;
+  --b2c-dm-link: oklch(from var(--ic-link-color, #0e68b3) 0.80 min(c, 0.11) h);
+  --b2c-dm-accent: oklch(from var(--ic-brand-primary, #2b7abc) 0.50 max(c, 0.08) h);
+  --b2c-dm-nav: var(--ic-brand-global-nav-bgd, #334451);
+  --b2c-dm-nav-text: #ffffff;
+  --b2c-dm-success: #6fcf97;
+  --b2c-dm-danger: #ff8a80;
+  --b2c-dm-warning: #ffb37a;
+
+  /* ── 3. Widget colours: Canvas light (values match Canvas defaults; see
+           study/canvas-rendering.md) ─────────────────────── */
+  --b2c-w-bg: #ffffff;
+  --b2c-w-surface: #f5f5f5;
+  --b2c-w-border: #c7cdd1;
+  --b2c-w-text: #2d3b45;
+  --b2c-w-text-secondary: #6b7780;
+  --b2c-w-text-tertiary: #6b7780;     /* group labels, hints; same as secondary in light (Canvas has no lighter AA grey on white) */
+  --b2c-w-link: var(--ic-link-color, #0374b5);
+  --b2c-w-danger: #e0061f;      /* Canvas "crimson", used only for overdue/missing */
+  --b2c-w-danger-soft: rgba(224, 6, 31, 0.08);
+  --b2c-w-hover: rgba(45, 59, 69, 0.06);
+  --b2c-w-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* b²c UI follows the system appearance. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --b2c-ui-bg: #1c1c1e;
+    --b2c-ui-panel: #262628;
+    --b2c-ui-panel-hover: #2e2e31;
+    --b2c-ui-control: #3a3a3d;
+    --b2c-ui-separator: rgba(255, 255, 255, 0.09);
+    --b2c-ui-text: #f2f2f4;
+    --b2c-ui-text-secondary: #a8a8ae;
+    --b2c-ui-text-disabled: #6c6c72;
+    --b2c-ui-accent: #4c8dff;
+    --b2c-ui-accent-text: #ffffff;
+    --b2c-ui-accent-fill: #2f6ad6;
+    --b2c-ui-control-thumb: #636366;
+    --b2c-ui-focus: #6aa1ff;
+    --b2c-ui-danger: #ff7a6e;
+    --b2c-ui-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Widgets take the palette roles whenever a b²c theme is painting the page,
+   light or dark (palette engine gate, 2026-10-20). With no theme (Canvas
+   identity) they keep the Canvas-light values above. */
+html[data-b2c-theme="on"] {
+  --b2c-w-bg: var(--b2c-dm-surface);
+  --b2c-w-surface: var(--b2c-dm-surface-raised);
+  --b2c-w-border: var(--b2c-dm-border);
+  --b2c-w-text: var(--b2c-dm-text);
+  --b2c-w-text-secondary: var(--b2c-dm-text-secondary);
+  --b2c-w-text-tertiary: var(--b2c-dm-text-tertiary);
+  --b2c-w-link: var(--b2c-dm-link);
+  --b2c-w-danger: var(--b2c-dm-danger);
+  --b2c-w-danger-soft: color-mix(in oklch, var(--b2c-dm-danger) 12%, transparent);
+  --b2c-w-hover: color-mix(in oklch, var(--b2c-dm-text) 6%, transparent);
+  --b2c-w-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+html[data-b2c-theme="on"][data-b2c-scheme="dark"] {
+  --b2c-w-shadow: none;   /* depth by lightness and a hairline in dark */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --b2c-dur-fast: 0ms;
+    --b2c-dur-base: 0ms;
+    --b2c-dur-slow: 0ms;
+  }
+}

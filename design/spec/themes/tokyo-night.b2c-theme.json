@@ -1,0 +1,39 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Tokyo Night",
+  "author": "b²c",
+  "source": "https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_night.lua",
+  "palette": {
+    "dark": {
+      "bg": "#1a1b26",
+      "surface": "#292e42",
+      "surfaceRaised": "#3b4261",
+      "border": "#545c7e",
+      "text": "#d3ddff",
+      "textSecondary": "#bbc3e8",
+      "textTertiary": "#a6aed9",
+      "link": "#7dcfff",
+      "accent": "#3d59a1",
+      "nav": "#16161e",
+      "navText": "#c0caf5",
+      "success": "#9ece6a",
+      "warning": "#e0af68",
+      "danger": "#f7768e"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#eb6b84",
+        "#da7d42",
+        "#bb8c45",
+        "#75a23e",
+        "#00a889",
+        "#4b9dcb",
+        "#6c93e7",
+        "#a584df"
+      ]
+    }
+  }
+}

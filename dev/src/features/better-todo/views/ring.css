@@ -1,0 +1,55 @@
+/* Progress ring (todo-views.md §2). Round by default (the owner, 2026-10-20):
+   the ring is b²c's one round thing, because the circle is the data. It's the
+   only stylesheet exempt from the square audit. A theme or rice can still make
+   it square: --b2c-ring-corner sets the track's corner radius (default 48px,
+   a full circle on the 96 px track; e.g. 4px gives a square ring). */
+
+.ring-top { display: flex; align-items: center; gap: 12px; margin: 8px 0 6px; }
+.ring-box { position: relative; flex: none; width: 112px; height: 112px; }
+.ring-box svg { display: block; width: 112px; height: 112px; overflow: visible; }
+.trk {
+  fill: none; stroke-width: 12;
+  rx: min(var(--b2c-ring-corner, 48px), 48px);
+  stroke: var(--b2c-w-surface, #f5f5f5);
+}
+.trk.fill { transition: stroke-dasharray var(--b2c-dur-slow, 280ms) var(--b2c-ease-out, ease); }
+.trk.hair { stroke-width: 1; stroke: var(--b2c-w-border, #c7cdd1); }
+.arc { cursor: pointer; transition: opacity var(--b2c-dur-fast, 120ms); }
+.arc.dim { opacity: .35; }
+
+.ctr {
+  position: absolute; inset: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; line-height: 1.15;
+}
+.ctr .big { font-size: 18px; font-weight: var(--b2c-weight-bold, 600); font-variant-numeric: tabular-nums; }
+.ctr .small { font-size: 11px; color: var(--b2c-w-text-secondary, #6b7780); margin-top: 2px; }
+.st-empty .ctr .big { font-size: 12px; font-weight: var(--b2c-weight-regular, 400); color: var(--b2c-w-text-secondary, #6b7780); }
+.st-done .ctr .big { font-size: 15px; }
+
+.legend { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 0; display: grid; gap: 2px; }
+.legend button {
+  appearance: none; border: 0; background: none; cursor: pointer; width: 100%; display: flex; align-items: center; gap: 6px;
+  padding: 3px 4px; font-size: 13px; text-align: left; border-radius: var(--b2c-radius-sm, 2px);
+}
+.legend button:hover { background: var(--b2c-w-hover, rgba(45,59,69,.06)); }
+.legend button[aria-pressed="true"] { background: var(--b2c-w-surface, #f5f5f5); font-weight: var(--b2c-weight-bold, 600); }
+.legend .sw { flex: none; width: 10px; height: 10px; }
+.legend .lg-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.legend .lg-n { flex: none; font-size: 12px; color: var(--b2c-w-text-secondary, #6b7780); font-variant-numeric: tabular-nums; }
+
+.ring-next { margin: 0 0 6px; font-size: 12px; color: var(--b2c-w-text-secondary, #6b7780); }
+.ring-next .t { color: var(--b2c-w-text, #2d3b45); }
+
+/* The classic 240 px column: a smaller ring leaves the legend room. */
+@container todo (max-width: 269px) {
+  .ring-top { gap: 8px; }
+  .ring-box, .ring-box svg { width: 96px; height: 96px; }
+  .ctr { inset: 16px; }
+  .ctr .big { font-size: 15px; }
+}
+
+/* Wide strip: more room for the legend. */
+@container todo (min-width: 560px) {
+  .ring-top { gap: 24px; }
+  .legend { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}

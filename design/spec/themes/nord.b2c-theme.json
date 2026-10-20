@@ -1,0 +1,39 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Nord",
+  "author": "b²c",
+  "source": "https://www.nordtheme.com/docs/colors-and-palettes",
+  "palette": {
+    "dark": {
+      "bg": "#2e3440",
+      "surface": "#3b4252",
+      "surfaceRaised": "#434c5e",
+      "border": "#4c566a",
+      "text": "#eceff4",
+      "textSecondary": "#d8dee9",
+      "textTertiary": "#adbcd9",
+      "link": "#9ad2e2",
+      "accent": "#5679a3",
+      "nav": "#2e3440",
+      "navText": "#eceff4",
+      "success": "#a3be8c",
+      "warning": "#ebcb8b",
+      "danger": "#bf616a"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#bf616a",
+        "#cb826b",
+        "#af9152",
+        "#829c6c",
+        "#709c9b",
+        "#5e81ac",
+        "#7998b8",
+        "#af89a8"
+      ]
+    }
+  }
+}

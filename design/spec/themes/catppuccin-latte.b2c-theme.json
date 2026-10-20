@@ -1,0 +1,39 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Catppuccin Latte",
+  "author": "b²c",
+  "source": "https://catppuccin.com/palette",
+  "palette": {
+    "light": {
+      "bg": "#eff1f5",
+      "surface": "#e6e9ef",
+      "surfaceRaised": "#dce0e8",
+      "border": "#bcc0cc",
+      "text": "#3d4059",
+      "textSecondary": "#5c5f77",
+      "textTertiary": "#606278",
+      "link": "#0d57e5",
+      "accent": "#8839ef",
+      "nav": "#4c4f69",
+      "navText": "#eff1f5",
+      "success": "#40a02b",
+      "warning": "#df8e1d",
+      "danger": "#d20f39"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#d20f39",
+        "#fd6309",
+        "#d28200",
+        "#40a02b",
+        "#179299",
+        "#209fb5",
+        "#1e66f5",
+        "#8839ef"
+      ]
+    }
+  }
+}

@@ -1,0 +1,54 @@
+/* card-customization (flow A): b²c's ⋮ sits exactly where Canvas's does, and
+   Canvas's own ⋮ is hidden only on cards b²c decorated ([data-b2c-card], set
+   after our ⋮ is in place), so a b²c failure leaves Canvas's menu. */
+html[data-b2c-card-customization] .ic-DashboardCard__header > b2c-card-kebab {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+}
+html[data-b2c-card-customization] [data-b2c-card] .ic-DashboardCard__header-button,
+html[data-b2c-card-customization] [data-b2c-card] .ic-DashboardCard__header-button-bg {
+  display: none !important;
+}
+/* Square styling on decorated cards: the card corner and Canvas's unread badges. */
+html[data-b2c-card-customization] .ic-DashboardCard[data-b2c-card],
+html[data-b2c-card-customization] [data-testid=draggable-card][data-b2c-card] {
+  border-radius: var(--b2c-card-radius-set, var(--b2c-card-radius, 2px));
+}
+html[data-b2c-card-customization] [data-b2c-card] .ic-DashboardCard__action-badge,
+html[data-b2c-card-customization] [data-b2c-card] .ic-DashboardCard__action-badge .unread_count {
+  border-radius: var(--b2c-radius-sm, 2px) !important;
+}
+/* Custom quick links take a tab-link slot (Canvas: flex 0 0 25%). */
+html[data-b2c-card-customization] .ic-DashboardCard__action-container > b2c-card-link {
+  flex: 0 0 25%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+html[data-b2c-card-customization] .ic-DashboardCard__action-container > [data-b2c-slot-hidden] {
+  display: none !important;
+}
+/* Width and gap sliders: only while one differs from Canvas's geometry, and
+   only on real cards (placeholders paint before a stale mirror is corrected;
+   see card-assignments/style.css). */
+html[data-b2c-card-layout] .ic-DashboardCard__box .ic-DashboardCard:has(a.ic-DashboardCard__link) {
+  width: var(--b2c-card-w, 262px);
+  margin-top: var(--b2c-card-gap, 36px);
+  margin-left: var(--b2c-card-gap, 36px);
+}
+html[data-b2c-card-layout] .ic-DashboardCard__box__container {
+  margin-top: calc(-1 * var(--b2c-card-gap, 36px));
+}
+/* Drag to reorder: the dragged card is lifted (translucent); the cursor is a grab hand meanwhile. */
+html[data-b2c-card-customization] [data-b2c-card][data-b2c-dragging] {
+  opacity: 0.55;
+  position: relative;
+  z-index: 3;
+}
+html[data-b2c-card-dragging] body,
+html[data-b2c-card-dragging] body * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}

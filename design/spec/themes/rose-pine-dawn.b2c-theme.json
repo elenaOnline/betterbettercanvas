@@ -1,0 +1,37 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Rosé Pine Dawn",
+  "author": "b²c",
+  "source": "https://rosepinetheme.com/palette/",
+  "palette": {
+    "light": {
+      "bg": "#faf4ed",
+      "surface": "#fffaf3",
+      "surfaceRaised": "#f2e9e1",
+      "border": "#dfdad9",
+      "text": "#464261",
+      "textSecondary": "#6a6683",
+      "textTertiary": "#6c6778",
+      "link": "#286983",
+      "accent": "#836d9b",
+      "nav": "#464261",
+      "navText": "#faf4ed",
+      "success": "#56949f",
+      "warning": "#ea9d34",
+      "danger": "#b4637a"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#b4637a",
+        "#cf8403",
+        "#d27d79",
+        "#286983",
+        "#56949f",
+        "#907aa9"
+      ]
+    }
+  }
+}

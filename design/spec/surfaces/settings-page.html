@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>b²c settings</title>
+<link rel="stylesheet" href="../tokens.css">
+<!--
+  b²c settings page prototype (options_page). Design, 2026-10-19.
+  Spec: ../settings.md "Settings page" and sections 1-7.
+
+  Rendered from one declarative list, SECTIONS, the way Dev renders from the
+  schema: each row names its key(s), control, default, and the feature it
+  depends on. Search, per-row reset, section reset and dimming all read that
+  list. Components (port one to one to Preact): Row, Switch, Segmented,
+  StyleChips, Select, Stepper, TimeRange, ColorWell (+ ContrastReadout),
+  Checks, Sliders, CodeField, GradeScale, Courses, Disclosure, Toast.
+  Keys marked (placeholder) are not in dev/schema.json yet.
+  Revised 2026-10-19 (r2): Gray preset, school link/nav, Reminders shelved,
+  new rows from settings.md r2, About + Reset all placement.
+-->
+<style>
+  :root { --b2c-sidebar-w: 200px; }   /* page-local layout value */
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; scroll-padding-top: var(--b2c-space-6); }
+  body {
+    margin: 0;
+    background: var(--b2c-ui-bg);
+    color: var(--b2c-ui-text);
+    font: var(--b2c-weight-regular) var(--b2c-text-md)/var(--b2c-leading) var(--b2c-font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  button:disabled { cursor: default; }
+  :focus { outline: none; }
+  :focus-visible {
+    outline: var(--b2c-focus-ring-w) solid var(--b2c-ui-focus);
+    outline-offset: 2px;
+  }
+  svg { display: block; flex: none; }
+  [hidden] { display: none !important; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  /* ── Layout ── */
+  .layout {
+    display: grid;
+    grid-template-columns: var(--b2c-sidebar-w) minmax(0, var(--b2c-settings-max-w));
+    column-gap: var(--b2c-space-8);
+    justify-content: center;
+    padding: 0 var(--b2c-space-6);
+  }
+  .side {
+    position: sticky; top: 0; align-self: start;
+    height: 100vh; padding: var(--b2c-space-8) 0 var(--b2c-space-6);
+    display: flex; flex-direction: column; gap: var(--b2c-space-4);
+  }
+  h1 {
+    margin: 0; padding: 0 var(--b2c-space-2);
+    font-size: var(--b2c-text-xl); line-height: var(--b2c-leading-tight);
+    font-weight: var(--b2c-weight-bold); letter-spacing: -0.01em;
+  }
+  main { padding: var(--b2c-space-8) 0 30vh; min-width: 0; }
+
+  /* ── Search ── */
+  .search { position: relative; }
+  .search svg { position: absolute; left: var(--b2c-space-2); top: 7px; color: var(--b2c-ui-text-secondary); pointer-events: none; }
+  .search input {
+    width: 100%; height: var(--b2c-control-h);
+    padding: 0 var(--b2c-space-6) 0 28px;
+    border: 0; border-radius: var(--b2c-radius-md);
+    background: var(--b2c-ui-control);
+  }
+  .search input::placeholder { color: var(--b2c-ui-text-secondary); }
+  .search input::-webkit-search-cancel-button { display: none; }
+  .search kbd {
+    position: absolute; right: var(--b2c-space-1-5); top: 5px;
+    min-width: 18px; height: 18px; padding: 0 var(--b2c-space-1);
+    display: grid; place-items: center;
+    font: var(--b2c-text-xs)/1 var(--b2c-font-ui); color: var(--b2c-ui-text-secondary);
+    border-radius: var(--b2c-radius-sm);
+    box-shadow: inset 0 0 0 1px var(--b2c-ui-separator);
+  }
+  .search input:focus + kbd, .search input:not(:placeholder-shown) + kbd { display: none; }
+
+  /* ── Section index ── */
+  nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--b2c-space-0-5); }
+  nav a {
+    display: flex; align-items: center; height: var(--b2c-control-h);
+    padding: 0 var(--b2c-space-2); border-radius: var(--b2c-radius-md);
+    color: var(--b2c-ui-text); text-decoration: none;
+    transition: background-color var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  nav a:hover { background: color-mix(in srgb, var(--b2c-ui-text) 5%, transparent); }
+  nav a[aria-current="true"] { background: var(--b2c-ui-control); font-weight: var(--b2c-weight-medium); }
+  nav a.no-match { color: var(--b2c-ui-text-disabled); }
+
+  /* ── Sections ── */
+  section { margin-bottom: var(--b2c-space-8); }
+  section[hidden] { display: none; }
+  .sec-head {
+    display: flex; align-items: center; justify-content: space-between;
+    height: var(--b2c-control-h); margin: 0 0 var(--b2c-space-2); padding: 0 var(--b2c-space-3);
+  }
+  h2 { margin: 0; font-size: var(--b2c-text-lg); font-weight: var(--b2c-weight-bold); }
+  .group {
+    background: var(--b2c-ui-panel);
+    border-radius: var(--b2c-radius-lg);
+    box-shadow: var(--b2c-ui-shadow);
+    overflow: hidden;
+  }
+  .empty {
+    padding: var(--b2c-space-8) var(--b2c-space-3); text-align: center;
+    color: var(--b2c-ui-text-secondary);
+  }
+
+  /* ── Rows ── */
+  .row {
+    --indent: 0px;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center; column-gap: var(--b2c-space-2);
+    min-height: var(--b2c-row-h);
+    padding: var(--b2c-space-1-5) var(--b2c-space-3) var(--b2c-space-1-5) calc(var(--b2c-space-3) + var(--indent));
+    transition: background-color var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .row[data-depth="1"] { --indent: var(--b2c-space-6); }
+  .row[data-depth="2"] { --indent: calc(2 * var(--b2c-space-6)); }
+  .row:not(.first)::before {
+    content: ""; position: absolute; top: 0; right: 0;
+    left: calc(var(--b2c-space-3) + var(--indent));
+    height: 1px; background: var(--b2c-ui-separator);
+  }
+  .row[hidden] { display: none; }
+  .row.switch-row { cursor: pointer; }
+  .row.switch-row:hover { background: var(--b2c-ui-panel-hover); }
+  .row.is-disabled.switch-row { cursor: default; }
+  .row.is-disabled.switch-row:hover { background: none; }
+  .row-text { min-width: 0; padding: var(--b2c-space-0-5) 0; }
+  .row-label { display: block; }
+  .row-desc { display: block; margin-top: 1px; font-size: var(--b2c-text-sm); line-height: var(--b2c-leading-tight); color: var(--b2c-ui-text-secondary); }
+  .is-disabled .row-label, .is-disabled .row-desc { color: var(--b2c-ui-text-disabled); }
+  .is-disabled .ctl, .is-disabled .block { opacity: .5; }
+  .ctl { display: flex; align-items: center; gap: var(--b2c-space-2); justify-self: end; }
+  .block { grid-column: 1 / -1; margin-top: var(--b2c-space-1); margin-bottom: var(--b2c-space-1); }
+  .row.bare { grid-template-columns: minmax(0, 1fr); }
+  .row.bare > .row-text, .row.bare > .reset, .row.bare > .ctl { display: none; }
+  .row.bare > .block { margin: 0; }
+  .list-item > .btn.quiet { margin-right: calc(-1 * var(--b2c-space-1-5)); }
+  mark { background: color-mix(in srgb, var(--b2c-ui-accent) 24%, transparent); color: inherit; border-radius: 2px; }
+
+  /* per-row reset: space is reserved, so showing it never shifts the row */
+  .reset {
+    width: 24px; height: 24px; padding: 0; display: grid; place-items: center;
+    border: 0; border-radius: var(--b2c-radius-sm); background: none;
+    color: var(--b2c-ui-text-secondary);
+    visibility: hidden; opacity: 0;
+    transition: opacity var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .row.nondefault:hover > .reset, .row.nondefault:focus-within > .reset { visibility: visible; opacity: 1; }
+  .reset:hover { background: var(--b2c-ui-control); color: var(--b2c-ui-text); }
+
+  /* ── Buttons ── */
+  .btn {
+    height: var(--b2c-control-h); padding: 0 var(--b2c-space-3);
+    display: inline-flex; align-items: center; gap: var(--b2c-space-1-5);
+    border: 0; border-radius: var(--b2c-radius-md);
+    background: var(--b2c-ui-control); white-space: nowrap;
+    transition: filter var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .btn:hover:not(:disabled) { filter: brightness(0.96); }
+  @media (prefers-color-scheme: dark) { .btn:hover:not(:disabled) { filter: brightness(1.15); } }
+  .btn.primary { background: var(--b2c-ui-accent-fill); color: #fff; font-weight: var(--b2c-weight-medium); }
+  .btn.quiet { background: none; color: var(--b2c-ui-accent); padding: 0 var(--b2c-space-1-5); }
+  .btn.quiet:hover:not(:disabled) { background: color-mix(in srgb, var(--b2c-ui-accent) 10%, transparent); filter: none; }
+  /* danger text sits on the panel, not the control fill (4.49:1 there) */
+  .btn.danger { color: var(--b2c-ui-danger); background: none; }
+  a.btn { text-decoration: none; }
+  .ctl > .btn.quiet:last-child { margin-right: calc(-1 * var(--b2c-space-1-5)); }
+  .row.bare > .block > .btn.quiet { margin-left: calc(-1 * var(--b2c-space-1-5)); }
+  .btn.danger:hover:not(:disabled) { background: color-mix(in srgb, var(--b2c-ui-danger) 10%, transparent); filter: none; }
+  .btn:disabled { opacity: .5; }
+  .sec-head .btn.quiet { font-size: var(--b2c-text-sm); visibility: hidden; }
+  .sec-head.nondefault .btn.quiet { visibility: visible; }
+
+  /* ── Switch ── */
+  [role="switch"] {
+    flex: none; position: relative;
+    width: var(--b2c-switch-w); height: var(--b2c-switch-h); padding: 0;
+    border: 0; border-radius: var(--b2c-radius-full);
+    background: var(--b2c-ui-control);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b2c-ui-text) 8%, transparent);
+    transition: background-color var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  [role="switch"]::after {
+    content: ""; position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px; border-radius: var(--b2c-radius-sm);
+    background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25);
+    transition: transform var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  [role="switch"][aria-checked="true"] { background: var(--b2c-ui-accent-fill); box-shadow: none; }
+  [role="switch"][aria-checked="true"]::after { transform: translateX(14px); }
+
+  /* ── Segmented ── */
+  .seg {
+    display: flex; gap: var(--b2c-space-0-5);
+    height: var(--b2c-control-h); padding: var(--b2c-space-0-5);
+    background: var(--b2c-ui-control); border-radius: var(--b2c-radius-md);
+  }
+  .seg [role="radio"] {
+    padding: 0 var(--b2c-space-3); border: 0; border-radius: var(--b2c-radius-sm);
+    background: transparent; white-space: nowrap;
+    transition: background-color var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .seg [role="radio"]:hover:not([aria-checked="true"]):not(:disabled) { background: color-mix(in srgb, var(--b2c-ui-text) 6%, transparent); }
+  .seg [role="radio"][aria-checked="true"] {
+    background: var(--b2c-ui-control-thumb); box-shadow: var(--b2c-ui-shadow);
+    font-weight: var(--b2c-weight-medium);
+  }
+  .seg [role="radio"]:focus-visible { outline-offset: 0; }
+
+  /* ── Style chips ── */
+  .chips { display: flex; gap: var(--b2c-space-3); padding: var(--b2c-space-1) 0; }
+  /* Style chip: a 64×40 Canvas page in the preset: bg, nav strip, a surface card
+     with one text line and one link line. Name below. */
+  .chip {
+    flex: none; width: 64px; padding: 0; border: 0; background: none;
+    display: flex; flex-direction: column; align-items: center; gap: var(--b2c-space-1);
+    font-size: var(--b2c-text-sm); color: var(--b2c-ui-text-secondary);
+  }
+  .chip[hidden] { display: none; }
+  .mini {
+    position: relative; width: 100%; height: 40px; overflow: hidden;
+    border-radius: var(--b2c-radius-md); background: var(--c-bg);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b2c-ui-text) 14%, transparent);
+    transition: box-shadow var(--b2c-dur-fast) var(--b2c-ease-out);
+  }
+  .mini::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: var(--c-nav); }
+  .mini .card { position: absolute; left: 16px; right: 8px; top: 8px; bottom: 8px; border-radius: var(--b2c-radius-sm); background: var(--c-surface); }
+  .mini .card i { display: block; height: 3px; margin: 6px 6px 0; border-radius: 2px; background: var(--c-text); width: 55%; }
+  .mini .card i + i { margin-top: 4px; background: var(--c-link); width: 38%; }
+  .chip[aria-checked="true"] { color: var(--b2c-ui-text); font-weight: var(--b2c-weight-medium); }
+  .chip[aria-checked="true"] .mini { box-shadow: 0 0 0 2px var(--b2c-ui-panel), 0 0 0 4px var(--b2c-ui-accent); }
+  .chip:focus-visible { outline: none; }
+  .chip:focus-visible .mini { outline: var(--b2c-focus-ring-w) solid var(--b2c-ui-focus); outline-offset: 6px; }
+
+  /* ── Inputs ── */
+  .field, .select select, .stepper, textarea.code, .hex {
+    border: 0; border-radius: var(--b2c-radius-md);
+    background: var(--b2c-ui-control);
+  }
+  .field { height: var(--b2c-control-h); padding: 0 var(--b2c-space-2); font-variant-numeric: tabular-nums; }
+  .field.num { width: 64px; text-align: right; }
+  .field::-webkit-calendar-picker-indicator { display: none; }
+  .select { position: relative; display: inline-flex; }
+  .select select {
+    appearance: none; height: var(--b2c-control-h);
+    padding: 0 28px 0 var(--b2c-space-3); min-width: 140px;
+  }
+  .select svg { position: absolute; right: var(--b2c-space-2); top: 8px; pointer-events: none; color: var(--b2c-ui-text-secondary); }
+  .time-label { color: var(--b2c-ui-text-secondary); }
+
+  /* Stepper: − value +, typeable, arrow keys (role=spinbutton) */
+  .stepper { display: inline-flex; align-items: center; height: var(--b2c-control-h); }
+  .stepper button {
+    width: 28px; height: 100%; padding: 0; border: 0; background: none;
+    display: grid; place-items: center; border-radius: var(--b2c-radius-md);
+  }
+  .stepper button:hover:not(:disabled) { background: color-mix(in srgb, var(--b2c-ui-text) 7%, transparent); }
+  .stepper button:disabled { color: var(--b2c-ui-text-disabled); }
+  .stepper input {
+    width: 32px; height: 100%; padding: 0; border: 0; background: none;
+    text-align: center; font-variant-numeric: tabular-nums;
+  }
+  .stepper input:focus-visible { outline-offset: -2px; border-radius: var(--b2c-radius-sm); }
+
+  /* Disclosure: the row label is the button */
+  .disclosure {
+    display: inline-flex; align-items: center; gap: var(--b2c-space-1);
+    margin-left: -2px; padding: 0 var(--b2c-space-1) 0 0; border: 0; background: none;
+    border-radius: var(--b2c-radius-sm);
+  }
+  .disclosure svg { color: var(--b2c-ui-text-secondary); transition: transform var(--b2c-dur-base) var(--b2c-ease-out); }
+  .disclosure[aria-expanded="true"] svg { transform: rotate(90deg); }
+  .strip { display: flex; height: 16px; border-radius: var(--b2c-radius-sm); overflow: hidden; box-shadow: 0 0 0 1px var(--b2c-ui-separator); }
+  .strip span { width: 10px; }
+
+  /* Color wells */
+  .wells { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; column-gap: var(--b2c-space-4); }
+  .wells h3 {
+    margin: 0 0 var(--b2c-space-1); font-size: var(--b2c-text-sm); font-weight: var(--b2c-weight-medium);
+    color: var(--b2c-ui-text-secondary);
+  }
+  .well { display: grid; grid-template-columns: 24px minmax(80px, auto) 68px; align-items: center; column-gap: var(--b2c-space-2); min-height: 32px; padding: var(--b2c-space-0-5) 0; }
+  .well:has(.icon-btn), [role="group"]:has(.icon-btn) .well { grid-template-columns: 24px minmax(80px, auto) 68px 20px; }
+  .readout .warn { display: block; }
+  .well-name { min-width: 0; line-height: var(--b2c-leading-tight); }
+  .readout { display: block; font-size: var(--b2c-text-xs); color: var(--b2c-ui-text-secondary); font-variant-numeric: tabular-nums; }
+  .readout.low { color: var(--b2c-ui-danger); }
+  .hex::placeholder { color: var(--b2c-ui-text-secondary); opacity: 1; font-family: var(--b2c-font-ui); text-transform: none; }
+  .well .icon-btn { width: 20px; height: 20px; }
+  .well input[type="color"] {
+    appearance: none; width: 24px; height: 24px; padding: 0; border: 0;
+    border-radius: var(--b2c-radius-sm); background: none; cursor: pointer;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b2c-ui-text) 18%, transparent);
+  }
+  .well input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+  .well input[type="color"]::-webkit-color-swatch { border: 0; border-radius: var(--b2c-radius-sm); }
+  .hex {
+    width: 68px; height: 24px; padding: 0 var(--b2c-space-1-5);
+    font: var(--b2c-text-sm)/1 var(--b2c-font-mono); text-transform: lowercase;
+  }
+  .hex[aria-invalid="true"] { box-shadow: inset 0 0 0 1px var(--b2c-ui-danger); }
+
+  /* Code field */
+  textarea.code {
+    display: block; width: 100%; min-height: calc(8 * 1.5em + 2 * var(--b2c-space-2));
+    padding: var(--b2c-space-2); resize: vertical;
+    font: var(--b2c-text-sm)/1.5 var(--b2c-font-mono); tab-size: 2;
+  }
+  textarea.code::placeholder { color: var(--b2c-ui-text-secondary); }
+
+  /* Grade scale table */
+  table.scale { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  table.scale th {
+    padding: 0 var(--b2c-space-2) var(--b2c-space-1) 0; text-align: left;
+    font-size: var(--b2c-text-sm); font-weight: var(--b2c-weight-medium); color: var(--b2c-ui-text-secondary);
+  }
+  table.scale td { padding: var(--b2c-space-0-5) var(--b2c-space-2) var(--b2c-space-0-5) 0; }
+  table.scale .field { height: 24px; }
+  table.scale .letter { width: 56px; }
+  table.scale .num { width: 72px; }
+  .icon-btn {
+    width: 24px; height: 24px; padding: 0; border: 0; border-radius: var(--b2c-radius-sm);
+    display: grid; place-items: center; background: none; color: var(--b2c-ui-text-secondary);
+  }
+  .icon-btn:hover:not(:disabled) { background: var(--b2c-ui-control); color: var(--b2c-ui-text); }
+  .block-foot { display: flex; gap: var(--b2c-space-2); margin-top: var(--b2c-space-2); }
+
+  .foot { margin: var(--b2c-space-2) 0 0; font-size: var(--b2c-text-sm); color: var(--b2c-ui-text-secondary); }
+  .inline-checks { display: flex; gap: var(--b2c-space-4); }
+  .inline-checks label { display: inline-flex; align-items: center; gap: var(--b2c-space-1-5); }
+  .inline-checks input, .checks input { accent-color: var(--b2c-ui-accent-fill); width: 14px; height: 14px; margin: 0; }
+
+  /* Card layout sliders */
+  .sliders { display: grid; gap: var(--b2c-space-1); max-width: 480px; }
+  .slider { display: grid; grid-template-columns: 96px minmax(0, 1fr) 56px 24px; align-items: center; column-gap: var(--b2c-space-3); height: 28px; }
+  .slider input[type="range"] { width: 100%; margin: 0; accent-color: var(--b2c-ui-accent-fill); }
+  .slider output { text-align: right; font-variant-numeric: tabular-nums; color: var(--b2c-ui-text-secondary); }
+  .slider .reset { visibility: hidden; opacity: 0; }
+  .slider.nondefault .reset { visibility: visible; opacity: 1; }
+
+  /* GPA courses */
+  .courses { display: grid; grid-template-columns: minmax(0, 1fr) 64px 112px 48px; align-items: center; gap: var(--b2c-space-1) var(--b2c-space-3); }
+  .courses .th { font-size: var(--b2c-text-sm); font-weight: var(--b2c-weight-medium); color: var(--b2c-ui-text-secondary); }
+  .courses .need { display: block; font-size: var(--b2c-text-sm); color: var(--b2c-ui-danger); }
+  .courses .select select { min-width: 0; width: 112px; height: 24px; }
+  .courses .select svg { top: 6px; }
+  .courses .field.num { width: 64px; height: 24px; }
+  .courses > :nth-child(4n) { justify-self: end; }
+
+  /* Lists (hidden cards, sites) and backup panels */
+  .list { display: grid; gap: var(--b2c-space-1); }
+  .list-item { display: flex; align-items: center; justify-content: space-between; gap: var(--b2c-space-3); min-height: 28px; }
+  .list-item small { color: var(--b2c-ui-text-secondary); font-size: var(--b2c-text-sm); }
+  .checks { display: flex; flex-wrap: wrap; gap: var(--b2c-space-1) var(--b2c-space-4); }
+  .checks label { display: inline-flex; align-items: center; gap: var(--b2c-space-1-5); height: 24px; }
+  .panel-foot { display: flex; align-items: center; gap: var(--b2c-space-2); margin-top: var(--b2c-space-3); }
+  .panel-foot .spacer { flex: 1; }
+  .status { font-size: var(--b2c-text-sm); color: var(--b2c-ui-text-secondary); }
+  .value { color: var(--b2c-ui-text-secondary); font-variant-numeric: tabular-nums; }
+
+  /* ── Toast (10 s Undo; pauses while hovered or focused) ── */
+  .toast {
+    position: fixed; left: 50%; bottom: var(--b2c-space-6);
+    display: flex; align-items: center; gap: var(--b2c-space-3);
+    min-height: 40px; padding: var(--b2c-space-1-5) var(--b2c-space-1-5) var(--b2c-space-1-5) var(--b2c-space-4);
+    background: var(--b2c-ui-panel); border-radius: var(--b2c-radius-lg);
+    box-shadow: 0 4px 16px rgba(0,0,0,.14), 0 0 0 1px var(--b2c-ui-separator);
+    transform: translate(-50%, 8px); opacity: 0; visibility: hidden;
+    transition: opacity var(--b2c-dur-base) var(--b2c-ease-out), transform var(--b2c-dur-base) var(--b2c-ease-out), visibility 0s linear var(--b2c-dur-base);
+  }
+  .toast.show { transform: translate(-50%, 0); opacity: 1; visibility: visible; transition-delay: 0s; }
+  @media (prefers-color-scheme: dark) { .toast { box-shadow: 0 4px 16px rgba(0,0,0,.5), 0 0 0 1px var(--b2c-ui-separator); } }
+
+  dialog {
+    width: 420px; padding: var(--b2c-space-4); border: 0; border-radius: var(--b2c-radius-lg);
+    background: var(--b2c-ui-panel); color: var(--b2c-ui-text);
+    box-shadow: 0 12px 40px rgba(0,0,0,.25), 0 0 0 1px var(--b2c-ui-separator);
+  }
+  dialog::backdrop { background: rgba(0,0,0,.2); }
+  dialog h3 { margin: 0 0 var(--b2c-space-3); font-size: var(--b2c-text-lg); font-weight: var(--b2c-weight-bold); }
+  .palettes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--b2c-space-2); }
+  .palette {
+    display: grid; gap: var(--b2c-space-1); padding: var(--b2c-space-2);
+    border: 0; border-radius: var(--b2c-radius-md); background: var(--b2c-ui-control); text-align: left;
+  }
+  .palette .strip { height: 6px; box-shadow: none; }
+  .palette .strip span { flex: 1; width: auto; }
+
+  /* Narrow windows: the index folds away; search stays on top. */
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: minmax(0, 1fr); padding: 0 var(--b2c-space-4); }
+    .side { position: sticky; height: auto; z-index: 1; background: var(--b2c-ui-bg); padding: var(--b2c-space-4) 0 var(--b2c-space-2); }
+    nav { display: none; }
+    main { padding-top: var(--b2c-space-2); }
+    .wells { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side">
+    <h1>b²c settings</h1>
+    <div class="search" role="search">
+      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="q" type="search" placeholder="Search settings" aria-label="Search settings" aria-keyshortcuts="/ Meta+F" autocomplete="off" spellcheck="false">
+      <kbd aria-hidden="true">/</kbd>
+    </div>
+    <nav aria-label="Sections"><ul id="index"></ul></nav>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span id="toast-msg"></span>
+  <button class="btn quiet" id="toast-undo" type="button" aria-keyshortcuts="Meta+Z">Undo</button>
+</div>
+
+<dialog id="palette-dialog" aria-labelledby="pd-title">
+  <h3 id="pd-title">Set all card colors</h3>
+  <div class="palettes" id="palettes"></div>
+  <div class="panel-foot"><span class="spacer"></span><button class="btn" type="button" id="pd-cancel">Cancel</button></div>
+</dialog>
+
+<script>
+/* ═════════════════ Data ═════════════════ */
+const PRESETS = {           /* design/spec/palettes.json, inlined so file:// works */
+  dark:  { bg:"#18212d", surface:"#212b37", "surface-raised":"#2b3541", border:"#444e5b", text:"#e8edf4", "text-secondary":"#bec3c9", "text-tertiary":"#a2a7ac", link:"school", nav:"school", "nav-text":"#ffffff" },
+  gray:  { bg:"#1e1e1e", surface:"#282828", "surface-raised":"#313131", border:"#4a4a4a", text:"#ededed", "text-secondary":"#c2c2c2", "text-tertiary":"#a6a6a6", link:"school", nav:"school", "nav-text":"#ffffff" },
+  black: { bg:"#000000", surface:"#101010", "surface-raised":"#1c1c1c", border:"#353535", text:"#e8e8e8", "text-secondary":"#bebebe", "text-tertiary":"#9e9e9e", link:"school", nav:"school", "nav-text":"#ffffff" },
+  warm:  { bg:"#251f19", surface:"#2f2923", "surface-raised":"#39332c", border:"#524c45", text:"#f3e9df", "text-secondary":"#cac1b6", "text-tertiary":"#aea49a", link:"school", nav:"school", "nav-text":"#ffffff" },
+};
+/* "school" roles derive from Canvas's brand variables (dark-mode.md §4). the pilot school: */
+const SCHOOL = { link: "#7dc8f3", nav: "#213921" };
+const resolve = c => ({ ...c, link: c.link === "school" ? SCHOOL.link : c.link, nav: c.nav === "school" ? SCHOOL.nav : c.nav });
+/* 10 roles in 3 groups (settings.md §1). Schema names in comments (dev/schema.json). */
+const ROLE_GROUPS = [
+  { title: "Background", roles: [["bg","Page"],["surface","Surface"],["surface-raised","Raised"],["border","Border"]] },   // bg0 bg1 bg2 borders
+  { title: "Text", roles: [["text","Primary"],["text-secondary","Secondary"],["text-tertiary","Tertiary"],["link","Link"]] }, // text0 text1 text2 links
+  { title: "Navigation", roles: [["nav","Background"],["nav-text","Text"]] },                                                // sidebar sidebarText
+];
+/* Contrast floors per text role (check_palettes.py): [WCAG ratio, APCA |Lc|] */
+const FLOORS = { text: [7, 75], "text-secondary": [4.5, 60], "text-tertiary": [4.5, 45], link: [4.5, 60], "nav-text": [7, 75] };
+const ON = { "nav-text": ["nav"] };   // every other text role is read on bg, surface and surface-raised
+const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const lin = c => (c /= 255) <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+const relLum = h => { const [r, g, b] = rgb(h).map(lin); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+const wcag = (a, b) => { const [x, y] = [relLum(a), relLum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+function apca(fg, bg) {   // APCA-W3 0.0.98G-4g, as in check_palettes.py
+  const Y = h => { const [r, g, b] = rgb(h).map(c => (c / 255) ** 2.4); const v = 0.2126729 * r + 0.7151522 * g + 0.0721750 * b; return v < 0.022 ? v + (0.022 - v) ** 1.414 : v; };
+  const yt = Y(fg), yb = Y(bg);
+  if (Math.abs(yb - yt) < 0.0005) return 0;
+  if (yb > yt) { const s = (yb ** 0.56 - yt ** 0.57) * 1.14; return s < 0.1 ? 0 : (s - 0.027) * 100; }
+  const s = (yb ** 0.65 - yt ** 0.62) * 1.14; return s > -0.1 ? 0 : (s + 0.027) * 100;
+}
+/* Worst case across the surfaces a role is read on. */
+function contrastOf(role, colors) {
+  const c = resolve(colors);
+  const on = ON[role] || ["bg", "surface", "surface-raised"];
+  return { w: Math.min(...on.map(s => wcag(c[role], c[s]))), lc: Math.min(...on.map(s => Math.abs(apca(c[role], c[s])))), on };
+}
+const PSU_SCALE = [ /* settings.md §4: the pilot school points per letter, no A+. Percent cutoffs are only a fallback */
+  ["A",93,4.00],["A−",90,3.67],["B+",87,3.33],["B",83,3.00],["B−",80,2.67],["C+",77,2.33],
+  ["C",73,2.00],["C−",70,1.67],["D+",67,1.33],["D",63,1.00],["D−",60,0.67],["F",0,0.00],
+];
+const CARD_PALETTES = {
+  Ocean:["#0b4f6c","#01baef","#20bf55","#3c91e6","#2a6f97","#61a5c2"],
+  Sunset:["#f25c54","#f27059","#f4845f","#f79d65","#f7b267","#e76f51"],
+  Pastels:["#a0c4ff","#bdb2ff","#ffc6ff","#caffbf","#fdffb6","#ffd6a5"],
+  Muted:["#6c757d","#8d99ae","#a3b18a","#b5838d","#9a8c98","#84a59d"],
+  Berries:["#7b2cbf","#9d4edd","#c77dff","#e0aaff","#5a189a","#3c096c"],
+  Forest:["#2d6a4f","#40916c","#52b788","#74c69d","#1b4332","#95d5b2"],
+};
+
+const DEFAULTS = {
+  "dark-mode.mode": "device",          // off | always | device | schedule  (schema: enabled + mode)
+  "dark-mode.start": "20:00",
+  "dark-mode.end": "08:00",
+  "dark-mode.preset": "dark",          // (placeholder) dark | gray | black | warm | custom
+  "dark-mode.colors": { ...PRESETS.dark },   // schema: 10 separate color keys; link/nav may be "school"
+  "dark-mode.custom": null,            // (placeholder) her own set, kept when she picks a preset
+  "quiz-safe-mode.mode": "untouched",  // (placeholder) untouched | dark
+  "custom-font.family": "canvas",      // (placeholder)
+  "hide-logo.enabled": false,          // (placeholder)
+  "tab-icons.enabled": false,          // (placeholder)
+  "custom-css.css": "",                // (placeholder)
+  "card-assignments.enabled": true,    // (placeholder) …and every key below
+  "card-assignments.count": 4,
+  "card-assignments.overdue": true,
+  "card-assignments.completed": false,
+  "card-assignments.types": { assignments: true, quizzes: true, discussions: true },
+  "grade-impact.enabled": false,
+  "card-grades.enabled": true,
+  "card-grades.hoverOnly": false,
+  "card-customization.enabled": true,
+  "card-customization.hidden": [],
+  "card-customization.width": 262,     // Canvas default card width, px
+  "card-customization.gap": 24,        // (Canvas default to be confirmed from fixtures)
+  "card-customization.radius": 4,
+  "gradient-cards.style": "standard",
+  "condensed-cards.height": "standard",
+  "card-overlay.enabled": true,
+  "full-width.enabled": false,
+  "dashboard-notes.enabled": false,
+  "hide-recent-feedback.enabled": false,
+  "better-todo.enabled": true,
+  "better-todo.count": 8,
+  "better-todo.announcements": true,
+  "better-todo.overdue": true,
+  "better-todo.hideCompleted": true,
+  "better-todo.courseColors": true,
+  "hover-preview.enabled": true,
+  "better-todo.plannerSync": true,
+  "shared.dates": "relative",
+  "shared.timeFormat": "12h",          // default comes from the system locale
+  "gpa-calculator.enabled": false,
+  "gpa-calculator.scale": PSU_SCALE.map(r => [...r]),
+  "gpa-calculator.includePrevious": false,
+  "gpa-calculator.prevGpa": "",
+  "gpa-calculator.prevCredits": "",
+  "gpa-calculator.courses": [],        // filled from Canvas: { id, name, credits, scale, include }
+  "core.paused": false,                // in dev/schema.json
+  "sites.list": ["canvas.example.edu"],
+};
+const clone = v => structuredClone(v);
+const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const state = clone(DEFAULTS);
+state["card-customization.hidden"] = [{ id: "c1", name: "MATH 151 Calculus I", term: "Spring 2026" }];
+state["gpa-calculator.courses"] = [
+  { id: "g1", name: "MATH 401 Abstract Algebra I", credits: 4, scale: "default", include: true },
+  { id: "g2", name: "MATH 301 Real Analysis I", credits: 4, scale: "default", include: true },
+  { id: "g3", name: "CH 427 Chemistry Seminar", credits: "", scale: "default", include: true },
+];
+const DATA_KEYS = ["sites.list", "card-customization.hidden", "gpa-calculator.courses"]; // her data, not settings: Reset all leaves it
+
+/* Store: Dev replaces this with signals + chrome.storage. */
+const watchers = [];
+const watch = fn => { watchers.push(fn); fn(); };
+const refresh = () => watchers.forEach(fn => fn());
+const set = (k, v) => { state[k] = v; refresh(); };
+
+/* ═════════════════ Helpers ═════════════════ */
+let uid = 0;
+const nid = p => `${p}${++uid}`;
+function h(tag, props = {}, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  el.append(...kids.flat().filter(k => k != null && k !== false));
+  return el;
+}
+const ICONS = {
+  chevron: '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5L8 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  down: '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5L6 7.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  reset: '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6.5A5 5 0 1 1 3 9.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 2.5v4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  minus: '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  plus: '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6h7M6 2.5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  remove: '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3L3 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+};
+const icon = name => { const t = document.createElement("template"); t.innerHTML = ICONS[name]; return t.content.firstChild; };
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const sysDark = matchMedia("(prefers-color-scheme: dark)");
+const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
+/* ═════════════════ Toast + Undo ═════════════════ */
+const toast = document.getElementById("toast");
+let toastTimer = null, toastLeft = 0, toastStart = 0, undoFn = null;
+function showToast(msg, undo) {
+  document.getElementById("toast-msg").textContent = msg;
+  const btn = document.getElementById("toast-undo");
+  btn.hidden = !undo; undoFn = undo;
+  toast.classList.add("show");
+  toastLeft = 10000; startToastTimer();
+}
+function startToastTimer() { clearTimeout(toastTimer); toastStart = Date.now(); toastTimer = setTimeout(hideToast, toastLeft); }
+function pauseToast() { clearTimeout(toastTimer); toastLeft -= Date.now() - toastStart; }
+function hideToast() { clearTimeout(toastTimer); toast.classList.remove("show"); undoFn = null; }
+toast.addEventListener("mouseenter", pauseToast);
+toast.addEventListener("mouseleave", () => toast.classList.contains("show") && startToastTimer());
+toast.addEventListener("focusin", pauseToast);
+toast.addEventListener("focusout", () => toast.classList.contains("show") && startToastTimer());
+document.getElementById("toast-undo").addEventListener("click", () => { const f = undoFn; hideToast(); f && f(); });
+function withUndo(msg, change) {
+  const before = clone(state);
+  change(); refresh();
+  showToast(msg, () => { Object.assign(state, clone(before)); refresh(); });
+}
+
+/* ═════════════════ Controls ═════════════════ */
+function Switch(key, labelId, descId) {
+  const sw = h("button", { type: "button", role: "switch", "aria-labelledby": labelId, "aria-describedby": descId });
+  sw.addEventListener("click", () => set(key, !state[key]));
+  watch(() => sw.setAttribute("aria-checked", !!state[key]));
+  return sw;
+}
+
+/* Radiogroup with roving tabindex: arrows move and select, like native radios. */
+function RadioGroup(groupEl, options, get, put, make) {
+  const items = options.map(o => {
+    const b = make(o); b.type = "button"; b.setAttribute("role", "radio");
+    b.addEventListener("click", () => put(o.value));
+    groupEl.append(b); return b;
+  });
+  groupEl.addEventListener("keydown", e => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (!step && e.key !== "Home" && e.key !== "End") return;
+    e.preventDefault();
+    const live = items.filter(b => !b.hidden && !b.disabled);
+    const i = live.indexOf(document.activeElement);
+    const next = e.key === "Home" ? live[0] : e.key === "End" ? live.at(-1) : live[(i + step + live.length) % live.length];
+    next.click(); next.focus();
+  });
+  watch(() => {
+    const v = get();
+    items.forEach((b, i) => { const on = options[i].value === v; b.setAttribute("aria-checked", on); b.tabIndex = on ? 0 : -1; });
+  });
+  return items;
+}
+function Segmented(key, labelId, options) {
+  const el = h("div", { class: "seg", role: "radiogroup", "aria-labelledby": labelId });
+  RadioGroup(el, options, () => state[key], v => set(key, v), o => h("button", {}, o.label));
+  return el;
+}
+function StyleChips(labelId) {
+  const el = h("div", { class: "chips", role: "radiogroup", "aria-labelledby": labelId });
+  const opts = [...Object.keys(PRESETS), "custom"].map(v => ({ value: v, label: v[0].toUpperCase() + v.slice(1) }));
+  const chips = RadioGroup(el, opts, () => state["dark-mode.preset"], pickPreset,
+    o => h("button", { class: "chip" }, h("span", { class: "mini", "aria-hidden": "true" }, h("span", { class: "card" }, h("i"), h("i"))), h("span", { class: "name" }, o.label)));
+  watch(() => opts.forEach((o, i) => {
+    const raw = o.value === "custom" ? state["dark-mode.custom"] : PRESETS[o.value];
+    chips[i].hidden = !raw;
+    if (raw) { const pal = resolve(raw); for (const r of ["bg", "surface", "text", "link", "nav"]) chips[i].style.setProperty(`--c-${r}`, pal[r]); }
+  }));
+  return el;
+}
+function pickPreset(v) {
+  state["dark-mode.preset"] = v;
+  state["dark-mode.colors"] = clone(v === "custom" ? state["dark-mode.custom"] : PRESETS[v]);
+  refresh();
+}
+function Select(key, labelId, options) {
+  const sel = h("select", { "aria-labelledby": labelId }, options.map(([v, l]) => h("option", { value: v }, l)));
+  sel.addEventListener("change", () => set(key, sel.value));
+  watch(() => { sel.value = state[key]; });
+  return h("span", { class: "select" }, sel, icon("down"));
+}
+function Stepper(key, labelId, min, max) {
+  const input = h("input", { type: "text", inputmode: "numeric", role: "spinbutton", "aria-labelledby": labelId, "aria-valuemin": min, "aria-valuemax": max });
+  const clamp = n => Math.min(max, Math.max(min, n));
+  const dec = h("button", { type: "button", tabindex: "-1" }, icon("minus"));
+  const inc = h("button", { type: "button", tabindex: "-1" }, icon("plus"));
+  const label = () => document.getElementById(labelId).textContent;
+  dec.setAttribute("aria-label", "Decrease"); inc.setAttribute("aria-label", "Increase");
+  dec.addEventListener("click", () => set(key, clamp(state[key] - 1)));
+  inc.addEventListener("click", () => set(key, clamp(state[key] + 1)));
+  input.addEventListener("keydown", e => {
+    const d = { ArrowUp: 1, ArrowDown: -1, PageUp: 5, PageDown: -5 }[e.key];
+    if (d) { e.preventDefault(); set(key, clamp(state[key] + d)); }
+    if (e.key === "Home") { e.preventDefault(); set(key, min); }
+    if (e.key === "End") { e.preventDefault(); set(key, max); }
+    if (e.key === "Enter") input.blur();
+  });
+  input.addEventListener("change", () => { const n = parseInt(input.value, 10); set(key, isNaN(n) ? state[key] : clamp(n)); input.value = state[key]; });
+  watch(() => {
+    input.value = state[key]; input.setAttribute("aria-valuenow", state[key]);
+    dec.disabled = state[key] <= min; inc.disabled = state[key] >= max;
+  });
+  return h("span", { class: "stepper" }, dec, input, inc);
+}
+function TimeRange() {
+  const mk = (key, lbl) => {
+    const id = nid("t");
+    const inp = h("input", { class: "field", type: "time", id, step: "60" });
+    inp.addEventListener("change", () => inp.value && set(key, inp.value));
+    watch(() => { inp.value = state[key]; });
+    return [h("label", { class: "time-label", for: id }, lbl), inp];
+  };
+  return [...mk("dark-mode.start", "From"), ...mk("dark-mode.end", "To")];
+}
+function ColorWells() {
+  const wrap = h("div", { class: "wells" });
+  for (const g of ROLE_GROUPS) {
+    const gid = nid("g");
+    const col = h("div", { role: "group", "aria-labelledby": gid }, h("h3", { id: gid }, g.title));
+    for (const [role, name] of g.roles) {
+      const lid = nid("w"), rid = nid("cr");
+      const derivable = role === "link" || role === "nav";
+      const sw = h("input", { type: "color", "aria-label": `${g.title} ${name.toLowerCase()} color` });
+      const hex = h("input", { class: "hex", type: "text", maxlength: "7", spellcheck: "false", "aria-labelledby": lid, autocomplete: "off",
+        ...(FLOORS[role] ? { "aria-describedby": rid } : {}), ...(derivable ? { placeholder: "School" } : {}) });
+      const commit = v => {
+        const c = { ...state["dark-mode.colors"], [role]: v === "school" ? v : v.toLowerCase() };
+        state["dark-mode.colors"] = c; state["dark-mode.custom"] = clone(c); state["dark-mode.preset"] = "custom";
+        refresh();
+      };
+      sw.addEventListener("input", () => commit(sw.value));
+      hex.addEventListener("input", () => {
+        const v = hex.value.trim().replace(/^#?/, "#");
+        const ok = /^#[0-9a-f]{6}$/i.test(v);
+        hex.setAttribute("aria-invalid", !ok && hex.value.length >= 6);
+        if (ok) commit(v);
+      });
+      const raw = () => state["dark-mode.colors"][role];
+      const shown = () => raw() === "school" ? "" : raw();
+      hex.addEventListener("blur", () => { hex.value = shown(); hex.removeAttribute("aria-invalid"); });
+      // link and nav: "School" while derived from Canvas's brand; ↺ returns an override to School
+      let back = h("span");
+      if (derivable) {
+        back = h("button", { class: "icon-btn", type: "button", "aria-label": `Use the school’s ${name.toLowerCase()} color`, title: "Use school color" }, icon("reset"));
+        back.addEventListener("click", () => withUndo(`${g.title} ${name.toLowerCase()} uses the school color`, () => {
+          const c = { ...state["dark-mode.colors"], [role]: "school" };
+          state["dark-mode.colors"] = c; state["dark-mode.custom"] = clone(c); state["dark-mode.preset"] = "custom";
+        }));
+      }
+      const readout = FLOORS[role] ? h("span", { class: "readout", id: rid }) : null;
+      watch(() => {
+        const v = resolve(state["dark-mode.colors"])[role];
+        sw.value = v;
+        if (document.activeElement !== hex) hex.value = shown();
+        if (derivable) back.hidden = raw() === "school";
+        if (readout) {
+          const { w, lc } = contrastOf(role, state["dark-mode.colors"]);
+          const [fw, fl] = FLOORS[role];
+          const low = w < fw ? "Below AA" : lc < fl ? `Below Lc ${fl}` : "";
+          readout.replaceChildren(`${w.toFixed(1)}:1 · Lc ${Math.round(lc)}`, low ? h("span", { class: "warn" }, low) : "");
+          readout.classList.toggle("low", !!low);
+          readout.title = `Worst case on ${role === "nav-text" ? "the nav" : "page, surface and raised"}. Floor ${fw}:1, Lc ${fl}`;
+        }
+      });
+      col.append(h("div", { class: "well" }, sw, h("span", { class: "well-name" }, h("span", { id: lid }, name), readout), hex, back));
+    }
+    wrap.append(col);
+  }
+  return wrap;
+}
+function ColorStrip() {
+  const el = h("span", { class: "strip", "aria-hidden": "true" });
+  const roles = ROLE_GROUPS.flatMap(g => g.roles.map(r => r[0]));
+  const cells = roles.map(() => el.appendChild(h("span")));
+  watch(() => { const c = resolve(state["dark-mode.colors"]); roles.forEach((r, i) => { cells[i].style.background = c[r]; }); });
+  return el;
+}
+function CodeField(key, labelId, descId) {
+  const ta = h("textarea", { class: "code", rows: "8", spellcheck: "false", "aria-labelledby": labelId, "aria-describedby": descId,
+    placeholder: "/* Applies to every Canvas page */\n.ic-DashboardCard__header_hero { opacity: .8; }" });
+  ta.addEventListener("blur", () => { if (ta.value !== state[key]) set(key, ta.value); });
+  ta.addEventListener("keydown", e => { if (e.key === "Tab" && !e.shiftKey && e.altKey) { e.preventDefault(); ta.setRangeText("  ", ta.selectionStart, ta.selectionEnd, "end"); } });
+  watch(() => { if (document.activeElement !== ta) ta.value = state[key]; });
+  return ta;
+}
+function GradeScale(labelId) {
+  const key = "gpa-calculator.scale";
+  const table = h("table", { class: "scale", "aria-labelledby": labelId });
+  const tbody = h("tbody");
+  table.append(h("thead", {}, h("tr", {}, h("th", { scope: "col" }, "Letter"), h("th", { scope: "col" }, "Minimum %"), h("th", { scope: "col" }, "Points"), h("th", {}, h("span", { class: "vh" }, "Remove")))), tbody);
+  const add = h("button", { class: "btn quiet", type: "button" }, icon("plus"), "Add grade");
+  add.addEventListener("click", () => { set(key, [...state[key], ["", 0, 0]]); tbody.lastChild.querySelector("input").focus(); });
+  const render = () => {
+    if (table.contains(document.activeElement) && document.activeElement.tagName === "INPUT") return; // don't rebuild under her cursor
+    tbody.replaceChildren(...state[key].map((r, i) => {
+      const cell = (j, cls, attrs) => {
+        const inp = h("input", { class: `field ${cls}`, value: j === 2 ? Number(r[j]).toFixed(2) : r[j], ...attrs });
+        inp.addEventListener("change", () => {
+          const rows = clone(state[key]); rows[i][j] = j ? Number(inp.value) : inp.value; set(key, rows);
+        });
+        return h("td", {}, inp);
+      };
+      const lbl = r[0] || "row " + (i + 1);
+      const rm = h("button", { class: "icon-btn", type: "button", "aria-label": `Remove ${lbl}` }, icon("remove"));
+      rm.addEventListener("click", () => withUndo(`Removed ${lbl}`, () => { state[key] = state[key].filter((_, k) => k !== i); }));
+      return h("tr", {},
+        cell(0, "letter", { "aria-label": `Letter, row ${i + 1}` }),
+        cell(1, "num", { type: "number", min: "0", max: "100", step: "0.5", "aria-label": `Minimum percent for ${lbl}` }),
+        cell(2, "num", { type: "number", min: "0", max: "5", step: "0.01", "aria-label": `Points for ${lbl}` }),
+        h("td", {}, rm));
+    }));
+  };
+  watch(render);
+  table.addEventListener("focusout", () => setTimeout(render));
+  return h("div", {}, table, h("div", { class: "block-foot" }, add));
+}
+function HiddenCards() {
+  const key = "card-customization.hidden";
+  const list = h("div", { class: "list" });
+  watch(() => {
+    const cards = state[key];
+    list.replaceChildren(...(cards.length ? cards.map(c => {
+      const b = h("button", { class: "btn quiet", type: "button", "aria-label": `Unhide ${c.name}` }, "Unhide");
+      b.addEventListener("click", () => withUndo(`${c.name} is back on the dashboard`, () => { state[key] = state[key].filter(x => x.id !== c.id); }));
+      return h("div", { class: "list-item" }, h("span", {}, c.name, " ", h("small", {}, c.term)), b);
+    }) : [h("span", { class: "status" }, "None. Hide a card from its menu on the dashboard.")]));
+  });
+  return list;
+}
+
+function Checks(key, labelId, options) {
+  const el = h("div", { class: "inline-checks", role: "group", "aria-labelledby": labelId });
+  for (const [k, l] of options) {
+    const cb = h("input", { type: "checkbox" });
+    cb.addEventListener("change", () => set(key, { ...state[key], [k]: cb.checked }));
+    watch(() => { cb.checked = !!state[key][k]; });
+    el.append(h("label", {}, cb, l));
+  }
+  return el;
+}
+function Sliders(defs) {
+  const el = h("div", { class: "sliders" });
+  for (const d of defs) {
+    const id = nid("sl");
+    const range = h("input", { type: "range", id, min: d.min, max: d.max, step: d.step || 1 });
+    const out = h("output", { for: id });
+    const back = h("button", { class: "reset", type: "button", "aria-label": `Reset ${d.label.toLowerCase()}`, title: "Reset to default" }, icon("reset"));
+    const line = h("div", { class: "slider" }, h("label", { for: id }, d.label), range, out, back);
+    range.addEventListener("input", () => set(d.key, Number(range.value)));
+    back.addEventListener("click", () => withUndo(`Reset ${d.label.toLowerCase()}`, () => { state[d.key] = DEFAULTS[d.key]; }));
+    watch(() => {
+      const v = state[d.key], nd = v !== DEFAULTS[d.key];
+      range.value = v; out.textContent = `${v} px`;
+      range.setAttribute("aria-valuetext", `${v} pixels${nd ? "" : ", Canvas default"}`);
+      line.classList.toggle("nondefault", nd); back.tabIndex = nd ? 0 : -1;
+    });
+    el.append(line);
+  }
+  return el;
+}
+function Courses() {
+  const key = "gpa-calculator.courses";
+  const grid = h("div", { class: "courses", role: "table", "aria-label": "Courses in the GPA" });
+  const update = (id, patch) => set(key, state[key].map(c => c.id === id ? { ...c, ...patch } : c));
+  let last = "";
+  watch(() => {
+    const now = JSON.stringify(state[key]);
+    if (now === last) return;                         // rebuild only when the courses change
+    if (grid.contains(document.activeElement) && document.activeElement.tagName === "INPUT") return;
+    last = now;
+    const focused = grid.contains(document.activeElement) ? document.activeElement.getAttribute("aria-label") : null;
+    const head = ["Course", "Credits", "Scale", "Include"].map(t => h("span", { class: "th", role: "columnheader" }, t));
+    const rows = state[key].flatMap(c => {
+      const cr = h("input", { class: "field num", type: "number", min: "0", max: "20", step: "1", value: c.credits, "aria-label": `Credits for ${c.name}`, required: true });
+      cr.addEventListener("change", () => update(c.id, { credits: cr.value === "" ? "" : Number(cr.value) }));
+      const sel = h("select", { "aria-label": `Grade scale for ${c.name}` }, h("option", { value: "default" }, "Default"), h("option", { value: "custom" }, "Course’s own"));
+      sel.value = c.scale; sel.addEventListener("change", () => update(c.id, { scale: sel.value }));
+      const sw = h("button", { type: "button", role: "switch", "aria-checked": c.include, "aria-label": `Include ${c.name} in GPA` });
+      sw.addEventListener("click", () => update(c.id, { include: !c.include }));
+      const missing = c.credits === "" && c.include;
+      if (missing) cr.setAttribute("aria-invalid", "true");
+      return [h("span", { role: "cell" }, c.name, missing ? h("span", { class: "need" }, "Credits needed") : null),
+              h("span", { role: "cell" }, cr), h("span", { role: "cell", class: "select" }, sel, icon("down")), h("span", { role: "cell" }, sw)];
+    });
+    grid.replaceChildren(...head, ...rows);
+    if (focused) [...grid.querySelectorAll("[aria-label]")].find(e => e.getAttribute("aria-label") === focused)?.focus();
+  });
+  grid.addEventListener("focusout", () => setTimeout(refresh));
+  return grid;
+}
+
+/* ═════════════════ Settings list (mirrors settings.md) ═════════════════ */
+const darkOn = () => state["dark-mode.mode"] !== "off";
+const on = k => () => !!state[k];
+const SECTIONS = [
+  { id: "appearance", title: "Appearance", rows: [
+    { key: "dark-mode.mode", label: "Dark mode", type: "segmented",
+      options: [["off","Off"],["always","On"],["device","Match system"],["schedule","Scheduled"]] },
+    { id: "schedule", keys: ["dark-mode.start","dark-mode.end"], label: "Schedule", depth: 1, type: "time",
+      enabledIf: () => state["dark-mode.mode"] === "schedule", desc: () => state["dark-mode.mode"] === "schedule" ? null : "Choose Scheduled to use these times" },
+    { id: "style", keys: ["dark-mode.preset","dark-mode.colors"], label: "Style", depth: 1, type: "chips", enabledIf: darkOn, keywords: "theme preset palette gray black warm" },
+    { id: "colors", label: "Customize colors", depth: 1, type: "disclosure", enabledIf: darkOn, keywords: "background text links sidebar hex",
+      isDefault: () => state["dark-mode.preset"] !== "custom",
+      reset: () => pickPreset("dark"), resetLabel: "colors" },
+    { id: "colors-wells", in: "colors", label: "Colors", hideLabel: true, depth: 1, type: "wells", enabledIf: darkOn, noReset: true,
+      keywords: "background page surface raised border primary secondary tertiary link navigation nav school contrast hex" },
+    { key: "quiz-safe-mode.mode", label: "Quiz pages", type: "segmented", options: [["untouched","Leave untouched"],["dark","Dark mode only"]],
+      desc: () => state["quiz-safe-mode.mode"] === "untouched" ? "b²c doesn’t run while you take a quiz" : "While you take a quiz, only dark mode applies", keywords: "exam test" },
+    { key: "custom-font.family", label: "Font", type: "select",
+      options: [["canvas","Canvas default (Lato)"],["system","System"],["atkinson","Atkinson Hyperlegible"],["inter","Inter"],["lexend","Lexend"]] },
+    { key: "hide-logo.enabled", label: "Hide institution logo", type: "switch" },
+    { key: "tab-icons.enabled", label: "Color course tab icons", type: "switch", desc: "Tints each course’s tab icon with its card color" },
+    { id: "advanced", label: "Advanced", type: "disclosure", noReset: true },
+    { key: "custom-css.css", in: "advanced", label: "Custom CSS", depth: 1, type: "code", desc: "Applies to every Canvas page when you leave the field", keywords: "stylesheet code" },
+  ]},
+  { id: "dashboard", title: "Dashboard", rows: [
+    { key: "card-assignments.enabled", label: "Show assignments on cards", type: "switch" },
+    { key: "card-assignments.count", label: "Number shown", depth: 1, type: "stepper", min: 1, max: 8, enabledIf: on("card-assignments.enabled") },
+    { key: "card-assignments.overdue", label: "Include overdue", depth: 1, type: "switch", enabledIf: on("card-assignments.enabled") },
+    { key: "card-assignments.completed", label: "Show completed", depth: 1, type: "switch", enabledIf: on("card-assignments.enabled") },
+    { key: "card-assignments.types", label: "Types", depth: 1, type: "checks", enabledIf: on("card-assignments.enabled"),
+      options: [["assignments","Assignments"],["quizzes","Quizzes"],["discussions","Discussions"]], keywords: "assignments quizzes discussions" },
+    { key: "grade-impact.enabled", label: "Show grade impact", depth: 1, type: "switch", enabledIf: on("card-assignments.enabled"),
+      desc: "Adds “−4.2 / +1.8” to each item: how far the course score moves at zero or full marks" },
+    { key: "card-grades.enabled", label: "Show grade on cards", type: "switch" },
+    { key: "card-grades.hoverOnly", label: "Only on hover", depth: 1, type: "switch", enabledIf: on("card-grades.enabled") },
+    { id: "card-colors", label: "Card colors", type: "button", button: "Set all…", desc: "To color one card, use that card’s menu", noReset: true, action: () => document.getElementById("palette-dialog").showModal() },
+    { key: "card-customization.enabled", label: "Customize cards", type: "switch", desc: "Edit a card’s name, image and links on the card itself" },
+    { id: "card-layout", keys: ["card-customization.width","card-customization.gap","card-customization.radius"], label: "Card layout", depth: 1, type: "sliders",
+      enabledIf: on("card-customization.enabled"), desc: "To reorder cards, drag them on the dashboard", keywords: "width gap corner radius size",
+      sliders: [{ key: "card-customization.width", label: "Width", min: 200, max: 400 }, { key: "card-customization.gap", label: "Gap", min: 8, max: 48 }, { key: "card-customization.radius", label: "Corner radius", min: 0, max: 16 }] },
+    { id: "hidden-cards", label: "Hidden cards", depth: 1, type: "hidden-cards", noReset: true, enabledIf: on("card-customization.enabled") },
+    { key: "gradient-cards.style", label: "Card style", type: "segmented", options: [["standard","Standard"],["gradient","Gradient"]] },
+    { key: "condensed-cards.height", label: "Card height", type: "segmented", options: [["standard","Standard"],["condensed","Condensed"]] },
+    { key: "card-overlay.enabled", label: "Color overlay on images", type: "switch" },
+    { key: "full-width.enabled", label: "Full width", type: "switch", desc: "Cards use the whole window" },
+    { key: "dashboard-notes.enabled", label: "Notes", type: "switch", desc: "A notes panel on the dashboard" },
+    { key: "hide-recent-feedback.enabled", label: "Hide Recent Feedback", type: "switch" },
+  ]},
+  { id: "todo", title: "To-do", rows: [
+    { key: "better-todo.enabled", label: "Improved to-do list", type: "switch", desc: "Replaces To Do in the dashboard sidebar" },
+    { key: "better-todo.count", label: "Number shown", depth: 1, type: "stepper", min: 3, max: 20, enabledIf: on("better-todo.enabled") },
+    { key: "better-todo.announcements", label: "Show announcements", depth: 1, type: "switch", enabledIf: on("better-todo.enabled") },
+    { key: "better-todo.overdue", label: "Show overdue", depth: 1, type: "switch", enabledIf: on("better-todo.enabled") },
+    { key: "better-todo.hideCompleted", label: "Hide completed", depth: 1, type: "switch", enabledIf: on("better-todo.enabled") },
+    { key: "better-todo.courseColors", label: "Use course colors", depth: 1, type: "switch", enabledIf: on("better-todo.enabled") },
+    { key: "hover-preview.enabled", label: "Preview on hover", depth: 1, type: "switch", enabledIf: on("better-todo.enabled"), desc: "Shows the description after a short pause" },
+    { key: "better-todo.plannerSync", label: "Sync with Canvas planner", type: "switch", keywords: "done dismiss mobile app",
+      desc: () => state["better-todo.plannerSync"] ? "Also marks items done or dismissed in Canvas’s planner, so it shows in the Canvas apps too" : "Done and removed items are b²c only. Canvas’s planner doesn’t change" },
+    { key: "shared.dates", label: "Dates", type: "segmented", options: [["relative","Relative"],["absolute","Absolute"]],
+      desc: () => state["shared.dates"] === "relative" ? `Due tomorrow at ${t1159()}` : `Due Oct 21 at ${t1159()}` },
+    { key: "shared.timeFormat", label: "Time format", type: "segmented", options: [["12h","12-hour"],["24h","24-hour"]] },
+  ]},
+  { id: "grades", title: "Grades", rows: [
+    { key: "gpa-calculator.enabled", label: "GPA calculator", type: "switch", desc: "A GPA panel on the dashboard, marked hypothetical" },
+    { key: "gpa-calculator.scale", label: "Grade scale", depth: 1, type: "scale", enabledIf: on("gpa-calculator.enabled"), resetLabel: "grade scale",
+      desc: "Example University points. Percent cutoffs apply only when a course has no Canvas letter grade", keywords: "letter points truncated" },
+    { id: "gpa-courses", keys: ["gpa-calculator.courses"], label: "Courses", depth: 1, type: "courses", noReset: true, enabledIf: on("gpa-calculator.enabled"),
+      desc: "Credits come from you; Canvas doesn’t know them", keywords: "credits include" },
+    { key: "gpa-calculator.includePrevious", label: "Include previous terms", depth: 1, type: "switch", enabledIf: on("gpa-calculator.enabled"),
+      desc: () => state["gpa-calculator.includePrevious"] ? "The panel shows Cumulative GPA" : "The panel shows Term GPA" },
+    { key: "gpa-calculator.prevGpa", label: "Previous GPA", depth: 2, type: "number", min: 0, max: 4.33, step: 0.01, 
+      enabledIf: () => state["gpa-calculator.enabled"] && state["gpa-calculator.includePrevious"] },
+    { key: "gpa-calculator.prevCredits", label: "Previous credits", depth: 2, type: "number", min: 0, max: 400, step: 1, 
+      enabledIf: () => state["gpa-calculator.enabled"] && state["gpa-calculator.includePrevious"] },
+  ]},
+  { id: "backup", title: "Backup", rows: [
+    { id: "look", label: "Look", type: "backup-look", noReset: true, desc: "Colors, card images and names, font, custom CSS", keywords: "theme export import share json" },
+    { id: "all", label: "All settings", type: "backup-all", noReset: true, desc: "A full backup, as a JSON file", keywords: "export import restore json" },
+  ]},
+  { id: "sites", title: "Sites", rows: [
+    { id: "sites", label: "Sites", hideLabel: true, type: "sites", noReset: true, keywords: "canvas address domain host url" },
+  ]},
+  { id: "about", title: "About", rows: [
+    { id: "version", label: "Version", type: "text", text: "0.1.0", noReset: true },
+    { id: "whats-new", label: "What’s new", type: "link", button: "Changelog", href: "#changelog", noReset: true, keywords: "changelog release notes" },
+    { id: "shortcuts", label: "Keyboard shortcuts", type: "button", button: "Change…", noReset: true,
+      desc: "Toggle dark mode: not set. Open settings: ⌘,", action: () => showToast("Opens chrome://extensions/shortcuts") },
+    { key: "core.paused", label: "Pause b²c on all sites", type: "switch",
+      desc: () => state["core.paused"] ? "Paused. Canvas looks as it does without b²c" : "Canvas looks as it does without b²c until you turn this off" },
+    { id: "reset-all", label: "Reset all settings", hideLabel: true, type: "reset-all", noReset: true, keywords: "defaults" },
+  ]},
+];
+const t1159 = () => state["shared.timeFormat"] === "12h" ? "11:59 PM" : "23:59";
+
+/* ═════════════════ Rows ═════════════════ */
+const rowKeys = d => d.keys || (d.key ? [d.key] : []);
+const isDefault = d => d.isDefault ? d.isDefault() : rowKeys(d).every(k => eq(state[k], DEFAULTS[k]));
+const resetRow = d => d.reset ? d.reset() : rowKeys(d).forEach(k => { state[k] = clone(DEFAULTS[k]); });
+const disclosures = {};       // id -> expanded
+let query = "";
+const ROWS = [];              // { def, el, sec, labelEl, descEl }
+
+function Row(def, sec) {
+  const id = nid("row");
+  const labelId = id + "-l", descId = def.desc ? id + "-d" : null;
+  const el = h("div", { class: "row" + (def.hideLabel ? " bare" : ""), "data-key": def.key || def.id, "data-depth": def.depth || 0 });
+  const labelEl = h("span", { class: "row-label" + (def.hideLabel ? " vh" : ""), id: labelId }, def.label);
+  const descEl = def.desc ? h("span", { class: "row-desc", id: descId }) : null;
+  let textCol = h("div", { class: "row-text" }, labelEl, descEl);
+  const ctl = h("div", { class: "ctl" });
+  let block = null;
+
+  switch (def.type) {
+    case "switch": {
+      const sw = Switch(def.key, labelId, descId);
+      ctl.append(sw);
+      el.classList.add("switch-row");
+      el.addEventListener("click", e => { if (!e.target.closest("button, input, select, textarea, a") && !sw.disabled) sw.click(); });
+      break;
+    }
+    case "segmented": ctl.append(Segmented(def.key, labelId, def.options.map(([value, label]) => ({ value, label })))); break;
+    case "select": ctl.append(Select(def.key, labelId, def.options)); break;
+    case "stepper": ctl.append(Stepper(def.key, labelId, def.min, def.max)); break;
+    case "chips": ctl.append(StyleChips(labelId)); break;
+    case "checks": ctl.append(Checks(def.key, labelId, def.options)); break;
+    case "sliders": block = Sliders(def.sliders); break;
+    case "courses": block = Courses(); break;
+    case "link": ctl.append(h("a", { class: "btn quiet", href: def.href, "aria-describedby": descId }, def.button)); break;
+    case "reset-all": {
+      const b = h("button", { class: "btn quiet danger", type: "button" }, "Reset all settings");
+      b.addEventListener("click", () => withUndo("All settings reset", () => { for (const k in DEFAULTS) if (!DATA_KEYS.includes(k)) state[k] = clone(DEFAULTS[k]); }));
+      block = h("div", { class: "block" }, b); break;
+    }
+    case "time": ctl.append(...TimeRange()); break;
+    case "number": {
+      const inp = h("input", { class: "field num", type: "number", min: def.min, max: def.max, step: def.step, placeholder: def.placeholder, "aria-labelledby": labelId });
+      inp.addEventListener("change", () => set(def.key, inp.value));
+      watch(() => { inp.value = state[def.key]; });
+      ctl.append(inp); break;
+    }
+    case "disclosure": {
+      disclosures[def.id] = false;
+      const btn = h("button", { class: "disclosure", type: "button", "aria-expanded": "false", "aria-controls": def.id + "-region" }, icon("chevron"), labelEl);
+      btn.addEventListener("click", () => { disclosures[def.id] = !disclosures[def.id]; refresh(); });
+      watch(() => btn.setAttribute("aria-expanded", disclosures[def.id] || forcedOpen(def.id)));
+      textCol = h("div", { class: "row-text" }, btn, descEl);
+      if (def.id === "colors") ctl.append(ColorStrip());
+      break;
+    }
+    case "wells": block = ColorWells(); break;
+    case "code": block = CodeField(def.key, labelId, descId); break;
+    case "scale": block = h("div", {}, GradeScale(labelId), h("p", { class: "foot" }, "GPA is truncated to two decimals, as the pilot school does: 3.678 shows as 3.67.")); break;
+    case "hidden-cards": block = HiddenCards(); break;
+    case "button": {
+      const b = h("button", { class: "btn" + (def.danger ? " danger" : ""), type: "button", "aria-describedby": descId }, def.button);
+      b.setAttribute("aria-label", `${def.button.replace("…", "")} ${def.label.toLowerCase()}`.trim());
+      if (def.id === "shortcuts" || def.id === "reset-all") b.removeAttribute("aria-label");
+      b.addEventListener("click", def.action);
+      ctl.append(b); break;
+    }
+    case "text": ctl.append(h("span", { class: "value", "aria-labelledby": labelId }, def.text)); break;
+    case "backup-look": case "backup-all": {
+      const kind = def.type === "backup-look" ? "look" : "all";
+      const panel = h("div", { class: "block", id: id + "-panel", hidden: true });
+      const open = which => {
+        const same = panel.dataset.which === which && !panel.hidden;
+        panel.hidden = same; panel.dataset.which = which;
+        ex.setAttribute("aria-expanded", !same && which === "export");
+        im.setAttribute("aria-expanded", !same && which === "import");
+        if (!same) panel.replaceChildren(...(which === "export" ? exportPanel(kind) : importPanel(kind)));
+      };
+      const ex = h("button", { class: "btn", type: "button", "aria-expanded": "false", "aria-controls": id + "-panel", "aria-describedby": descId }, "Export…");
+      const im = h("button", { class: "btn", type: "button", "aria-expanded": "false", "aria-controls": id + "-panel", "aria-describedby": descId }, "Import…");
+      ex.setAttribute("aria-label", `Export ${def.label.toLowerCase()}`); im.setAttribute("aria-label", `Import ${def.label.toLowerCase()}`);
+      ex.addEventListener("click", () => open("export")); im.addEventListener("click", () => open("import"));
+      ctl.append(ex, im); block = panel; break;
+    }
+    case "sites": block = SitesList(); break;
+  }
+
+  const reset = def.noReset ? h("span") : h("button", { class: "reset", type: "button", tabindex: "-1" }, icon("reset"));
+  if (!def.noReset) {
+    const name = def.resetLabel || def.label.toLowerCase();
+    reset.setAttribute("aria-label", `Reset ${name}`); reset.title = "Reset to default";
+    reset.addEventListener("click", () => withUndo(`Reset ${name}`, () => resetRow(def)));
+  }
+  el.append(textCol, reset, ctl);
+  if (block) { if (!block.classList.contains("block")) block = h("div", { class: "block" }, block); el.append(block); }
+  if (def.in) el.id = def.in + "-region";   // the region a disclosure's aria-controls names
+
+  const r = { def, el, sec, labelEl, descEl };
+  ROWS.push(r);
+  watch(() => {
+    const enabled = def.enabledIf ? !!def.enabledIf() : true;
+    el.classList.toggle("is-disabled", !enabled);
+    el.querySelectorAll("button:not(.reset), input, select, textarea").forEach(c => { c.disabled = !enabled; });
+    const nd = !def.noReset && !isDefault(def);
+    el.classList.toggle("nondefault", nd);
+    if (!def.noReset) reset.tabIndex = nd ? 0 : -1;
+    if (descEl && !query) {
+      const d = typeof def.desc === "function" ? def.desc() : def.desc;
+      descEl.textContent = d || ""; descEl.hidden = !d;
+    }
+  });
+  return el;
+}
+
+function exportPanel(kind) {
+  const parts = kind === "look" ? ["Dark mode colors", "Card colors", "Card images and names", "Font", "Custom CSS"] : null;
+  const kids = [];
+  if (parts) kids.push(h("div", { class: "checks", role: "group", "aria-label": "Include" },
+    parts.map(p => h("label", {}, h("input", { type: "checkbox", checked: true }), p))));
+  const copy = h("button", { class: "btn", type: "button" }, "Copy");
+  copy.addEventListener("click", () => showToast(kind === "look" ? "Look copied as JSON" : "Settings copied as JSON"));
+  const save = h("button", { class: "btn primary", type: "button" }, "Save file…");
+  save.addEventListener("click", () => showToast(`Saved b2c-${kind === "look" ? "look" : "settings"}-2026-10-19.json`));
+  kids.push(h("div", { class: "panel-foot" }, h("span", { class: "status" }, "JSON, schema version 1"), h("span", { class: "spacer" }), copy, save));
+  return kids;
+}
+function importPanel(kind) {
+  const taId = nid("imp");
+  const ta = h("textarea", { class: "code", id: taId, rows: "4", spellcheck: "false", "aria-label": kind === "look" ? "Look to import" : "Settings to import",
+    placeholder: kind === "look" ? "Paste a look here, or choose a file." : "Paste a backup here, or choose a file." });
+  ta.style.minHeight = "0";
+  const status = h("span", { class: "status", role: "status" });
+  const choose = h("button", { class: "btn", type: "button" }, "Choose file…");
+  const apply = h("button", { class: "btn primary", type: "button", disabled: true }, "Apply");
+  ta.addEventListener("input", () => {
+    const has = ta.value.trim().length > 0;
+    apply.disabled = !has;
+    status.textContent = has ? (kind === "look" ? "Previewing in your open Canvas tab" : "Ready to apply") : "";
+  });
+  apply.addEventListener("click", () => withUndo(kind === "look" ? "Look applied" : "Settings imported", () => {}));
+  return [ta, h("div", { class: "panel-foot" }, status, h("span", { class: "spacer" }), choose, apply)];
+}
+function SitesList() {
+  const key = "sites.list";
+  const list = h("div", { class: "list" });
+  const addRow = h("div", { class: "list-item", hidden: true });
+  const inp = h("input", { class: "field", type: "text", placeholder: "canvas.example.edu", "aria-label": "Canvas address", spellcheck: "false" });
+  inp.style.flex = "1";
+  const ok = h("button", { class: "btn primary", type: "button" }, "Add");
+  const cancel = h("button", { class: "btn", type: "button" }, "Cancel");
+  const addBtn = h("button", { class: "btn quiet", type: "button" }, icon("plus"), "Add site…");
+  const close = () => { addRow.hidden = true; addBtn.hidden = false; inp.value = ""; };
+  addBtn.addEventListener("click", () => { addRow.hidden = false; addBtn.hidden = true; inp.focus(); });
+  cancel.addEventListener("click", () => { close(); addBtn.focus(); });
+  const submit = () => {
+    const host = inp.value.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "").toLowerCase();
+    if (!host) return;
+    close();  // extension: chrome.permissions.request({ origins: [`https://${host}/*`] }) first
+    withUndo(`Added ${host}`, () => { state[key] = [...state[key], host]; });
+  };
+  ok.addEventListener("click", submit);
+  inp.addEventListener("keydown", e => { if (e.key === "Enter") submit(); if (e.key === "Escape") { close(); addBtn.focus(); } });
+  addRow.append(inp, h("span", { style: "display:flex;gap:8px" }, cancel, ok));
+  watch(() => list.replaceChildren(...state[key].map((host, i) => {
+    const rm = h("button", { class: "btn quiet", type: "button", "aria-label": `Remove ${host}` }, "Remove");
+    rm.addEventListener("click", () => withUndo(`Removed ${host}`, () => { state[key] = state[key].filter(x => x !== host); }));
+    return h("div", { class: "list-item" }, h("span", {}, host, i === 0 ? h("small", {}, "  Example University") : null), rm);
+  })));
+  return h("div", {}, list, addRow, h("div", { class: "block-foot" }, addBtn));
+}
+
+/* ═════════════════ Build page ═════════════════ */
+const main = document.getElementById("main"), index = document.getElementById("index");
+const SECS = [];
+for (const s of SECTIONS) {
+  const hid = s.id + "-h";
+  const resetBtn = h("button", { class: "btn quiet", type: "button" }, "Reset section");
+  resetBtn.setAttribute("aria-label", `Reset ${s.title} to defaults`);
+  resetBtn.addEventListener("click", () => withUndo(`${s.title} reset to defaults`, () => s.rows.forEach(d => !d.noReset && resetRow(d))));
+  const head = h("div", { class: "sec-head" }, h("h2", { id: hid, tabindex: "-1" }, s.title), resetBtn);
+  const group = h("div", { class: "group" });
+  const sec = h("section", { id: s.id, "aria-labelledby": hid }, head, group);
+  s.rows.forEach(d => group.append(Row(d, s)));
+  main.append(sec);
+  const a = h("a", { href: "#" + s.id, id: "nav-" + s.id }, s.title);
+  index.append(h("li", {}, a));
+  SECS.push({ s, sec, head, group, a });
+  watch(() => head.classList.toggle("nondefault", s.rows.some(d => !d.noReset && !isDefault(d))));
+}
+const emptyEl = h("div", { class: "empty", hidden: true });
+main.append(emptyEl);
+
+/* ═════════════════ Search ═════════════════ */
+const q = document.getElementById("q");
+function rowText(r) {
+  const d = typeof r.def.desc === "function" ? r.def.desc() : r.def.desc;
+  return [r.def.label, d, r.def.keywords].filter(Boolean).join(" ").toLowerCase();
+}
+function forcedOpen(discId) {
+  return !!query && ROWS.some(r => r.def.in === discId && r.match);
+}
+function highlight(el, text) {
+  if (!query) { el.textContent = text; return; }
+  const i = text.toLowerCase().indexOf(query);
+  el.innerHTML = i < 0 ? esc(text) : esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + query.length)) + "</mark>" + esc(text.slice(i + query.length));
+}
+function applyFilter() {
+  for (const { s } of SECS) {
+    const secHit = query && s.title.toLowerCase().includes(query);
+    const rs = ROWS.filter(r => r.sec === s);
+    rs.forEach(r => { r.match = !query || secHit || rowText(r).includes(query); });
+    // a matching child keeps its parent (the feature row above it) in view
+    rs.forEach((r, i) => {
+      if (!r.match || !r.def.depth) return;
+      for (let j = i - 1; j >= 0; j--) if ((rs[j].def.depth || 0) < r.def.depth) { rs[j].match = true; if (!rs[j].def.depth) break; }
+    });
+  }
+  let any = false;
+  for (const { s, sec, group, a } of SECS) {
+    let first = true, shown = 0;
+    for (const r of ROWS.filter(r => r.sec === s)) {
+      const collapsed = r.def.in && !(disclosures[r.def.in] || forcedOpen(r.def.in));
+      r.el.hidden = !r.match || collapsed;
+      if (!r.el.hidden) { r.el.classList.toggle("first", first); first = false; shown++; }
+      highlight(r.labelEl, r.def.label);
+      if (r.descEl) {
+        const d = typeof r.def.desc === "function" ? r.def.desc() : r.def.desc;
+        highlight(r.descEl, d || ""); r.descEl.hidden = !d;
+      }
+    }
+    sec.hidden = shown === 0;
+    a.classList.toggle("no-match", shown === 0);
+    any ||= shown > 0;
+  }
+  emptyEl.hidden = any;
+  emptyEl.textContent = `No settings match “${q.value.trim()}”`;
+}
+watch(applyFilter);
+q.addEventListener("input", () => { query = q.value.trim().toLowerCase(); refresh(); window.scrollTo({ top: 0 }); spy(); });
+q.addEventListener("keydown", e => {
+  if (e.key === "Escape") { if (q.value) { q.value = ""; q.dispatchEvent(new Event("input")); } else q.blur(); }
+  if (e.key === "Enter") { const first = main.querySelector(".row:not([hidden]) :is(button:not(.reset):not(:disabled), input:not(:disabled), select, textarea)"); first && first.focus(); }
+});
+document.addEventListener("keydown", e => {
+  const typing = e.target.closest("input, textarea, select, [contenteditable]");
+  if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey) { e.preventDefault(); q.focus(); q.select(); }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "f") { e.preventDefault(); q.focus(); q.select(); }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "z" && undoFn && !typing) { e.preventDefault(); document.getElementById("toast-undo").click(); }
+});
+
+/* ═════════════════ Section index: scroll-spy ═════════════════ */
+let active = null;
+function setActive(id) {
+  if (id === active) return; active = id;
+  SECS.forEach(({ s, a }) => a.setAttribute("aria-current", s.id === id ? "true" : "false"));
+}
+function spy() {
+  const vis = SECS.filter(x => !x.sec.hidden);
+  if (!vis.length) return;
+  const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+  let cur = vis[0];
+  for (const x of vis) if (x.sec.getBoundingClientRect().top <= 120) cur = x;
+  if (atBottom && vis.at(-1).sec.getBoundingClientRect().top < innerHeight * 0.8) cur = vis.at(-1);
+  setActive(cur.s.id);
+}
+let spyQueued = false;
+addEventListener("scroll", () => { if (!spyQueued) { spyQueued = true; requestAnimationFrame(() => { spyQueued = false; spy(); }); } }, { passive: true });
+index.addEventListener("click", e => {
+  const a = e.target.closest("a"); if (!a) return;
+  e.preventDefault();
+  const x = SECS.find(x => "nav-" + x.s.id === a.id);
+  x.sec.scrollIntoView({ behavior: reduced.matches ? "auto" : "smooth", block: "start" });
+  x.head.querySelector("h2").focus({ preventScroll: true });
+  history.replaceState(null, "", "#" + x.s.id);
+  setActive(x.s.id);
+});
+spy();
+if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+
+/* Card colors dialog */
+const pd = document.getElementById("palette-dialog");
+document.getElementById("palettes").append(...Object.entries(CARD_PALETTES).map(([name, cols]) => {
+  const b = h("button", { class: "palette", type: "button" }, h("span", {}, name), h("span", { class: "strip", "aria-hidden": "true" }, cols.map(c => h("span", { style: `background:${c}` }))));
+  b.addEventListener("click", () => { pd.close(); withUndo(`Card colors set to ${name}`, () => {}); });
+  return b;
+}));
+document.getElementById("pd-cancel").addEventListener("click", () => pd.close());
+</script>
+</body>
+</html>

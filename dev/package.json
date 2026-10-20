@@ -1,0 +1,28 @@
+{
+  "name": "b2c",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "typecheck": "tsc --noEmit -p .",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "test": "npm run typecheck && npm run test:unit && npm run build && npm run test:e2e",
+    "ship": "node scripts/ship.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/chrome": "^0.3.5",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.3",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "@preact/signals": "^2.11.3",
+    "preact": "^11.0.1",
+    "sass": "^1.105.2"
+  }
+}

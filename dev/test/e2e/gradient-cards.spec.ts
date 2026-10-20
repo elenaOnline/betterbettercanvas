@@ -1,0 +1,55 @@
+import { test, expect, CANVAS } from './fixtures.ts';
+
+test('gradient-cards: live gradients survive reordering, recolouring and replacement; disable restores exactly', async ({ context, setSettings }) => {
+  const page = await context.newPage();
+  await page.goto(CANVAS + '/');
+  const hero = page.locator('.ic-DashboardCard__header_hero').first();
+  await expect(hero).toBeAttached();
+  await hero.evaluate(el => el.id = 'look-hero');
+  const target = page.locator('#look-hero');
+  const originalStyle = await target.getAttribute('style');
+  const instance = await page.locator('html').getAttribute('data-b2c-instance');
+  await setSettings({ 'gradient-cards.enabled': true });
+  await expect(target).toHaveCSS('background-image', /linear-gradient/);
+  const gradient = await target.evaluate(el => getComputedStyle(el).backgroundImage);
+  await target.evaluate(el => { const card = el.closest('.ic-DashboardCard')!; card.parentElement!.append(card); });
+  await expect(target).toHaveCSS('background-image', gradient);
+  await setSettings({ 'gradient-cards.enabled': false });
+  await expect(target).toHaveAttribute('style', originalStyle!);
+  await setSettings({ 'gradient-cards.enabled': true });
+  await target.evaluate(el => { (el as HTMLElement).style.backgroundColor = 'rgb(10, 40, 200)'; });
+  await expect(target).not.toHaveCSS('background-image', gradient);
+  await expect(target).toHaveCSS('background-image', /linear-gradient/);
+  await target.evaluate(el => { const card = el.closest('.ic-DashboardCard')!; const replacement = card.cloneNode(true) as HTMLElement; replacement.querySelector('.ic-DashboardCard__header_hero')!.removeAttribute('style'); (replacement.querySelector('.ic-DashboardCard__header_hero') as HTMLElement).style.backgroundColor = '#a04030'; card.replaceWith(replacement); });
+  await expect(target).toHaveCSS('background-image', /linear-gradient/);
+  await setSettings({ 'gradient-cards.enabled': false });
+  await expect(target).toHaveCSS('background-image', 'none');
+  await expect(target).toHaveCSS('background-color', 'rgb(160, 64, 48)');
+  expect(await page.locator('html').getAttribute('data-b2c-instance')).toBe(instance);
+});
+
+test('gradient-cards: look features compose and leave the original dashboard after live disable', async ({ context, setSettings }) => {
+  const page = await context.newPage();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(CANVAS + '/');
+  const hero = page.locator('.ic-DashboardCard__header_hero').first();
+  await expect(hero).toBeAttached();
+  const original = await hero.getAttribute('style');
+  const ids = ['custom-css', 'hide-logo', 'condensed-cards', 'hide-recent-feedback', 'gradient-cards', 'tab-icons'];
+  const toggles = (enabled: boolean) => Object.fromEntries(ids.map(id => [`${id}.enabled`, enabled]));
+  await page.screenshot({ path: '.scratch/look2/dashboard-original.png', fullPage: true });
+  await setSettings({ ...toggles(true), 'full-width.width': 'full', 'card-overlay.overlay': false, 'type.family': 'Inter', 'custom-css.css': '#dashboard { outline: 1px solid transparent; }' });
+  await expect(hero).toHaveCSS('height', '64px');
+  await expect(hero).toHaveCSS('background-image', /linear-gradient/);
+  await expect(page.locator('.ic-app-header__logomark-container')).toBeHidden();
+  await expect(page.locator('.recent_feedback')).toBeHidden();
+  await expect(page.locator('.ic-Layout-wrapper')).toHaveCSS('max-width', 'none');
+  await page.screenshot({ path: '.scratch/look2/dashboard-look.png', fullPage: true });
+  await setSettings({ ...toggles(false), 'full-width.width': 'standard', 'card-overlay.overlay': true, 'type.family': 'Canvas default' });
+  await expect(hero).toHaveAttribute('style', original!);
+  await expect(hero).toHaveCSS('height', '146px');
+  await expect(page.locator('.ic-app-header__logomark-container')).toBeVisible();
+  await expect(page.locator('style[data-b2c-custom-css], link[data-b2c-font], link[data-b2c-tab-icon]')).toHaveCount(0);
+  for (const id of ids) await expect(page.locator('html')).not.toHaveAttribute(`data-b2c-${id}`, '');
+  await expect(page.locator('html')).not.toHaveAttribute('data-b2c-font', '');
+});

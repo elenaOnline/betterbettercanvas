@@ -1,0 +1,24 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "High contrast (dark)",
+  "author": "b²c",
+  "palette": {
+    "dark": {
+      "bg": "#000000",
+      "surface": "#000000",
+      "surfaceRaised": "#141414",
+      "border": "#9a9a9a",
+      "text": "#ffffff",
+      "textSecondary": "#ebebeb",
+      "textTertiary": "#d6d6d6",
+      "link": "#9cc3ff",
+      "accent": "#2f63c4",
+      "nav": "#000000",
+      "navText": "#ffffff",
+      "success": "#8ff0b0",
+      "warning": "#ffd08a",
+      "danger": "#ffaba3"
+    }
+  }
+}

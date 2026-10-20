@@ -1,0 +1,37 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Rosé Pine",
+  "author": "b²c",
+  "source": "https://rosepinetheme.com/palette/",
+  "palette": {
+    "dark": {
+      "bg": "#191724",
+      "surface": "#1f1d2e",
+      "surfaceRaised": "#26233a",
+      "border": "#403d52",
+      "text": "#e0def4",
+      "textSecondary": "#b7b3d2",
+      "textTertiary": "#9c98b6",
+      "link": "#9ccfd8",
+      "accent": "#31748f",
+      "nav": "#191724",
+      "navText": "#e0def4",
+      "success": "#31748f",
+      "warning": "#f6c177",
+      "danger": "#eb6f92"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#e86c90",
+        "#be8b41",
+        "#b68a88",
+        "#31748f",
+        "#6b9da6",
+        "#a588c6"
+      ]
+    }
+  }
+}

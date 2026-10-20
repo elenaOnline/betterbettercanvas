@@ -1,0 +1,37 @@
+{
+  "color": "pink",
+  "score": 4440,
+  "title": "Kirby by Siri",
+  "exports": {
+    "disable_color_overlay": true,
+    "gradient_cards": false,
+    "dark_mode": true,
+    "dark_preset": {
+      "background-0": "#fbc1cf",
+      "background-1": "#ae2d45",
+      "background-2": "#5b3960",
+      "borders": "#ae2d45",
+      "links": "#ae2d45",
+      "sidebar": "#ae2d45",
+      "sidebar-text": "#ffffff",
+      "text-0": "#292929",
+      "text-1": "#000000",
+      "text-2": "#000000"
+    },
+    "custom_cards": [
+      "https://i.pinimg.com/236x/30/19/ab/3019ab7b9f6d2b230a6178231ba3817a.jpg",
+      "https://i.pinimg.com/236x/f0/52/d9/f052d9d8867b66ca7942cf4a2a6c968b.jpg",
+      "https://i.pinimg.com/564x/2e/f0/70/2ef0705eb021d59065239dd553661d4f.jpg",
+      "https://i.pinimg.com/236x/36/a4/73/36a47369afbdb6e91544af173fb0e92d.jpg",
+      "https://i.pinimg.com/236x/6a/9c/60/6a9c604d4070e6d03e15717472851356.jpg"
+    ],
+    "card_colors": [
+      "#ae2d45"
+    ],
+    "custom_font": {
+      "family": "'Rubik'",
+      "link": "Rubik:wght@400;700"
+    }
+  },
+  "preview": "https://i.pinimg.com/236x/30/19/ab/3019ab7b9f6d2b230a6178231ba3817a.jpg"
+}

@@ -1,0 +1,33 @@
+/* pins: light-DOM placement of the dock. Its look is in dock.css (shadow root). */
+
+/* Chip (and row) height follows density: compact 36, default 44, roomy 52 (Design). */
+html[data-b2c-pins] {
+  --b2c-pins-h: 44px;
+}
+html[data-b2c-pins][data-b2c-density="compact"] {
+  --b2c-pins-h: 36px;
+}
+html[data-b2c-pins][data-b2c-density="roomy"] {
+  --b2c-pins-h: 52px;
+}
+
+html[data-b2c-pins] b2c-pins-dock {
+  display: block;
+  position: relative;
+  z-index: 3;
+}
+
+/* Classic dashboard: reserve the row (+ 8 px gap) above the cards from the
+   first paint, and let the bar sit in that space, so its arrival moves nothing. */
+html[data-b2c-pins][data-b2c-pins-dash] #DashboardCard_Container:not([style*="none"]) {
+  padding-top: calc(var(--b2c-pins-h) + 8px);
+}
+html[data-b2c-pins][data-b2c-pins-dash] b2c-pins-dock[data-at="classic"]:has(+ #DashboardCard_Container:not([style*="none"])) {
+  height: calc(var(--b2c-pins-h) + 8px);
+  margin-bottom: calc(-1 * (var(--b2c-pins-h) + 8px));
+}
+
+/* New dashboard, Courses tab: first row of the tab (column 1 when the side panel is on). */
+html[data-b2c-pins] [data-testid="courses-tab-content"] > b2c-pins-dock {
+  margin-bottom: var(--b2c-space-2, 8px);
+}

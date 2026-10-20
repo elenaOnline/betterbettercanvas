@@ -1,0 +1,39 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Solarized Light",
+  "author": "b²c",
+  "source": "https://ethanschoonover.com/solarized/",
+  "palette": {
+    "light": {
+      "bg": "#fdf6e3",
+      "surface": "#eee8d5",
+      "surfaceRaised": "#d3d3c5",
+      "border": "#93a1a1",
+      "text": "#002c38",
+      "textSecondary": "#42575e",
+      "textTertiary": "#495e66",
+      "link": "#005497",
+      "accent": "#6a6fc2",
+      "nav": "#073642",
+      "navText": "#eee8d5",
+      "success": "#859900",
+      "warning": "#b58900",
+      "danger": "#dc322f"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#dc322f",
+        "#cb4b16",
+        "#b58900",
+        "#859900",
+        "#2aa198",
+        "#268bd2",
+        "#6c71c4",
+        "#d33682"
+      ]
+    }
+  }
+}

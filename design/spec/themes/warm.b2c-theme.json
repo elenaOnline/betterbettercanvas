@@ -1,0 +1,25 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Warm",
+  "author": "b²c",
+  "source": "design/spec/palettes.json (v1 dark-mode preset)",
+  "palette": {
+    "dark": {
+      "bg": "#251f19",
+      "surface": "#2f2923",
+      "surfaceRaised": "#39332c",
+      "border": "#524c45",
+      "text": "#f3e9df",
+      "textSecondary": "#cac1b6",
+      "textTertiary": "#aea49a",
+      "link": "school",
+      "accent": "school",
+      "nav": "school",
+      "navText": "#ffffff",
+      "success": "#6fcf97",
+      "warning": "#ffb37a",
+      "danger": "#ff8a80"
+    }
+  }
+}

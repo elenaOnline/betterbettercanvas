@@ -1,0 +1,38 @@
+{
+  "$b2c": "theme",
+  "v": 1,
+  "name": "Dracula",
+  "author": "b²c",
+  "source": "https://draculatheme.com/spec",
+  "palette": {
+    "dark": {
+      "bg": "#282a36",
+      "surface": "#343746",
+      "surfaceRaised": "#44475a",
+      "border": "#6272a4",
+      "text": "#f8f8f2",
+      "textSecondary": "#c4c9d7",
+      "textTertiary": "#a3b5eb",
+      "link": "#8be9fd",
+      "accent": "#8c62c4",
+      "nav": "#21222c",
+      "navText": "#f8f8f2",
+      "success": "#50fa7b",
+      "warning": "#ffb86c",
+      "danger": "#ff5555"
+    }
+  },
+  "cards": {
+    "colors": {
+      "list": [
+        "#ff5555",
+        "#ca8638",
+        "#959b26",
+        "#00ac2b",
+        "#40a1b4",
+        "#aa80e5",
+        "#e965b2"
+      ]
+    }
+  }
+}

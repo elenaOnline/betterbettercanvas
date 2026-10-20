@@ -1,0 +1,26 @@
+/* card-assignments: reserve the Due list's space on every course card before
+   first paint, so neither the widget mounting nor data arriving moves anything.
+   Both dashboards render cards inside .ic-DashboardCard__box (the new one has
+   no #DashboardCard_Container); [data-testid=draggable-card] is the fallback.
+   --b2c-due-n comes from the mirror (the "Number shown" setting).
+
+   Only real cards (they have a course link) are reserved, never Canvas's
+   server-rendered placeholder cards. On the first load after the setting was
+   switched on with no Canvas tab open, the localStorage mirror is stale, so
+   this attribute arrives from main.js a few ms after first paint. The
+   placeholders are already painted by then and would grow (a 0.17 CLS jump);
+   real cards arrive hundreds of ms later, after Canvas's own API call, so
+   they always find the attribute in place. */
+html[data-b2c-card-assignments] .ic-DashboardCard__box .ic-DashboardCard:has(a.ic-DashboardCard__link),
+html[data-b2c-card-assignments] [data-testid=draggable-card]:has(a.ic-DashboardCard__link) {
+  position: relative;
+  padding-bottom: calc(30px + var(--b2c-due-n, 4) * 28px + 8px);
+}
+html[data-b2c-card-assignments] .ic-DashboardCard > b2c-card-due,
+html[data-b2c-card-assignments] [data-testid=draggable-card] > b2c-card-due {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(30px + var(--b2c-due-n, 4) * 28px + 8px);
+}

@@ -1,0 +1,288 @@
+/* Palette engine glue (Dev). Design's design/spec/surfaces/palette.css holds
+   the brand-variable remap and hand rules (universal, dark-only, light);
+   literals.gen.css is the generated literal layer. This file maps the theme
+   slot in effect onto the role vars (--b2c-dm-*), applies the High Contrast
+   AAA fallbacks, and holds the inline-colour, calendar, RCE-chrome and
+   live-finding rules. Gate: html[data-b2c-theme="on"]; scheme:
+   [data-b2c-scheme="light|dark"]; slot: [data-b2c-slot="l|d"] (rice.md). */
+
+/* ── Slots → roles. The mirror sets --b2c-pl-d-* (Dark theme slot) and
+      --b2c-pl-l-* (Light theme slot); fallbacks are the Dark preset and
+      Canvas's own colours. link / nav / accent derive from the school unless
+      set; success / warning / danger default per scheme. ── */
+html[data-b2c-theme="on"][data-b2c-slot="d"] {
+  --b2c-dm-bg: var(--b2c-pl-d-bg, #18212d);
+  --b2c-dm-surface: var(--b2c-pl-d-surface, #212b37);
+  --b2c-dm-surface-raised: var(--b2c-pl-d-surface-raised, #2b3541);
+  --b2c-dm-border: var(--b2c-pl-d-border, #444e5b);
+  --b2c-dm-text: var(--b2c-pl-d-text, #e8edf4);
+  --b2c-dm-text-secondary: var(--b2c-pl-d-text-secondary, #bec3c9);
+  --b2c-dm-text-tertiary: var(--b2c-pl-d-text-tertiary, #a2a7ac);
+  --b2c-dm-link: var(--b2c-pl-d-link, var(--b2c-school-link));
+  --b2c-dm-nav: var(--b2c-pl-d-nav, var(--b2c-school-nav));
+  --b2c-dm-nav-text: var(--b2c-pl-d-nav-text, #ffffff);
+  --b2c-dm-accent: var(--b2c-pl-d-accent, var(--b2c-school-accent));
+  --b2c-dm-success: var(--b2c-pl-d-success, #6fcf97);
+  --b2c-dm-warning: var(--b2c-pl-d-warning, #ffb37a);
+  --b2c-dm-danger: var(--b2c-pl-d-danger, #ff8a80);
+  --b2c-hc-d-bg: var(--b2c-pl-d-bg, #18212d);
+  --b2c-hc-d-surface: var(--b2c-pl-d-surface, #212b37);
+  --b2c-hc-d-surface-raised: var(--b2c-pl-d-surface-raised, #2b3541);
+  --b2c-hc-d-border: var(--b2c-pl-d-border, #444e5b);
+  --b2c-hc-d-text: var(--b2c-pl-d-text, #e8edf4);
+  --b2c-hc-d-text-secondary: var(--b2c-pl-d-text-secondary, #bec3c9);
+  --b2c-hc-d-text-tertiary: var(--b2c-pl-d-text-tertiary, #a2a7ac);
+  --b2c-hc-d-link: var(--b2c-pl-d-link, var(--b2c-school-link));
+  --b2c-hc-d-nav: var(--b2c-pl-d-nav, var(--b2c-school-nav));
+  --b2c-hc-d-nav-text: var(--b2c-pl-d-nav-text, #ffffff);
+  --b2c-hc-d-accent: var(--b2c-pl-d-accent, var(--b2c-school-accent));
+  --b2c-hc-d-success: var(--b2c-pl-d-success, #6fcf97);
+  --b2c-hc-d-warning: var(--b2c-pl-d-warning, #ffb37a);
+  --b2c-hc-d-danger: var(--b2c-pl-d-danger, #ff8a80);
+}
+html[data-b2c-theme="on"][data-b2c-slot="l"] {
+  --b2c-dm-bg: var(--b2c-pl-l-bg, #ffffff);
+  --b2c-dm-surface: var(--b2c-pl-l-surface, #ffffff);
+  --b2c-dm-surface-raised: var(--b2c-pl-l-surface-raised, #f5f5f5);
+  --b2c-dm-border: var(--b2c-pl-l-border, #c7cdd1);
+  --b2c-dm-text: var(--b2c-pl-l-text, #273540);
+  --b2c-dm-text-secondary: var(--b2c-pl-l-text-secondary, #586874);
+  --b2c-dm-text-tertiary: var(--b2c-pl-l-text-tertiary, #6a7883);
+  --b2c-dm-link: var(--b2c-pl-l-link, var(--b2c-school-link));
+  --b2c-dm-nav: var(--b2c-pl-l-nav, var(--b2c-school-nav));
+  --b2c-dm-nav-text: var(--b2c-pl-l-nav-text, #ffffff);
+  --b2c-dm-accent: var(--b2c-pl-l-accent, var(--b2c-school-accent));
+  --b2c-dm-success: var(--b2c-pl-l-success, #03893d);
+  --b2c-dm-warning: var(--b2c-pl-l-warning, #cf4a00);
+  --b2c-dm-danger: var(--b2c-pl-l-danger, #e0061f);
+  --b2c-hc-l-bg: var(--b2c-pl-l-bg, #ffffff);
+  --b2c-hc-l-surface: var(--b2c-pl-l-surface, #ffffff);
+  --b2c-hc-l-surface-raised: var(--b2c-pl-l-surface-raised, #f5f5f5);
+  --b2c-hc-l-border: var(--b2c-pl-l-border, #c7cdd1);
+  --b2c-hc-l-text: var(--b2c-pl-l-text, #273540);
+  --b2c-hc-l-text-secondary: var(--b2c-pl-l-text-secondary, #586874);
+  --b2c-hc-l-text-tertiary: var(--b2c-pl-l-text-tertiary, #6a7883);
+  --b2c-hc-l-link: var(--b2c-pl-l-link, var(--b2c-school-link));
+  --b2c-hc-l-nav: var(--b2c-pl-l-nav, var(--b2c-school-nav));
+  --b2c-hc-l-nav-text: var(--b2c-pl-l-nav-text, #ffffff);
+  --b2c-hc-l-accent: var(--b2c-pl-l-accent, var(--b2c-school-accent));
+  --b2c-hc-l-success: var(--b2c-pl-l-success, #03893d);
+  --b2c-hc-l-warning: var(--b2c-pl-l-warning, #cf4a00);
+  --b2c-hc-l-danger: var(--b2c-pl-l-danger, #e0061f);
+}
+/* "school" roles, per scheme (the shared rule: school.ts, drift-tested):
+   light uses the school's colours as they are; dark lifts link and accent. */
+html[data-b2c-theme="on"][data-b2c-scheme="light"] {
+  --b2c-school-link: var(--ic-link-color, #0e68b3);
+  --b2c-school-accent: var(--ic-brand-primary, #2b7abc);
+  --b2c-school-nav: var(--ic-brand-global-nav-bgd, #334451);
+}
+html[data-b2c-theme="on"][data-b2c-scheme="dark"] {
+  --b2c-school-link: oklch(from var(--ic-link-color, #0e68b3) 0.80 min(c, 0.11) h);
+  --b2c-school-accent: oklch(from var(--ic-brand-primary, #2b7abc) 0.50 max(c, 0.08) h);
+  --b2c-school-nav: var(--ic-brand-global-nav-bgd, #334451);
+}
+/* "Theme colour" nav (palette.css's rule) must still win over the slot's nav. */
+html[data-b2c-theme="on"][data-b2c-slot][data-b2c-nav-style="theme"] {
+  --b2c-dm-nav: var(--b2c-dm-surface);
+}
+/* Director ruling (dark-mode.md §7): Canvas's High Contrast UI + a theme
+   reaches AAA. The mirror precomputes only the failing roles' fallbacks
+   (palettes.ts aaaFallback → the theme lane's hcGate: Black for a dark scheme,
+   the light High contrast preset for a light one) as --b2c-pl-<slot>-hc-*;
+   every other role keeps the slot's value (--b2c-hc-<slot>-*, set above). */
+html[data-b2c-theme="on"][data-b2c-slot="d"]:has(link[href*="high_contrast"]) {
+  --b2c-dm-bg: var(--b2c-pl-d-hc-bg, var(--b2c-hc-d-bg));
+  --b2c-dm-surface: var(--b2c-pl-d-hc-surface, var(--b2c-hc-d-surface));
+  --b2c-dm-surface-raised: var(--b2c-pl-d-hc-surface-raised, var(--b2c-hc-d-surface-raised));
+  --b2c-dm-border: var(--b2c-dm-text-tertiary); /* Design's HC control border, as hcGate checks it */
+  --b2c-dm-text: var(--b2c-pl-d-hc-text, var(--b2c-hc-d-text));
+  --b2c-dm-text-secondary: var(--b2c-pl-d-hc-text-secondary, var(--b2c-hc-d-text-secondary));
+  --b2c-dm-text-tertiary: var(--b2c-pl-d-hc-text-tertiary, var(--b2c-hc-d-text-tertiary));
+  --b2c-dm-link: var(--b2c-pl-d-hc-link, var(--b2c-hc-d-link));
+  --b2c-dm-nav: var(--b2c-pl-d-hc-nav, var(--b2c-hc-d-nav));
+  --b2c-dm-nav-text: var(--b2c-pl-d-hc-nav-text, var(--b2c-hc-d-nav-text));
+  --b2c-dm-accent: var(--b2c-pl-d-hc-accent, var(--b2c-hc-d-accent));
+  --b2c-dm-success: var(--b2c-pl-d-hc-success, var(--b2c-hc-d-success));
+  --b2c-dm-warning: var(--b2c-pl-d-hc-warning, var(--b2c-hc-d-warning));
+  --b2c-dm-danger: var(--b2c-pl-d-hc-danger, var(--b2c-hc-d-danger));
+}
+html[data-b2c-theme="on"][data-b2c-slot="l"]:has(link[href*="high_contrast"]) {
+  --b2c-dm-bg: var(--b2c-pl-l-hc-bg, var(--b2c-hc-l-bg));
+  --b2c-dm-surface: var(--b2c-pl-l-hc-surface, var(--b2c-hc-l-surface));
+  --b2c-dm-surface-raised: var(--b2c-pl-l-hc-surface-raised, var(--b2c-hc-l-surface-raised));
+  --b2c-dm-border: var(--b2c-dm-text-tertiary); /* Design's HC control border, as hcGate checks it */
+  --b2c-dm-text: var(--b2c-pl-l-hc-text, var(--b2c-hc-l-text));
+  --b2c-dm-text-secondary: var(--b2c-pl-l-hc-text-secondary, var(--b2c-hc-l-text-secondary));
+  --b2c-dm-text-tertiary: var(--b2c-pl-l-hc-text-tertiary, var(--b2c-hc-l-text-tertiary));
+  --b2c-dm-link: var(--b2c-pl-l-hc-link, var(--b2c-hc-l-link));
+  --b2c-dm-nav: var(--b2c-pl-l-hc-nav, var(--b2c-hc-l-nav));
+  --b2c-dm-nav-text: var(--b2c-pl-l-hc-nav-text, var(--b2c-hc-l-nav-text));
+  --b2c-dm-accent: var(--b2c-pl-l-hc-accent, var(--b2c-hc-l-accent));
+  --b2c-dm-success: var(--b2c-pl-l-hc-success, var(--b2c-hc-l-success));
+  --b2c-dm-warning: var(--b2c-pl-l-hc-warning, var(--b2c-hc-l-warning));
+  --b2c-dm-danger: var(--b2c-pl-l-hc-danger, var(--b2c-hc-l-danger));
+}
+
+/* ── Inline colours, set by the runtime pass (run.ts) ── */
+html[data-b2c-theme="on"] [data-b2c-ink="text"] { color: var(--b2c-dm-text) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink="muted"] { color: var(--b2c-dm-text-secondary) !important; }
+/* Lifting authored colours for contrast is a dark-palette call: on a light
+   palette they read as authored (they were authored on white). */
+html[data-b2c-theme="on"][data-b2c-scheme="dark"] [data-b2c-ink="lift"] { color: var(--b2c-ink) !important; }
+
+/* Near-white authored backgrounds (wrappers teachers paste from Word or
+   templates) would be paper islands on a dark page: drop them. ([data-b2c-scheme]
+   matches palette.css's "text on authored backgrounds" rule's specificity, so
+   this, later in the sheet, wins.) Coloured
+   authored backgrounds keep their colour and dark text (Design's sheet).
+   Exact forms only here (a "#fff" prefix would also match #ffff00, and the
+   build lint can't take ";" in a selector); the runtime pass in run.ts
+   covers every other spelling. */
+html[data-b2c-theme="on"][data-b2c-scheme] :is(.user_content, .show-content) :is(
+  [style*="background-color: #ffffff" i], [style*="background-color:#ffffff" i],
+  [style*="background-color: rgb(255, 255, 255)" i], [style*="background-color: white" i],
+  [style*="background: #ffffff" i], [style*="background: white" i],
+  [style*="background: rgb(255, 255, 255)" i],
+  [bgcolor="#ffffff" i], [bgcolor="#fff" i], [bgcolor="white" i]),
+html[data-b2c-theme="on"][data-b2c-scheme] :is(.user_content, .show-content) [data-b2c-ink-bg="clear"] {
+  background-color: transparent !important;
+  color: var(--b2c-dm-text);
+}
+html[data-b2c-theme="on"][data-b2c-scheme] :is(.user_content, .show-content) [data-b2c-ink-bg="clear"] a {
+  color: var(--b2c-dm-link);
+}
+
+/* Canvas's own inline backgrounds (React styles, the calendar's today cell),
+   mapped by the literal map at runtime (ink.ts bgRole). */
+html[data-b2c-theme="on"] [data-b2c-ink-bg="bg"] { background-color: var(--b2c-dm-bg) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="surface"] { background-color: var(--b2c-dm-surface) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="surface-raised"] { background-color: var(--b2c-dm-surface-raised) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="hover"] { background-color: var(--b2c-dm-hover) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="selected"] { background-color: var(--b2c-dm-selected) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="success-tint"] { background-color: var(--b2c-dm-success-tint) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="danger-tint"] { background-color: var(--b2c-dm-danger-tint) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="warning-tint"] { background-color: var(--b2c-dm-warning-tint) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="info-tint"] { background-color: var(--b2c-dm-info-tint) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="highlight"] { background-color: var(--b2c-dm-highlight) !important; }
+html[data-b2c-theme="on"] [data-b2c-ink-bg="accent"] { background-color: var(--b2c-dm-accent) !important; }
+
+/* Calendar event chips (dark-mode.md §9b): a course-colour left edge and a
+   tinted fill instead of a full coloured border. Canvas gives each chip the
+   course colour as `color` and `border-color` (.group_<context>), so
+   currentColor is the course colour here. The 2 px inset shadow plus the
+   1 px left border make a 3 px edge without changing the chip's size. */
+html[data-b2c-theme="on"] :is(#calendar-app, #calendar-drag-and-drop-container) .fc-event {
+  background-color: color-mix(in oklch, currentColor 18%, var(--b2c-dm-surface)) !important;
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-left-color: currentColor !important; /* over FullCalendar's default #3a87ad, which the generated layer maps to link */
+  box-shadow: inset 2px 0 0 currentColor !important;
+}
+/* …and on dark palettes the course colour as text is lifted (relative
+   colour from currentColor, resolved on the child, so it reads the chip's colour). */
+html[data-b2c-theme="on"][data-b2c-scheme="dark"] .fc-event :is(.fc-content, .fc-title, .fc-time) {
+  color: oklch(from currentColor max(l, 0.72) c h);
+}
+
+/* Calendar mini-month (dark-mode.md §9b): days are borderless; today is a
+   link-colour ring instead of a filled cell. Event-day markers stay. */
+html[data-b2c-theme="on"] #minical :is(td, th, .fc-widget-content) {
+  border-color: transparent !important;
+}
+/* Rows and cells (incl. FullCalendar's other-month gradient) are white on white in light; on dark they'd band. */
+html[data-b2c-theme="on"] #minical :is(td, th, .fc-row, .fc-bg, .fc-day, .fc-today, .fc-state-highlight) {
+  background: transparent !important;
+}
+html[data-b2c-theme="on"] #minical .fc-content-skeleton .fc-today {
+  box-shadow: inset 0 0 0 2px var(--b2c-dm-link);
+  border-radius: var(--b2c-radius-sm); /* square: follows --b2c-corner */
+  color: var(--b2c-dm-text);
+}
+
+/* Pre-paint ink for the RCE's default text colours and common HTML colours:
+   the generated block below (scripts/gen-dark-ink.mts). */
+
+/* ── The rich content editor's chrome (TinyMCE "oxide"/Canvas skin, .tox):
+      Research parity audit #1. The skin is loaded by Canvas's JS, not a CSS
+      bundle we generate from, so these are hand rules on its stable classes.
+      !important because the skin's state selectors run to (0,4,0). ── */
+html[data-b2c-theme="on"] .tox-tinymce,
+html[data-b2c-theme="on"] .tox :is(.tox-editor-header, .tox-toolbar-overlord, .tox-menubar, .tox-statusbar, .tox-toolbar, .tox-toolbar__primary, .tox-toolbar__overflow, .tox-toolbar__group) {
+  background: var(--b2c-dm-surface) !important;
+  border-color: var(--b2c-dm-border) !important;
+  color: var(--b2c-dm-text) !important;
+}
+html[data-b2c-theme="on"] .tox :is(.tox-tbtn, .tox-mbtn, .tox-split-button, .tox-statusbar__text-container, .tox-statusbar a, .tox-statusbar__path-item, .tox-statusbar__wordcount) {
+  background: transparent !important;
+  color: var(--b2c-dm-text-secondary) !important;
+}
+html[data-b2c-theme="on"] .tox :is(.tox-tbtn, .tox-mbtn, .tox-split-button) svg { fill: var(--b2c-dm-text-secondary) !important; }
+html[data-b2c-theme="on"] .tox :is(.tox-tbtn, .tox-mbtn, .tox-split-button):is(:hover, :focus, .tox-tbtn--enabled, .tox-mbtn--active):not(.tox-tbtn--disabled) {
+  background: var(--b2c-dm-hover) !important;
+  color: var(--b2c-dm-text) !important;
+}
+html[data-b2c-theme="on"] .tox :is(.tox-tbtn, .tox-split-button):is(:hover, .tox-tbtn--enabled) svg { fill: var(--b2c-dm-text) !important; }
+html[data-b2c-theme="on"] .tox .tox-tbtn--disabled svg { fill: var(--b2c-dm-text-tertiary) !important; opacity: .6; }
+html[data-b2c-theme="on"] .tox .tox-edit-area__iframe { background: var(--b2c-dm-bg) !important; }
+html[data-b2c-theme="on"] :is(.tox .tox-menu, .tox .tox-collection--list, .tox .tox-dialog, .tox .tox-pop__dialog, .tox-tinymce-aux .tox-menu) {
+  background: var(--b2c-dm-surface-raised) !important;
+  border-color: var(--b2c-dm-border) !important;
+  color: var(--b2c-dm-text) !important;
+}
+html[data-b2c-theme="on"] .tox :is(.tox-collection__item, .tox-dialog__header, .tox-dialog__footer, .tox-dialog__body, .tox-label) {
+  background: transparent !important;
+  color: var(--b2c-dm-text) !important;
+}
+html[data-b2c-theme="on"] .tox .tox-collection__item--active { background: var(--b2c-dm-selected) !important; }
+html[data-b2c-theme="on"] .tox :is(.tox-textfield, .tox-textarea, .tox-listboxfield .tox-listbox--select, .tox-selectfield select) {
+  background: var(--b2c-dm-bg) !important;
+  border-color: var(--b2c-dm-border) !important;
+  color: var(--b2c-dm-text) !important;
+}
+
+/* ── Live findings (Research): the widget dashboard's "Customize dashboard"
+      button text was invisible on dark; give it the theme's button pair. ── */
+html[data-b2c-theme="on"] [data-testid="customize-dashboard-button"],
+html[data-b2c-theme="on"] [data-testid="switch-to-old-dashboard-button"] {
+  background: var(--b2c-dm-surface-raised) !important;
+  border-color: var(--b2c-dm-border) !important;
+  color: var(--b2c-dm-text) !important;
+}
+html[data-b2c-theme="on"] :is([data-testid="customize-dashboard-button"], [data-testid="switch-to-old-dashboard-button"]) * {
+  color: inherit !important;
+  fill: currentColor;
+}
+
+/* The skip link is drawn in the link colour with white text; on a dark
+   scheme the link is light, so the text takes the page colour. */
+html[data-b2c-theme="on"][data-b2c-scheme="dark"] #skip_navigation_link { color: var(--b2c-dm-bg); }
+
+/* BEGIN gen-dark-ink (scripts/gen-dark-ink.mts; do not edit by hand) */
+html[data-b2c-theme="on"] :is(.user_content, .show-content) {
+  & :is([style*="color: #95a5a6" i],[style*="color:#95a5a6" i],[style*="color: rgb(149, 165, 166)" i],[style*="color: #7e8c8d" i],[style*="color:#7e8c8d" i],[style*="color: rgb(126, 140, 141)" i],[style*="color: #808080" i],[style*="color:#808080" i],[style*="color: rgb(128, 128, 128)" i],[style*="color: #666666" i],[style*="color:#666666" i],[style*="color: rgb(102, 102, 102)" i],[style*="color: #999999" i],[style*="color:#999999" i],[style*="color: rgb(153, 153, 153)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: var(--b2c-dm-text-secondary) !important; }
+  & :is([style*="color: #34495e" i],[style*="color:#34495e" i],[style*="color: rgb(52, 73, 94)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: var(--b2c-dm-text) !important; }
+}
+html[data-b2c-theme="on"][data-b2c-scheme="dark"] :is(.user_content, .show-content) {
+  & :is([style*="color: #2dc26b" i],[style*="color:#2dc26b" i],[style*="color: rgb(45, 194, 107)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #2ec26b !important; }
+  & :is([style*="color: #e03e2d" i],[style*="color:#e03e2d" i],[style*="color: rgb(224, 62, 45)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #ff725f !important; }
+  & :is([style*="color: #b96ad9" i],[style*="color:#b96ad9" i],[style*="color: rgb(185, 106, 217)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #ce7eef !important; }
+  & :is([style*="color: #3598db" i],[style*="color:#3598db" i],[style*="color: rgb(53, 152, 219)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #4dadf1 !important; }
+  & :is([style*="color: #169179" i],[style*="color:#169179" i],[style*="color: rgb(22, 145, 121)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #4fbaa1 !important; }
+  & :is([style*="color: #e67e23" i],[style*="color:#e67e23" i],[style*="color: rgb(230, 126, 35)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #ee862e !important; }
+  & :is([style*="color: #ba372a" i],[style*="color:#ba372a" i],[style*="color: rgb(186, 55, 42)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #fd7563 !important; }
+  & :is([style*="color: #843fa1" i],[style*="color:#843fa1" i],[style*="color: rgb(132, 63, 161)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #ca83ea !important; }
+  & :is([style*="color: #236fa1" i],[style*="color:#236fa1" i],[style*="color: rgb(35, 111, 161)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #64ace2 !important; }
+  & :is([style*="color: #ff0000" i],[style*="color:#ff0000" i],[style*="color: rgb(255, 0, 0)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #ff7261 !important; }
+  & :is([style*="color: #0000ff" i],[style*="color:#0000ff" i],[style*="color: rgb(0, 0, 255)" i],[style*="color: #000080" i],[style*="color:#000080" i],[style*="color: rgb(0, 0, 128)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #75a2ff !important; }
+  & :is([style*="color: #008000" i],[style*="color:#008000" i],[style*="color: rgb(0, 128, 0)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #58bf52 !important; }
+  & :is([style*="color: #800080" i],[style*="color:#800080" i],[style*="color: rgb(128, 0, 128)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #e371e0 !important; }
+  & :is([style*="color: #800000" i],[style*="color:#800000" i],[style*="color: rgb(128, 0, 0)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #f67a6a !important; }
+  & :is([style*="color: #008080" i],[style*="color:#008080" i],[style*="color: rgb(0, 128, 128)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #53b7b6 !important; }
+  & :is([style*="color: #ff6600" i],[style*="color:#ff6600" i],[style*="color: rgb(255, 102, 0)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #ff7634 !important; }
+  & :is([style*="color: #993300" i],[style*="color:#993300" i],[style*="color: rgb(153, 51, 0)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #f0825a !important; }
+  & :is([style*="color: #333399" i],[style*="color:#333399" i],[style*="color: rgb(51, 51, 153)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #8c9bff !important; }
+  & :is([style*="color: #003366" i],[style*="color:#003366" i],[style*="color: rgb(0, 51, 102)" i]):not([style*="background" i], [style*="background" i] *, [bgcolor] *) { color: #77a8e4 !important; }
+}
+/* END gen-dark-ink */
