@@ -147,6 +147,11 @@ flatters every theme. Grades tables, the calendar and the assignment page are wh
 a loud `border` or unreadable text show. If something on a page looks wrong and it isn't your values,
 say so in the hand-over; don't patch it with CSS.
 
+**If `render` can't run where you are** (a sandbox that blocks local servers or browsers; it exits 3 and says
+so), still run `check`. Then tell the person plainly that you couldn't render it, and give them the command to
+run: `agentkit/bin/b2c render <file> --scheme both`. A hand-drawn palette preview is fine only if it's labelled
+as an illustration, never passed off as a render.
+
 ## Handing over
 
 Give the person:
