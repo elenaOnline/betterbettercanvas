@@ -1,0 +1,4 @@
+#!/bin/sh
+# b2c: check and render b²c themes. Usage: agentkit/bin/b2c help
+here=$(cd -P "$(dirname "$0")" && pwd)
+exec node "$here/../tools/b2c.mjs" "$@"

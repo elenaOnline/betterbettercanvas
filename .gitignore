@@ -7,3 +7,6 @@ dev/keys/
 dev/mock-canvas/.vendor/
 dev/mock-canvas/.certs/
 dev/mock-canvas/vendor-live/
+__pycache__/
+agentkit/.scratch/
+agentkit/tools/.cache/
