@@ -12,6 +12,23 @@ import {fileURLToPath} from 'node:url'
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const require = createRequire(path.join(ROOT, '.tools/package.json'))
 
+/**
+ * The full Chromium to launch for tools and tests (extensions need full Chrome,
+ * not headless_shell): MOCK_CHROMIUM if set, else on macOS the background-only
+ * copy that never shows in the Dock (dev/scripts/quiet-chrome.mjs, built on
+ * first use), else Playwright's own Chrome for Testing.
+ */
+export async function chromiumPath() {
+  if (process.env.MOCK_CHROMIUM) return process.env.MOCK_CHROMIUM
+  const {quietChrome} = await import('../../scripts/quiet-chrome.mjs')
+  const q = quietChrome()
+  if (q) return q
+  for (const pkg of [path.join(ROOT, '.tools/package.json'), path.join(ROOT, '../package.json')]) {
+    try { const p = createRequire(pkg)('playwright-core').chromium.executablePath(); if (fs.existsSync(p)) return p } catch {}
+  }
+  throw new Error('no Playwright Chromium: (cd dev && npx playwright install chromium)')
+}
+
 function findExecutable() {
   if (process.env.MOCK_CHROMIUM) return process.env.MOCK_CHROMIUM
   const cache = path.join(os.homedir(), 'Library/Caches/ms-playwright')

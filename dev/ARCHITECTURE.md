@@ -25,9 +25,10 @@ flashes, polling, global unscoped CSS, `https://*/*` match) is not.
 
 ```
                  ┌─────────────── canvas.example.edu tab ────────────────┐
- manifest CSS ──►│ content.css  (all CSS-only rules, each gated by    │
- (browser-       │              html[data-b2c-*] attributes)          │
-  injected,      │                                                     │
+ manifest CSS ──►│ content.css  (core: tokens, side panel)            │
+ registered CSS ►│ css/<id>.css (one per feature, only while it can   │
+ (browser-       │              apply; every rule gated by            │
+  injected,      │              html[data-b2c-*] attributes)          │
   pre-paint)     │ boot.js   document_start, sync, ~2 KB:              │
                  │   localStorage['b2c:mirror'] → html attrs + --vars  │
                  │ main.js   document_start, async:                    │
@@ -56,13 +57,43 @@ flashes, polling, global unscoped CSS, `https://*/*` match) is not.
   clock synchronously, so it needs no alarms.
 
 `boot.js` reads the mirror synchronously and applies it to
-`document.documentElement`. It runs before the body has parsed. `content.css`
-is declared in the manifest, so the browser injects it before first paint, and
-all of its rules are gated by those attributes. The result is that every
-CSS-only feature is pre-paint by construction. `chrome.storage` stays the
-source of truth. The mirror can go stale only when settings change while no
-Canvas tab is open, and `main.js` corrects it within a few milliseconds on the
-next load.
+`document.documentElement`. It runs before the body has parsed. The CSS is
+injected by the browser before first paint and every rule is gated by those
+attributes, so every CSS-only feature is pre-paint by construction.
+`chrome.storage` stays the source of truth. The mirror can go stale only when
+settings change while no Canvas tab is open, and `main.js` corrects it within a
+few milliseconds on the next load.
+
+**Split stylesheets (css-split, 2026-10-20).** `content.css` (manifest) holds
+only core: Design's tokens and core UI such as the side panel. Each feature's
+CSS is its own `css/<id>.css`, a CSS-only content script the service worker
+registers (`src/background/css.ts`) only while the feature can apply: its
+mirror part sets any attribute, now or conditionally (so the palette is
+registered whenever a dark scheme can apply, including Match system).
+Registered CSS is injected exactly like manifest CSS. Every Canvas page load
+reports what its settings want, and the registrations follow (a lost one heals
+by the next load). Sheets register on **exact school hosts b²c has run on**
+(every frame there) and granted custom domains, never on
+`https://*.instructure.com/*`. A school's very first load therefore gets core
+`content.css` only and heals live; an update with schools known registers
+every sheet on them at once. A page that lacks a sheet it needs (a feature switched on live, a lost registration) asks the service
+worker to insert it (`src/core/sheets.ts`; same-origin frames ask from
+boot.js), and until it's in, that feature's attributes stay off: plain Canvas,
+never half-styled. Each sheet sets `--b2c-css-<id>` on `<html>` so a page can
+tell which it carries (`checkSheets`, read once before the first frame).
+`B2C_CSS_SPLIT=0` builds the old single sheet.
+
+**Quiz-safe mode: nothing at all on assessments.** On Classic Quizzes'
+quiz-taking route (`/courses/:id/quizzes/:id/take`) the mirror's quiz subset
+applies: nothing by default, colours only with `core.quizSafe = colours`; no
+feature code runs there. New Quizzes runs on its own hosts (quiz-lti /
+quiz-api / `*.quiz.*instructure.com`), top-level or framed, and gets nothing
+of b²c, not even an inert stylesheet or an attribute: the manifest's content
+scripts exclude those hosts (`QUIZ_FRAME_GLOBS` in build.mjs), and feature
+sheets register only on school hosts that main.js has reported from, which by
+the same exclusion can never be a quiz host. The service worker also refuses
+to record one (`isQuizHost` in `src/core/hosts.ts`, kept in step with the
+globs), even if one reports.
 
 ### Features
 
@@ -84,8 +115,9 @@ export default defineFeature({
 });
 ```
 
-- CSS for a feature is `src/features/<id>/style.css`. The build concatenates
-  all of them into `content.css`. Each rule has to be gated by the feature's
+- CSS for a feature is `src/features/<id>/style.css` (plus generated
+  `*.gen.css` layers and Design's surface sheet). The build assembles them into
+  the feature's own `css/<id>.css`. Each rule has to be gated by the feature's
   attribute (`html[data-b2c-<id>]`). The build lints for this and fails
   otherwise.
 - Injected widgets render into an **open shadow root** and use Design's

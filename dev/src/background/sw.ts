@@ -2,6 +2,7 @@
 import { installDiagnostics } from '../features/diagnostics/sw.ts';
 import { installFirstRun } from '../features/first-run/sw.ts';
 import { installSites, registeredCanvasMatches } from '../features/sites/sw.ts';
+import { installSheets } from './css.ts';
 import { OPEN_SETTINGS } from '../core/settings-link.ts';
 import { runMigrations } from '../core/settings/migrate.ts';
 
@@ -11,6 +12,8 @@ const diagnostics = installDiagnostics(__B2C_FEATURE_IDS__);
 const record = (feature: string) => (error: unknown) => void diagnostics.record(feature, error).catch(() => {});
 installSites(record('sites'));
 installFirstRun(record('first-run'));
+// Feature stylesheets (css/<id>.css): registered while their features can apply.
+const sheets = installSheets(__B2C_SHEETS__, record('core'));
 
 const CONTENT_JS = ['boot.js', 'main.js'];
 
@@ -41,6 +44,7 @@ async function reinject() {
 // update would. Headless Chromium can't re-fire onInstalled or survive
 // runtime.reload for a CLI-loaded extension.
 if (!__B2C_RELEASE__) {
+  Object.assign(globalThis, { __b2cSheetsSettled: sheets.settled, __b2cSheetsUpdated: sheets.updated });
   (globalThis as { __b2cMigrate?: () => Promise<string[]> }).__b2cMigrate = async () => {
     await chrome.storage.local.remove('b2c:migrations');
     const done = await runMigrations();

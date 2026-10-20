@@ -4,3 +4,5 @@ declare const __B2C_RELEASE__: boolean;
 declare const __B2C_FEATURE_IDS__: string[];
 /** True in test builds (B2C_TEST_FEATURES=1): test-only hooks. */
 declare const __B2C_TEST__: boolean;
+/** Feature ids whose CSS ships as its own sheet (css/<id>.css); empty when not split. */
+declare const __B2C_SHEETS__: string[];

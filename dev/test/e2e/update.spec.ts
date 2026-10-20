@@ -9,6 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { chromium } from '@playwright/test';
 import { test, expect } from './fixtures.ts';
+import { quietChrome } from '../../scripts/quiet-chrome.mjs';
 
 const DEV = path.resolve(import.meta.dirname, '../..');
 
@@ -18,7 +19,7 @@ test('a shipped build is detected and offered in the popup', async ({ canvas }) 
   execFileSync(process.execPath, ['build.mjs', '--release', '--out', live], { cwd: DEV });
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'b2c-e2e-'));
   const ctx = await chromium.launchPersistentContext(profile, {
-    channel: 'chromium', headless: true, ignoreHTTPSErrors: true,
+    channel: 'chromium', headless: true, ignoreHTTPSErrors: true, executablePath: quietChrome(),
     args: ['--headless=new', `--disable-extensions-except=${live}`, `--load-extension=${live}`,
       `--host-resolver-rules=MAP b2c-mock-school.instructure.com:443 127.0.0.1:${canvas.port}`, '--ignore-certificate-errors'],
   });

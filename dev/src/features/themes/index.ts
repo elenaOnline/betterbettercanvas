@@ -19,6 +19,7 @@ import { QUIZ_TAKING } from '../../core/canvas/page.ts';
 import { allFeatures, schema } from '../../core/registry.ts';
 import { json } from '../../core/settings/schema.ts';
 import { createStore, type Flat } from '../../core/settings/store.ts';
+import { ensureSheets } from '../../core/sheets.ts';
 import { isPrevious, isSavedList, type Previous, type SavedTheme } from './model.ts';
 
 export const PREVIEW_MSG = 'b2c:themes:preview';
@@ -49,10 +50,12 @@ export default defineFeature({
       }
       void createStore(schema)
         .load()
-        .then(base => {
+        .then(async base => {
           const all = { ...base, ...msg.values };
           const quiz = all['core.quizSafe'] === 'colours' ? allFeatures.filter(f => f.quizSafe) : [];
           const m = mergeParts(allFeatures.map(f => mirrorOf(f, all)), quiz.map(f => mirrorOf(f, all)));
+          // A previewed look may need a stylesheet the saved settings don't (css-split).
+          await ensureSheets(forPath(m, here(), isQuiz));
           applyMirror(forPath(m, here(), isQuiz), ctx.now());
           previewing = true;
           reply({ previewing: true });

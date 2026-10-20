@@ -24,7 +24,9 @@ is for you.
 3. **Never drive anyone's own browser from a script, and never put a window or a sound in front of them.**
    Browsers you start are headless (`--headless=new`) with a throwaway profile. Use
    `dev/test/e2e/fixtures.ts`, `dev/mock-canvas/tools/browser.mjs`, or `agentkit/tools/canvas-session.mjs`.
-   Kill only processes you started.
+   On macOS, headless still isn't invisible: the stock "Google Chrome for Testing" app puts an icon in the Dock
+   at every launch. Launch the background-only copy from `dev/scripts/quiet-chrome.mjs` (all of the above do),
+   and check a new flow with `node dev/scripts/dock-watch.mjs -- <command>`. Kill only processes you started.
 4. **Hand-feel is part of done.** Nothing flashes, shifts, or waits on the network when a cache could answer.
    Compare with the best shipping equivalent before you call it finished.
 

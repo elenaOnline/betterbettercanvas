@@ -12,20 +12,13 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { DEV } from './theme-adapter.mjs';
+import { chromiumPath } from './chromium.mjs';
 import { ensureTestBuild } from './devbuild.mjs';
 
 const HOST = 'b2c-mock-school.instructure.com';
 
-function chromiumPath() {
-  if (process.env.MOCK_CHROMIUM) return process.env.MOCK_CHROMIUM;
-  for (const pkg of [path.join(DEV, 'mock-canvas/.tools/package.json'), path.join(DEV, 'package.json')]) {
-    try { const p = createRequire(pkg)('playwright-core').chromium.executablePath(); if (fs.existsSync(p)) return p; } catch {}
-  }
-  throw new Error('no Playwright Chromium: (cd dev && npx playwright install chromium)');
-}
 
 /** Open a headless Canvas tab with b²c. opts: { scenario: 'default'|'heavy'|'empty'|…, now: ISO 8601 (default: the real clock), ext: dir } */
 export async function openCanvas(opts = {}) {
@@ -35,7 +28,7 @@ export async function openCanvas(opts = {}) {
     if (!b.dir) throw new Error(`b²c doesn't build right now: ${b.why}`);
     ext = b.dir;
   }
-  process.env.MOCK_CHROMIUM = chromiumPath();
+  process.env.MOCK_CHROMIUM = await chromiumPath();
   const { launch, startMock, mockCookies } = await import(pathToFileURL(path.join(DEV, 'mock-canvas/tools/browser.mjs')).href);
   const mock = await startMock();
   const { ctx, close } = await launch({ port: mock.port, hosts: [HOST], extraArgs: ['--headless=new', `--disable-extensions-except=${ext}`, `--load-extension=${ext}`] });

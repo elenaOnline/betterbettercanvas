@@ -22,6 +22,12 @@ export interface MirrorPart {
   css?: string;
   /** Internal: `css` keyed by feature id (filled in by mirrorOf). */
   sheets?: Record<string, string>;
+  /**
+   * Internal (filled in by mirrorOf): the attributes this part sets, keyed by
+   * the id of the split stylesheet they gate (css/<id>.css). They apply only
+   * while that sheet is in the page (see sheets.ts), never half-styled.
+   */
+  need?: Record<string, string[]>;
 }
 
 export interface CondAttr {
@@ -56,6 +62,8 @@ export interface FeatureDef<S extends SettingsShape = SettingsShape> {
   quizSafe?: boolean;
   /** Set by the build for lazy features: the runtime chunk to import. */
   runtimeChunk?: string;
+  /** Set by the build: this feature's split stylesheet (css/<id>.css). */
+  stylesheet?: string;
   /** Named Canvas selectors this feature relies on, for the health view. */
   anchors?: Record<string, string>;
   start?(ctx: Ctx, s: Values<S>): Instance<Values<S>> | void | Promise<Instance<Values<S>> | void>;
@@ -105,6 +113,11 @@ export function lazyRuntime<F extends AnyFeature>(f: F, chunk: string): F {
   };
 }
 
+/** Wired by build.mjs: the feature's CSS ships as its own sheet. */
+export function withStylesheet<F extends AnyFeature>(f: F, file: string): F {
+  return { ...f, stylesheet: file };
+}
+
 /** Read one feature's settings out of the flat settings map. */
 export function featureValues<S extends SettingsShape>(f: FeatureDef<S>, all: Record<string, unknown>): Values<S> {
   const out: Record<string, unknown> = {};
@@ -129,5 +142,9 @@ export function mirrorOf(f: AnyFeature, all: Record<string, unknown>): MirrorPar
     part.sheets = { [f.id]: part.css };
     delete part.css;
   }
+  // A feature's stylesheet is wanted while its pre-paint state sets any
+  // attribute (now or conditionally): every rule in it is gated by one.
+  const gates = [...Object.keys(part.attrs ?? {}), ...(part.cond ?? []).map(c => c.attr)];
+  if (f.stylesheet && gates.length) part.need = { [f.id]: [...new Set(gates)] };
   return part;
 }

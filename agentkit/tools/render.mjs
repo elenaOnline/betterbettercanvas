@@ -9,9 +9,9 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import https from 'node:https';
-import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { DEV } from './theme-adapter.mjs';
+import { chromiumPath } from './chromium.mjs';
 import { ensureTestBuild } from './devbuild.mjs';
 import { checkFile } from './check.mjs';
 
@@ -39,14 +39,6 @@ function opts(args) {
   return o;
 }
 
-function chromiumPath() {
-  if (process.env.MOCK_CHROMIUM) return process.env.MOCK_CHROMIUM;
-  // Full Chromium (chrome-headless-shell can't load extensions): the one matching each Playwright install.
-  for (const pkg of [path.join(DEV, 'mock-canvas/.tools/package.json'), path.join(DEV, 'package.json')]) {
-    try { const p = createRequire(pkg)('playwright-core').chromium.executablePath(); if (fs.existsSync(p)) return p; } catch {}
-  }
-  throw new Error('no Playwright Chromium found: run  (cd dev && npx playwright install chromium)  or set MOCK_CHROMIUM');
-}
 
 const get = (port, p) => new Promise((ok, no) => {
   https.get({ host: '127.0.0.1', port, path: p, rejectUnauthorized: false, headers: { host: HOST, cookie: 'mock_scenario=default', accept: 'application/json' } }, res => {
@@ -140,7 +132,7 @@ export async function render(args) {
   const out = o.out ?? path.join(os.tmpdir(), 'b2c-render', `${stem}-${tag}`);
   fs.mkdirSync(out, { recursive: true });
   for (const f of fs.readdirSync(out)) if (/\.(png|html)$/.test(f) || f === 'render.json') fs.rmSync(path.join(out, f));
-  process.env.MOCK_CHROMIUM = chromiumPath();
+  process.env.MOCK_CHROMIUM = await chromiumPath();
   const { launch, startMock, mockCookies } = await import(pathToFileURL(path.join(DEV, 'mock-canvas/tools/browser.mjs')).href);
   const mock = await startMock();
   const { ctx, close } = await launch({ port: mock.port, hosts: [HOST], extraArgs: ['--headless=new', `--disable-extensions-except=${ext.dir}`, `--load-extension=${ext.dir}`] });

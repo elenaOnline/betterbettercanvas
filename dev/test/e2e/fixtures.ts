@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { startCanvas, type CanvasServer } from './canvas-server.ts';
+import { quietChrome } from '../../scripts/quiet-chrome.mjs';
 
 const DEV = path.resolve(import.meta.dirname, '../..');
 export const DIST = process.env.B2C_DIST ? path.resolve(process.env.B2C_DIST) : path.join(DEV, 'dist');
@@ -40,7 +41,8 @@ export const test = base.extend<Fixtures, { canvas: CanvasServer }>({
     const context = await chromium.launchPersistentContext(profile, {
       channel: 'chromium',
       headless: true,
-      executablePath: process.env.B2C_BROWSER === 'helium' ? HELIUM : undefined,
+      // House rule 2: the background-only copy never shows in the Dock (scripts/quiet-chrome.mjs).
+      executablePath: process.env.B2C_BROWSER === 'helium' ? HELIUM : quietChrome(),
       ignoreHTTPSErrors: true,
       args: [
         '--headless=new',

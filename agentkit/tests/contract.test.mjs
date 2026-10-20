@@ -7,9 +7,9 @@
 // Exit 1 on any FAIL. PENDING = a part of the contract Dev has said is still coming (not a failure).
 import fs from 'node:fs';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { DEV } from '../tools/theme-adapter.mjs';
+import { chromiumPath } from '../tools/chromium.mjs';
 import { ensureTestBuild } from '../tools/devbuild.mjs';
 
 const HOST = 'b2c-mock-school.instructure.com';
@@ -24,13 +24,6 @@ const ok = (name, cond, detail = '') => results.push({ name, status: cond ? 'PAS
 const pending = (name, detail) => results.push({ name, status: 'PENDING', detail });
 const info = (name, detail) => results.push({ name, status: 'INFO', detail });
 
-function chromiumPath() {
-  if (process.env.MOCK_CHROMIUM) return process.env.MOCK_CHROMIUM;
-  for (const pkg of [path.join(DEV, 'mock-canvas/.tools/package.json'), path.join(DEV, 'package.json')]) {
-    try { const p = createRequire(pkg)('playwright-core').chromium.executablePath(); if (fs.existsSync(p)) return p; } catch {}
-  }
-  throw new Error('no Playwright Chromium: (cd dev && npx playwright install chromium)');
-}
 
 // The raw-event form from CONTRACT.md §2 (what an agent without the wrapper does).
 const rawDescribe = (page, req) => page.evaluate(req => new Promise((ok, no) => {
@@ -49,7 +42,7 @@ async function main() {
     ext = b.dir;
     console.log(`build ${b.buildId} (${b.status})`);
   }
-  process.env.MOCK_CHROMIUM = chromiumPath();
+  process.env.MOCK_CHROMIUM = await chromiumPath();
   const { launch, startMock, mockCookies } = await import(pathToFileURL(path.join(DEV, 'mock-canvas/tools/browser.mjs')).href);
   const mock = await startMock();
   const { ctx, close } = await launch({ port: mock.port, hosts: [HOST], extraArgs: ['--headless=new', `--disable-extensions-except=${ext}`, `--load-extension=${ext}`] });

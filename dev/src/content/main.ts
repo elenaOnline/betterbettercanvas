@@ -9,6 +9,7 @@ import { nextBoundaryMs } from '../core/schedule.ts';
 import { allFeatures, schema } from '../core/registry.ts';
 import { createStore, type Flat } from '../core/settings/store.ts';
 import { probe } from '../core/probe.ts';
+import { ensureSheets, wantedSheets } from '../core/sheets.ts';
 import { agentMirror, createAgentHook } from '../core/agent/hook.ts';
 import { reportError } from '../features/diagnostics/client.ts';
 import type { Phase } from '../features/diagnostics/model.ts';
@@ -75,10 +76,28 @@ function computeMirror(all: Flat): Mirror {
 
 const here = (m: Mirror) => forPath(m, location.pathname, p => QUIZ_TAKING.test(p));
 
-function syncMirror(all: Flat) {
+/** Split stylesheets last reported to the service worker from this page. */
+let reported: string | null = null;
+
+async function syncMirror(all: Flat) {
   mirror = computeMirror(all);
-  applyMirror(here(mirror), ctx?.now() ?? new Date());
   writeMirror(mirror);
+  // Feature stylesheets: insert any this page lacks before their attributes
+  // go on (applyMirror withholds them meanwhile), and keep registrations in
+  // step with what the settings want.
+  const want = wantedSheets(mirror);
+  const report = want.join() !== reported ? want : undefined;
+  reported = want.join();
+  const sheets = await ensureSheets(here(mirror), report);
+  if (!sheets) reported = null;
+  if (tornDown) return;
+  applyMirror(here(mirror), ctx?.now() ?? new Date());
+  // A look that arrives late (its sheet was just inserted) flips in place,
+  // without transitions (palette.css honours data-b2c-switching).
+  if (sheets === 'inserted') {
+    root.setAttribute('data-b2c-switching', '');
+    requestAnimationFrame(() => requestAnimationFrame(() => root.removeAttribute('data-b2c-switching')));
+  }
   // Conditional attributes (scheduled / device dark mode) flip while the page
   // stays open.
   const reapply = () => mirror && applyMirror(here(mirror), ctx?.now() ?? new Date());
@@ -192,7 +211,8 @@ async function init() {
         const all = await store.load();
         if (tornDown) return;
         current = all;
-        syncMirror(all);
+        await syncMirror(all);
+        if (tornDown) return;
         agent.sync(all);
         await reconcile(all, changed);
       })
