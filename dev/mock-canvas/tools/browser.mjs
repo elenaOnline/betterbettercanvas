@@ -78,10 +78,10 @@ export function mockCookies({scenario, now, delay, view, tab, legacyTodo, widget
 // Start the mock server in-process on a free port (for scripts).
 export async function startMock(port = 0) {
   const https = await import('node:https')
-  const {handle} = await import('../server.mjs')
-  const key = path.join(ROOT, '.certs/canvas.example.edu.key')
-  if (!fs.existsSync(key)) throw new Error('run make-cert.sh first')
-  const srv = https.createServer({key: fs.readFileSync(key), cert: fs.readFileSync(path.join(ROOT, '.certs/canvas.example.edu.crt'))}, (q, s) => handle(q, s).catch(e => { s.writeHead(500); s.end(String(e)) }))
+  const {handle, ensureCert} = await import('../server.mjs')
+  const {key, cert} = ensureCert()
+  if (!fs.existsSync(key)) throw new Error('could not create a test certificate (is openssl installed?); run make-cert.sh')
+  const srv = https.createServer({key: fs.readFileSync(key), cert: fs.readFileSync(cert)}, (q, s) => handle(q, s).catch(e => { s.writeHead(500); s.end(String(e)) }))
   await new Promise(r => srv.listen(port, '127.0.0.1', r))
   return {port: srv.address().port, close: () => new Promise(r => srv.close(r))}
 }

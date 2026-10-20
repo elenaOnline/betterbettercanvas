@@ -272,6 +272,28 @@ function idPolicy(asString) {
   }
 }
 
+// First run (e.g. a fresh clone): make the self-signed cert ourselves, the same
+// one make-cert.sh writes. Parallel test workers race here, so each generates
+// into a private dir and renames it into place; losers reuse the winner's.
+export function ensureCert() {
+  const certDir = path.join(ROOT, '.certs')
+  const key = path.join(certDir, 'canvas.example.edu.key')
+  const cert = path.join(certDir, 'canvas.example.edu.crt')
+  if (!fs.existsSync(cert)) {
+    const tmp = `${certDir}.${process.pid}`
+    try {
+      fs.mkdirSync(tmp, {recursive: true})
+      execFileSync('openssl', ['req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-days', '825',
+        '-keyout', path.join(tmp, path.basename(key)), '-out', path.join(tmp, path.basename(cert)),
+        '-subj', '/CN=canvas.example.edu/O=mock-canvas (b2c tests)', '-addext', 'subjectAltName=DNS:canvas.example.edu,DNS:localhost,IP:127.0.0.1'], {stdio: 'ignore'})
+      fs.renameSync(tmp, certDir)
+    } catch {
+      fs.rmSync(tmp, {recursive: true, force: true})
+    }
+  }
+  return {key, cert}
+}
+
 function arg(name, def) {
   const i = process.argv.indexOf(name)
   return i > 0 && process.argv[i + 1] ? process.argv[i + 1] : def
@@ -285,21 +307,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const key = path.join(certDir, 'canvas.example.edu.key')
   const cert = path.join(certDir, 'canvas.example.edu.crt')
   const wrap = (req, res) => handle(req, res).catch(e => { console.error(e); try { res.writeHead(500); res.end(String(e)) } catch {} })
-  // First run (e.g. a fresh clone): make the self-signed cert ourselves, the
-  // same one make-cert.sh writes. Parallel test workers race here, so each
-  // generates into a private dir and renames it into place; losers reuse it.
-  if (!fs.existsSync(cert)) {
-    const tmp = `${certDir}.${process.pid}`
-    try {
-      fs.mkdirSync(tmp, {recursive: true})
-      execFileSync('openssl', ['req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-days', '825',
-        '-keyout', path.join(tmp, path.basename(key)), '-out', path.join(tmp, path.basename(cert)),
-        '-subj', '/CN=canvas.example.edu/O=mock-canvas (b2c tests)', '-addext', 'subjectAltName=DNS:canvas.example.edu,DNS:localhost,IP:127.0.0.1'], {stdio: 'ignore'})
-      fs.renameSync(tmp, certDir)
-    } catch {
-      fs.rmSync(tmp, {recursive: true, force: true})
-    }
-  }
+  ensureCert()
   if (fs.existsSync(key) && fs.existsSync(cert)) {
     https.createServer({key: fs.readFileSync(key), cert: fs.readFileSync(cert)}, wrap).listen(port, host, () => {
       console.log(`mock-canvas https://${host}:${port}  (as canvas.example.edu)`)
